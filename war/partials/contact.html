@@ -1,0 +1,33 @@
+
+<fieldset>
+	<legend>Kontakt</legend>
+
+	<table>
+		<tr>
+			<td>Imie</td>
+			<td><input type="text" name="contact.firstName" ng:required /></td>
+		</tr>
+		<tr>
+			<td>Nazwisko</td>
+			<td><input type="text" name="contract.lastName" ng:required  /></td>
+		</tr>
+		<tr>
+			<td>E-mail</td>
+			<td><input type="text" name="contract.eamil" ng:required ng:validate="email" /></td>
+		</tr>
+		
+		<tr>
+			<td>Treść</td>
+			<td><textarea rows="4" cols="40" name="contract.content" ng:required > </textarea></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button ng:click="send()">Wyślij</button>
+				<button ng:click="clear()">Wyczyść</button>
+			</td>
+		</tr
+		
+
+	</table>
+</fieldset>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org/">
+<head>
+<meta charset="utf-8">
+<title>Start</title>
+<link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+	Aktulanie zalogowany jako {{loggedUser.login}}
+
+	<br/>
+	<fieldset class="fs">
+		<legend>Pytanie</legend>
+
+		<table>
+			<tr>
+				<td>Wybierz sesję:</td>
+				<td><select name="sessionId" ng:format="number" ng:options="c.id as c.desc for c in sessions.lepSession" class="nullable">						
+				</select></td>
+			</tr>
+			<tr>
+				<td>Wybierz język:</td>
+				<td><select name="langId" ng:format="number">
+						<option value="10">Polski</option>
+						<option value="20">Angielski</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Wybierz typ egzaminu:</td>
+				<td><select name="lepTypeId" ng:format="number">
+						<option value="10">LEP</option>
+						<option value="20">DLEP</option>
+				</select></td>
+			</tr>
+			<tr ng:show="lepTypeId == 10">
+				<td>Wybierz poddział:</td>
+				<td><select name="sectionId" ng:format="number">
+						<option value="10">Wszystkie</option>
+						<option value="20">Ginekologia</option>
+						<option value="30">Interna</option>
+				</select></td>
+			</tr>
+
+		</table>
+		<br/>
+		<a href="#/startTest">Start</a>
+		
+		
+		<button ng:click="ref()">Referesh</button>   
+		
+		
+		
+		Refresh date: {{refreshDate}}
+		
+		
+
+	</fieldset>
+</body>
+</html>

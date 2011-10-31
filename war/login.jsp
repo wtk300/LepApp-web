@@ -2,34 +2,24 @@
 
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Login</title>
   </head>
 
   <body onload="document.f.j_username.focus();">
-    <h1>Login</h1>
-
-    <p>Valid users:
-    <p>
-  				name="admin" password="admin" authorities="ROLE_ADMIN,ROLE_PROXY"
-                name="user" password="temp" authorities="ROLE_PROXY"
-                name="user2" password="admin" authorities="ROLE_ADMIN"
-    <p>
-
-    <%-- this form-login-page form is also used as the
-         form-error-page to ask for a login again.
-         --%>
+    
     <c:if test="${not empty param.login_error}">
       <font color="red">
         Your login attempt was not successful, try again.<br/><br/>
-        Reason: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+        
       </font>
     </c:if>
 
     <form name="f" action="<c:url value='j_spring_security_check'/>" method="POST">
       <table>
-        <tr><td>User:</td><td><input type='text' name='j_username' value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'/></td></tr>
-        <tr><td>Password:</td><td><input type='password' name='j_password'></td></tr>
-        <tr><td><input type="checkbox" name="_spring_security_remember_me"></td><td>Don't ask for my password for two weeks</td></tr>
+        <tr><td>Uzytkownik:</td><td><input type='text' name='j_username' value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'/></td></tr>
+        <tr><td>Haslo:</td><td><input type='password' name='j_password'></td></tr>
+        <tr><td><input type="checkbox" name="_spring_security_remember_me"></td><td>Nie pytaj sie ponownie o haslo</td></tr>
 
         <tr><td colspan='2'><input name="submit" type="submit"></td></tr>
         <tr><td colspan='2'><input name="reset" type="reset"></td></tr>

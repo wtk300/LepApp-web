@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:tns="net.andruszko.lepapp.web" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="net.andruszko.lepapp.web" version="1.0">
+	<xs:element name="lepSessions" type="tns:lepSessions">
+		<xs:annotation>
+			<xs:documentation>Session lep</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="lepItems">
+		<xs:annotation>
+			<xs:documentation>lista zadan z lepu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lepItems" type="tns:lepItem" nillable="true"
+				minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dane szczegółowe do LP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="lepSessions">
+		<xs:annotation>
+			<xs:documentation>lista sessji</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lepSession" type="tns:lepSession"
+				nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>sessja info</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="lepSession">
+		<xs:annotation>
+			<xs:documentation>sesja</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+
+			<xs:element name="id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>lp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="desc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>opis</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:element name="userInfo" type="tns:userInfo">
+		<xs:annotation>
+			<xs:documentation>Session lep</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="userInfo">
+		<xs:annotation>
+			<xs:documentation>sesja</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+
+			<xs:element name="login" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>lp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="lepItem">
+		<xs:annotation>
+			<xs:documentation>zadanie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+
+			<xs:element name="position" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>lp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="question" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>tresci pytnia</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="answer_a" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>odp a</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="answer_b" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>odp b</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="answer_c" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>odp c</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="answer_d" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>odp d</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="answer_e" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>odp e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="correct_ans">
+				<xs:annotation>
+					<xs:documentation>poprawna odp</xs:documentation>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="A" />
+						<xs:enumeration value="B" />
+						<xs:enumeration value="C" />
+						<xs:enumeration value="D" />
+						<xs:enumeration value="E" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+
+	</xs:complexType>
+</xs:schema>
+
+
+
+

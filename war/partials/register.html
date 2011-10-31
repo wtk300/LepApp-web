@@ -1,0 +1,38 @@
+<fieldset>
+	<legend>Dane użytkownika</legend>
+
+	<table>
+		<tr>
+			<td>Login</td>
+			<td><input type="text" name="user.login" ng:required /></td>
+		</tr>
+		<tr>
+			<td>Hasło</td>
+			<td><input type="text" name="user.password" /></td>
+		</tr>
+		<tr>
+			<td>Powtórz haslo</td>
+			<td><input type="text" /></td>
+		</tr>
+
+		<tr>
+			<td>Imię</td>
+			<td><input type="text" name="user.firstName" /></td>
+		</tr>
+		<tr>
+			<td>Nazwisko</td>
+			<td><input type="text" name="user.lastName" /></td>
+		</tr>
+
+
+		<tr>
+			<td>E-mail</td>
+			<td><input type="text" name="user.email" ng:validate="email" /></td>
+		</tr>
+
+
+	</table>
+
+	<button ng:click="save()" disabled="{{$invalidWidgets.visible() > 0}}">Zapisz</button>
+
+</fieldset>
