@@ -22,15 +22,15 @@
 		<intercept-url pattern="/del.html" access="ROLE_PROXY"/>
 		<intercept-url pattern="/secured/**" access="ROLE_PROXY" />
 		
-		<form-login login-page="/login.jsp"
-			authentication-failure-url="/login.jsp?error=1" 
+		<form-login login-page="/login.html"
+			authentication-failure-url="/login.html?error=1" 
 			always-use-default-target="false" />
 									  
 		<logout logout-success-url="/partials/logoutsuccess.html" />
 
 		<session-management>
 			<concurrency-control max-sessions="1"
-				expired-url="/login.jsp?error=2" session-registry-ref="sessionRegistry" />
+				expired-url="/login.html?error=2" session-registry-ref="sessionRegistry" />
 			
 		</session-management>
 		

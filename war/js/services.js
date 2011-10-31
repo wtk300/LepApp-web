@@ -3,12 +3,12 @@
 /**
  * App service which is responsible for the main configuration of the app.
  */
-angular.service('myAngularApp', function($route, $location, $window) {
+angular.service('RootCtrl', function($route, $location, $window) {
 
-  $route.when('/contact', {template: 'partials/contact.html', controller: MyCtrl1});
+  $route.when('/contact', {template: 'partials/contact.html', controller: ContactCtrl});
   $route.when('/home', {template: 'partials/home.html', controller: MyCtrl2});
   $route.when('/map', {template: 'partials/map.html', controller: MyCtrl2});
-  $route.when('/login', {template: 'login.jsp', controller:undefined});
+  $route.when('/login', {template: 'login.html?error=32', controller:LoginCtrl});
   $route.when('/register', {template: 'partials/register.html', controller:undefined});
   $route.when('/aboutTest', {template: 'partials/aboutTest.html', controller:undefined});
   $route.when('/chooseTest', {template: 'partials/chooseTest.html', controller:LepTestCtrl});

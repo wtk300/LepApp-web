@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <title>Start</title>
-<link rel="stylesheet" href="css/app.css" />
+<link rel="stylesheet" href="../css/app.css" />
 </head>
 <body>
 	Aktulanie zalogowany jako {{loggedUser.login}}
 
 	<br/>
-	<fieldset class="fs">
+	<fieldset>
 		<legend>Pytanie</legend>
 
 		<table>
 			<tr>
-				<td>Wybierz sesję:</td>
+				<td>Wybierz sesję:</tfad>
 				<td><select name="sessionId" ng:format="number" ng:options="c.id as c.desc for c in sessions.lepSession" class="nullable">						
 				</select></td>
 			</tr>
@@ -40,20 +40,19 @@
 						<option value="30">Interna</option>
 				</select></td>
 			</tr>
+			<tr>
+				<td></td>
+				<td><br/><a href="#/startTest"><button ng:disabled="{{loggedUser.login == 'anonymousUser'}}">Uruchom</button></a></td>
+			</tr>
+			
+			
 
 		</table>
 		<br/>
-		<a href="#/startTest">Start</a>
 		
 		
-		<button ng:click="ref()">Referesh</button>   
-		
-		
-		
-		Refresh date: {{refreshDate}}
-		
-		
-
+		   
+	
 	</fieldset>
 </body>
 </html>

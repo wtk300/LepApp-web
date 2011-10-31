@@ -9,24 +9,25 @@
 		</tr>
 		<tr>
 			<td>Nazwisko</td>
-			<td><input type="text" name="contract.lastName" ng:required  /></td>
+			<td><input type="text" name="contact.lastName" ng:required  /></td>
 		</tr>
 		<tr>
 			<td>E-mail</td>
-			<td><input type="text" name="contract.eamil" ng:required ng:validate="email" /></td>
+			<td><input type="text" name="contact.email" ng:required ng:validate="email" /></td>
 		</tr>
 		
 		<tr>
 			<td>Treść</td>
-			<td><textarea rows="4" cols="40" name="contract.content" ng:required > </textarea></td>
+			<td><textarea rows="4" cols="40" name="contact.content" ng:required > </textarea></td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>
-				<button ng:click="send()">Wyślij</button>
+				<button ng:click="send()"  disabled="{{$invalidWidgets.visible() > 0}}">Wyślij</button>
 				<button ng:click="clear()">Wyczyść</button>
+				   
 			</td>
-		</tr
+		</tr>
 		
 
 	</table>
