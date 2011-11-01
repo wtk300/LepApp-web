@@ -58,15 +58,15 @@ public class LepResource {
     	String currentUser = auth.getName();
         Collection<GrantedAuthority> grantedAuthroity = auth.getAuthorities();
         
-        for (GrantedAuthority ga : grantedAuthroity){
-        	System.out.println(""+ga.getAuthority());
-        }
+//        for (GrantedAuthority ga : grantedAuthroity){
+//        	System.out.println(""+ga.getAuthority());
+//        }
         
     	ObjectFactory factory = new ObjectFactory();
     	UserInfo userInfo = factory.createUserInfo();
     	userInfo.setLogin(currentUser);
     	
-    	System.out.println("currentUser "+currentUser+ " cache "+antyCache);
+    	//System.out.println("currentUser "+currentUser+ " cache "+antyCache);
     	return Response.ok(factory.createUserInfo(userInfo)).build();
     }
 

@@ -1,5 +1,10 @@
 /* App Controllers */
+function  RegisterCtrl(invalidWidgets) {
+	var self = this;
+	self.$invalidWidgets = invalidWidgets;
+}
 
+RegisterCtrl.$inject = ['$invalidWidgets'];
 
 function  ContactCtrl(invalidWidgets) {
 	var self = this;
@@ -45,12 +50,6 @@ function LoginCtrl() {
     });
 	
  }
-
-
-
-
-
-
 
 function LepTestCtrl(sessionService,securityService) {
 	var $securityService = securityService;

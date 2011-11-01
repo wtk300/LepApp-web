@@ -8,26 +8,31 @@
 		</tr>
 		<tr>
 			<td>Hasło</td>
-			<td><input type="text" name="user.password" /></td>
+			<td><input type="text" name="user.password" ng:required /></td>
 		</tr>
 		<tr>
 			<td>Powtórz haslo</td>
-			<td><input type="text" /></td>
+			<td><input type="text" name="user.repeatpassword" ng:required/></td>
 		</tr>
 
 		<tr>
 			<td>Imię</td>
-			<td><input type="text" name="user.firstName" /></td>
+			<td><input type="text" name="user.firstName" ng:required /></td>
 		</tr>
 		<tr>
 			<td>Nazwisko</td>
-			<td><input type="text" name="user.lastName" /></td>
+			<td><input type="text" name="user.lastName" ng:required /></td>
 		</tr>
 
 
 		<tr>
 			<td>E-mail</td>
-			<td><input type="text" name="user.email" ng:validate="email" /></td>
+			<td><input type="text" name="user.email" ng:required ng:validate="email" /></td>
+		</tr>
+		
+		<tr>
+			<td>Akcpetuję regulamin</td>
+			<td><input type="checkbox" name="user.acceptTerms" /></td>
 		</tr>
 		
 		<tr>

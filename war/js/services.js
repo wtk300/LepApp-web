@@ -9,7 +9,7 @@ angular.service('RootCtrl', function($route, $location, $window) {
   $route.when('/home', {template: 'partials/home.html', controller: MyCtrl2});
   $route.when('/map', {template: 'partials/map.html', controller: MyCtrl2});
   $route.when('/login', {template: 'login.html?error=32', controller:LoginCtrl});
-  $route.when('/register', {template: 'partials/register.html', controller:undefined});
+  $route.when('/register', {template: 'partials/register.html', controller:RegisterCtrl});
   $route.when('/aboutTest', {template: 'partials/aboutTest.html', controller:undefined});
   $route.when('/chooseTest', {template: 'partials/chooseTest.html', controller:LepTestCtrl});
   $route.when('/startTest', {template: 'secured/start.html', controller:LepTestCtrl});
