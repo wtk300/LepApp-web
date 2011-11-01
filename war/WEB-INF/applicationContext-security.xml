@@ -23,7 +23,7 @@
 		<intercept-url pattern="/secured/**" access="ROLE_PROXY" />
 		
 		<form-login login-page="/login.html"
-			authentication-failure-url="/login.html?error=1" 
+			authentication-failure-url="/index.html#/login?error=1" 
 			always-use-default-target="false" />
 									  
 		<logout logout-success-url="/partials/logoutsuccess.html" />

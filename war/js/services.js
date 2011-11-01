@@ -15,6 +15,7 @@ angular.service('RootCtrl', function($route, $location, $window) {
   $route.when('/startTest', {template: 'secured/start.html', controller:LepTestCtrl});
   $route.when('/logout', {template: '/j_spring_security_logout', controller:LogoutCtrl});
   $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
+  $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
 
 
   var self = this;
