@@ -12,18 +12,18 @@ angular.service('RootCtrl', function($route, $location, $window) {
   $route.when('/register', {template: 'partials/register.html', controller:RegisterCtrl});
   $route.when('/aboutTest', {template: 'partials/aboutTest.html', controller:undefined});
   $route.when('/chooseTest', {template: 'partials/chooseTest.html', controller:LepTestCtrl});
-  $route.when('/startTest', {template: 'secured/start.html', controller:LepTestCtrl});
+  $route.when('/startTest', {template: 'secured/start.html', controller:StartLepCtrl});
   $route.when('/logout', {template: '/j_spring_security_logout', controller:LogoutCtrl});
   $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
   $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
-
-
-  var self = this;
+  
+  
+  self.login = "wtk300"
 
   $route.onChange(function() {
     if ($location.hash === '') {
       $location.updateHash('/contact');
-      self.$eval();
+     
     } else {
       $route.current.scope.params = $route.current.params;
       $window.scrollTo(0,0);
@@ -64,4 +64,22 @@ angular.service('lepSessionService',function(resource){
 	        }
 	    }
 },{$inject:['$resource']});
+
+
+angular.service('startLepService',function(resource){
+	
+	  return {
+	        getLepTestItems: function(){
+	            var res = resource('resources/lep/startLep',{},
+	            {
+	                retrive : {
+	                    method: 'GET'
+	                    
+	                }
+	            });            
+	            return res.retrive();
+	        }
+	    }
+},{$inject:['$resource']});
+
 

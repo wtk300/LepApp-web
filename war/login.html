@@ -21,7 +21,14 @@
 			</table>
 
 		</form>
-		param: {{params}}
-		error: {{error}}
+		
+		<div ng:show="error==1" class="error">
+			<p>Niepoprawne hasło lub login</p> 
+		</div>
+		
+		<div ng:show="error==2" class="error">
+			<p class="error">Przekroczona ilość użytkowników do jednego loginu</p> 
+		</div>
+
 </body>
 </html>

@@ -60,14 +60,7 @@ function LepTestCtrl(sessionService,securityService) {
 	self.sessionId ="10";
 	
 	self.loggedUser = securityService.getLoggedUser();
-	
 
-	
-	self.ref = function(){
-		self.refreshDate = new Date();
-		self.loggedUser = $securityService.getLoggedUser();
-		
-	}
 }
 LepTestCtrl.$inject = ['lepSessionService','securityService'];
 
@@ -78,6 +71,41 @@ function LogoutCtrl(securityService){
 	self.loggedUser = securityService.getLoggedUser();
 }
 LogoutCtrl.$inject = ['securityService'];
+
+function StartLepCtrl(startService){
+	var startService = startService;
+	var self = this;
+	self.lepItems = startService.getLepTestItems();
+	
+	self.stylea = "none"
+	self.styleb = "none"
+		
+		 var storeMarkers = []
+
+	
+	self.checkA = function(item){		
+		if (item.correct_ans == 'A'){
+			item.styleA = "ans_correct";
+		}else{
+			item.styleA = "ans_incorrect";	
+			item['style'+item.correct_ans] = "ans_correct";
+		}
+		item.disable = true;
+			
+	}
+	self.checkB = function(item){		
+		if (item.correct_ans == 'B'){
+			item.styleB = "ans_correct";
+		}else{
+			item.styleB = "ans_incorrect";
+			item['style'+item.correct_ans] = "ans_correct";
+		}
+			
+	}
+	
+}
+
+StartLepCtrl.$inject = ['startLepService'];
 
 function MyCtrl2() {
 }

@@ -21,6 +21,8 @@
 
 		<intercept-url pattern="/del.html" access="ROLE_PROXY"/>
 		<intercept-url pattern="/secured/**" access="ROLE_PROXY" />
+		<intercept-url pattern="/index.html#/map" access="ROLE_PROXY" />
+		
 		
 		<form-login login-page="/login.html"
 			authentication-failure-url="/index.html#/login?error=1" 
@@ -30,7 +32,7 @@
 
 		<session-management>
 			<concurrency-control max-sessions="1"
-				expired-url="/login.html?error=2" session-registry-ref="sessionRegistry" />
+				expired-url="/index.html#/login?error=2" session-registry-ref="sessionRegistry" />
 			
 		</session-management>
 		

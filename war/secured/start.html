@@ -5,6 +5,40 @@
 <title>Insert title here</title>
 </head>
 <body>
- tutaj będzie tej test ~~~~~~~~~~~~~~~~~~
+
+	<div>
+		<ul>
+			<li lep:question="item" ng:repeat="item in lepItems.lepItems">[{{$index + 1}} ]
+				{{item.question}} <br />
+				<div>
+					
+					<table>
+						<tr>
+							<td><button id="ansa" ng:click="checkA(item)">A</button></td>
+							<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
+
+						</tr>
+						<tr>
+							<td><button id="ansb" ng:click="checkB(item)">B</button></td>
+							<td><span id="spanb"  ng:class="item.styleB">{{item.answer_b}}</span></td>
+						</tr>
+						<tr>
+							<td><button ng:click="">C</button></td>
+							<td>{{item.answer_c}}</td>
+						</tr>
+						<tr>
+							<td><button ng:click="">D</button></td>
+							<td>{{item.answer_d}}</td>
+						</tr>
+						<tr>
+							<td><button ng:click="">E</button></td>
+							<td>{{item.answer_e}}</td>
+						</tr>
+			
+					</table>
+				</div>
+			</li>
+		</ul>
+	</div>
 </body>
 </html>

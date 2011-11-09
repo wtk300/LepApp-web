@@ -13,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import net.andruszko.lepapp.web.vo.LepItem;
+import net.andruszko.lepapp.web.vo.LepItems;
 import net.andruszko.lepapp.web.vo.LepSession;
 import net.andruszko.lepapp.web.vo.LepSessions;
 import net.andruszko.lepapp.web.vo.ObjectFactory;
@@ -69,5 +71,37 @@ public class LepResource {
     	//System.out.println("currentUser "+currentUser+ " cache "+antyCache);
     	return Response.ok(factory.createUserInfo(userInfo)).build();
     }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/startLep")
+    public Response startLep(){
+    	ObjectFactory factory = new ObjectFactory();
+    	LepItems items = factory.createLepItems();
+    	
+    	for (int i = 0 ; i < 55 ; i++){
+    		LepItem item  = factory.createLepItem();
+    		item.setPosition(i);
+    		item.setQuestion("Pytanie czy ale ma kota a kot ma kota ble bele "+i);
+    		item.setAnswerA("odpowiedz A");
+    		item.setAnswerB("odpowiedz B");
+    		item.setAnswerC("odpowiedz C");
+    		item.setAnswerD("odpowiedz D");
+    		item.setAnswerE("odpowiedz F");
+    		
+    		
+    		if (i % 2 == 0){
+    			item.setCorrectAns("A");
+    		}else{
+    			item.setCorrectAns("B");
+    		}
+    		
+    		
+    		
+    		items.getLepItems().add(item);
+    	}
+    	
+    	return Response.ok(factory.createLepItems(items)).build();
+    }
+
 
 }

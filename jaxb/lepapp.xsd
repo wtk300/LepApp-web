@@ -6,6 +6,13 @@
 			<xs:documentation>Session lep</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	
+	<xs:element name="lepItems" type="tns:lepItems">
+		<xs:annotation>
+			<xs:documentation>Session lep</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
 	<xs:complexType name="lepItems">
 		<xs:annotation>
 			<xs:documentation>lista zadan z lepu</xs:documentation>
