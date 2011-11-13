@@ -37,12 +37,13 @@
 		
 		<tr>
 			<td></td>
-			<td><button ng:click="save()" disabled="{{$invalidWidgets.visible() > 0}}">Zapisz</button></td>
+			<td><button ng:click="register()" disabled="{{$invalidWidgets.visible() > 5}}">Zapisz</button></td>
 		</tr>
 
 
 	</table>
 
+	debug {{user | json}}
 	
 
 </fieldset>

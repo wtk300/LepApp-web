@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/asm-3.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jackson-core-asl-1.7.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jackson-jaxrs-1.7.1.jar"/>
@@ -26,5 +25,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-beans-3.0.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-core-3.0.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/appengine-java-sdk"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

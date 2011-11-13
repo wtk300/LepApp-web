@@ -1,17 +1,28 @@
 /* App Controllers */
-function  RegisterCtrl(invalidWidgets) {
+function  RegisterCtrl(invalidWidgets,userService) {
 	var self = this;
+	self.userService = userService;
 	self.$invalidWidgets = invalidWidgets;
+
+	
+	this.register = function(){
+		
+		self.user.password = hex_md5(self.user.password);
+		self.user.repeatpassword = hex_md5(self.user.repeatpassword);
+		userService.regiserUser(self.user);
+	}
 }
 
-RegisterCtrl.$inject = ['$invalidWidgets'];
+RegisterCtrl.$inject = ['$invalidWidgets','userService'];
 
-function  ContactCtrl(invalidWidgets) {
+function  ContactCtrl(invalidWidgets,contactService) {
 	var self = this;
 	self.$invalidWidgets = invalidWidgets;
+	self.contactService = contactService;
 	
 	self.send = function(){
-		self.clear();
+		contactService.regiserContact(self.contact);
+		
 	}
 	
 	self.clear = function(){
@@ -23,7 +34,7 @@ function  ContactCtrl(invalidWidgets) {
 	}
 	
 }
-ContactCtrl.$inject = ['$invalidWidgets'];
+ContactCtrl.$inject = ['$invalidWidgets','contactService'];
 
 function LoginCtrl() {
 	var self = this;
@@ -76,32 +87,36 @@ function StartLepCtrl(startService){
 	var startService = startService;
 	var self = this;
 	self.lepItems = startService.getLepTestItems();
+	self.startLep = new Date();
+	self.correctans = 0;
+	self.incorrectans = 0;
 	
-	self.stylea = "none"
-	self.styleb = "none"
+	self.percentage = function(){
 		
-		 var storeMarkers = []
-
+		if (self.correctans+self.incorrectans == 0){
+			return 0;
+		}
+		return (self.correctans / (self.correctans+self.incorrectans)).toFixed(2);
+	}
 	
-	self.checkA = function(item){		
-		if (item.correct_ans == 'A'){
-			item.styleA = "ans_correct";
+	self.questionQuantity = function(){
+		
+		return self.lepItems.length;
+	}
+	
+	self.check = function(item,type){		
+		if (item.correct_ans == type){
+			item['style'+type] = "ans_correct";
+			self.correctans++; 
 		}else{
-			item.styleA = "ans_incorrect";	
+			item['style'+type] = "ans_incorrect";				
 			item['style'+item.correct_ans] = "ans_correct";
+			self.incorrectans++;
 		}
-		item.disable = true;
+		item.disabled = true;
 			
 	}
-	self.checkB = function(item){		
-		if (item.correct_ans == 'B'){
-			item.styleB = "ans_correct";
-		}else{
-			item.styleB = "ans_incorrect";
-			item['style'+item.correct_ans] = "ans_correct";
-		}
-			
-	}
+
 	
 }
 

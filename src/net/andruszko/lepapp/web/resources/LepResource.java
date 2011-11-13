@@ -72,7 +72,7 @@ public class LepResource {
     	return Response.ok(factory.createUserInfo(userInfo)).build();
     }
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Path("/startLep")
     public Response startLep(){
     	ObjectFactory factory = new ObjectFactory();

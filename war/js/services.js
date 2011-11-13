@@ -65,6 +65,49 @@ angular.service('lepSessionService',function(resource){
 	    }
 },{$inject:['$resource']});
 
+angular.service('userService',function(resource,$xhr){
+	
+	  return {
+	        regiserUser: function(user){
+	        	$xhr.defaults.headers.post['Content-Type']='application/json';
+	        	$xhr.defaults.headers.put['Content-Type']='application/json';
+	        	$xhr.defaults.headers.delete['Content-Type']='application/json';
+	            var res = resource('resources/user/register',{},
+	            {
+	                retrive : {
+	                    method: 'GET'
+	                    
+	                },
+		            register : {
+	                    method: 'POST',	                    
+	                    
+	                }
+	            });            
+	            return res.register(user);
+	        }
+	    }
+},{$inject:['$resource','$xhr']});
+
+angular.service('contactService',function(resource,$xhr){
+	
+	  return {
+	        regiserContact: function(contact){
+	        	$xhr.defaults.headers.post['Content-Type']='application/json';
+	        	$xhr.defaults.headers.put['Content-Type']='application/json';
+	        	$xhr.defaults.headers.delete['Content-Type']='application/json';
+	            var res = resource('resources/contact/register',{},
+	            {
+	                
+		            register : {
+	                    method: 'POST',	                    
+	                    
+	                }
+	            });            
+	            return res.register(contact);
+	        }
+	    }
+},{$inject:['$resource','$xhr']});
+
 
 angular.service('startLepService',function(resource){
 	

@@ -6,13 +6,91 @@
 			<xs:documentation>Session lep</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	
+
 	<xs:element name="lepItems" type="tns:lepItems">
 		<xs:annotation>
 			<xs:documentation>Session lep</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	
+
+	<xs:element name="ContactVO">
+
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>dane kontaktu</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+
+				<xs:element name="firstName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>imie</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="lastName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>nazwisko</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="content" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>zawartosc</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="email" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>e-mail</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+			</xs:sequence>
+		</xs:complexType>
+
+	</xs:element>
+
+
+	<xs:element name="user">
+
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>dane uzytkownika</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+
+				<xs:element name="login" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>login</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+
+				<xs:element name="firstName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>imie</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="lastName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>nazwisko</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="password" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>imie</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="email" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>e-mail</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+			</xs:sequence>
+		</xs:complexType>
+
+	</xs:element>
+
 	<xs:complexType name="lepItems">
 		<xs:annotation>
 			<xs:documentation>lista zadan z lepu</xs:documentation>
@@ -42,6 +120,8 @@
 
 		</xs:sequence>
 	</xs:complexType>
+
+
 
 	<xs:complexType name="lepSession">
 		<xs:annotation>

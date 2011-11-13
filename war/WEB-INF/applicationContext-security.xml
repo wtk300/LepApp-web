@@ -24,9 +24,11 @@
 		<intercept-url pattern="/index.html#/map" access="ROLE_PROXY" />
 		
 		
-		<form-login login-page="/login.html"
+		<form-login login-page="/index.html#/login"
 			authentication-failure-url="/index.html#/login?error=1" 
-			always-use-default-target="false" />
+			always-use-default-target="false"
+			
+			 />
 									  
 		<logout logout-success-url="/partials/logoutsuccess.html" />
 
