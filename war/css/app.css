@@ -1,4 +1,38 @@
 /* app css stylesheet */
+root {
+    display: block;
+}
+
+#top{
+	float:top
+}
+
+#desktop {
+    float: left;
+    padding-left: 20px;
+    width: 900px
+  
+}
+
+
+
+footer {
+	float: left;
+}
+
+#questions {
+    float: left;    
+    width: 900px
+  
+}
+
+#stats {
+    float: left;
+    padding-left: 20px;
+    width: 500px
+  
+}
+
 .menu {
 	list-style: none;
 	border-bottom: 0.1em solid black;

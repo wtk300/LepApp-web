@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../css/app.css" />
 </head>
 <body>
-	Aktulanie zalogowany jako {{loggedUser.login}} and {{login}}
+	Aktulanie zalogowany jako {{loggedUser.user.login}} and {{login}}
 
 	<br/>
 	<fieldset>
@@ -42,7 +42,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><br/><a href="#/startTest"><button ng:disabled="{{loggedUser.login == 'anonymousUser'}}">Uruchom</button></a></td>
+				<td><br/><a href="#/startTest"><button ng:disabled="{{loggedUser.user.login == 'anonymousUser'}}">Uruchom</button></a></td>
 			</tr>
 			
 			

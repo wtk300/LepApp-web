@@ -1,38 +1,54 @@
 <!doctype html>
 <html xmlns:ng="http://angularjs.org/">
 <head>
-  <meta charset="utf-8">
-  <title>Testy na LEP</title>
-  <link rel="stylesheet" href="css/app.css"/>
-  <link rel="stylesheet" href="css/messages.css"/>
+<meta charset="utf-8">
+<title>Testy na LEP</title>
+<link rel="stylesheet" href="css/app.css" />
+<link rel="stylesheet" href="css/messages.css" />
 </head>
-<body>
+<body  ng:controller="RootCtrl">
+	
+	<ul class="menu">
+		<li><a href="#/home">Home</a></li>
+		<li><a href="#/contact">Kontakt</a></li>
+		<!--     <li><a href="#/map">Mapa</a></li> -->
+		<li><a href="#/login">Twoje konto</a></li>
+		<li><a href="#/register">Rejestracja</a></li>
+		<li><a href="#/aboutTest">O teście</a></li>
+		<li><a href="#/chooseTest">Start test</a></li>
+		<li><a href="#/logout">Wyloguj</a></li>
+	</ul>
 
-   Aktulanie zalogowany jako: <span ng:cloak>{{login}} </span>
-  <ul class="menu">
-    <li><a href="#/home">Home</a></li>
-    <li><a href="#/contact">Kontakt</a></li>
-<!--     <li><a href="#/map">Mapa</a></li> -->
-    <li><a href="#/login">Twoje konto</a></li>
-    <li><a href="#/register">Rejestracja</a></li>
-    <li><a href="#/aboutTest">O teście</a></li>
-    <li><a href="#/chooseTest">Start test</a></li>
-    <li><a href="#/logout">Wyloguj</a></li>      
-  </ul>
-   
-   <ng:view></ng:view>
-   
-   <br/>
+	<table>
 
-   <img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
+		<tr>
+			<td>
+				<div id="desktop2">
+					<ng:view></ng:view>
+				</div>
+			</td>
+		</tr>
 
- 
+		<tr>
+			<td>
+				<div class="footer">
+					<img
+						src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif"
+						alt="Powered by Google App Engine" />
+				</div>
+			</td>
+		</tr>
 
-  <script src="lib/angular/angular.js" ng:autobind></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/widgets.js"></script>
-  <script src="js/md5-min.js"></script>
+
+
+	</table>
+
+
+	<script src="lib/angular/angular.js" ng:autobind></script>
+	<script src="js/services.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/widgets.js"></script>
+	<script src="js/md5-min.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 /**
  * App service which is responsible for the main configuration of the app.
  */
-angular.service('RootCtrl', function($route, $location, $window) {
+angular.service('RootService', function($route, $location, $window) {
 
   $route.when('/contact', {template: 'partials/contact.html', controller: ContactCtrl});
   $route.when('/home', {template: 'partials/home.html', controller: MyCtrl2});
@@ -16,9 +16,8 @@ angular.service('RootCtrl', function($route, $location, $window) {
   $route.when('/logout', {template: '/j_spring_security_logout', controller:LogoutCtrl});
   $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
   $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
-  
-  
-  self.login = "wtk300"
+
+  $route.parent(this);
 
   $route.onChange(function() {
     if ($location.hash === '') {
@@ -29,6 +28,9 @@ angular.service('RootCtrl', function($route, $location, $window) {
       $window.scrollTo(0,0);
     }
   });
+  
+	var self = this;
+	self.user = "mtyson "+new Date();
 
 }, {$inject:['$route', '$location', '$window'], $eager: true});
 
@@ -44,7 +46,7 @@ angular.service('securityService',function(resource){
 	                    verifyCache: false	
 	                }
 	            });            
-	            return res.retrive({antycache:""+new Date().getTime() });
+	            return angular.fromJson(res.retrive({antycache:""+new Date().getTime() }));
 	        }
 	    }
 },{$inject:['$resource']});
@@ -83,7 +85,7 @@ angular.service('userService',function(resource,$xhr){
 	                    
 	                }
 	            });            
-	            return res.register(user);
+	            return angular.fromJson(res.register(user));
 	        }
 	    }
 },{$inject:['$resource','$xhr']});
@@ -108,19 +110,19 @@ angular.service('contactService',function(resource,$xhr){
 	    }
 },{$inject:['$resource','$xhr']});
 
-
 angular.service('startLepService',function(resource){
 	
 	  return {
-	        getLepTestItems: function(){
-	            var res = resource('resources/lep/startLep',{},
+	        getLepTestItems: function(sessionId,lepId,langId,subSectionId){
+	            var res = resource('resources/lep/startLep/:sessionId/:lepId/:langId/:subSectionId',
+	            		{sessionId: sessionId, lepId: lepId ,langId : langId,subSectionId: subSectionId},
 	            {
 	                retrive : {
 	                    method: 'GET'
 	                    
 	                }
 	            });            
-	            return res.retrive();
+	            return angular.fromJson(res.retrive());
 	        }
 	    }
 },{$inject:['$resource']});

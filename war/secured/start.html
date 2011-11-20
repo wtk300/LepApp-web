@@ -1,51 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
+<div id="stats">
 	<div>
-		Proprawnych odp. {{correctans}} <br/>
-		Nieproprawnych odp. {{incorrectans}} Liczba pytan  {{questionQuantity() | json}} 
-		Data startu {{startLep}}
-		procent {{percentage()}}
-		
-		
+		<table>
+			<tr>
+				<td>Data rozpoczęcia testu:</td>
+				<td>{{startLep | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+			</tr>
+			<tr>
+				<td>Ilość pytań:</td>
+				<td>{{lepItems.lepItems.$count()-lepItems.lepItems.$count('disabled==true')}}/{{lepItems.lepItems.$count()}}</td>
+				
+			</tr>
+			<tr>
+				<td>Proprawne odp.:</td>
+				<td>{{correctans}}</td>
+			</tr>
+			<tr>
+				<td>Nieproprawne odp.:</td>
+				<td>{{incorrectans}}</td>
+			</tr>
+
+			<tr>
+				<td>Skuteczność:</td>
+				<td>{{percentage()}}%</td>
+			</tr>
+
+		</table>
+	</div>
+	
+	<div>
 		<ul>
-			<li lep:question="item" ng:repeat="item in lepItems.lepItems">[{{$index + 1}}]
-				{{item.question}}<br />
+			<li lep:question="item" ng:repeat="item in lepItems.lepItems">[{{$index+
+				1}}] {{item.question}}<br />
 				<div>
-					
+
 					<table>
 						<tr>
-							<td><button id="ansa" ng:disabled="{{item.disabled}}" ng:click="check(item,'A')">A</button></td>
+							<td><button id="ansa" ng:disabled="{{item.disabled}}"
+									ng:click="check(item,'A')">A</button></td>
 							<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
 
 						</tr>
 						<tr>
-							<td><button id="ansb"  ng:disabled="{{item.disabled}}" ng:click="check(item,'B')">B</button></td>
-							<td><span id="spanb"  ng:class="item.styleB">{{item.answer_b}}</span></td>
+							<td><button id="ansb" ng:disabled="{{item.disabled}}"
+									ng:click="check(item,'B')">B</button></td>
+							<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
 						</tr>
 						<tr>
-							<td><button  ng:disabled="{{item.disabled}}" ng:click="check(item,'C')">C</button></td>
-							<td><span id="spanc"  ng:class="item.styleC">{{item.answer_c}}</span></td>
+							<td><button ng:disabled="{{item.disabled}}"
+									ng:click="check(item,'C')">C</button></td>
+							<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
 						</tr>
 						<tr>
-							<td><button  ng:disabled="{{item.disabled}}" ng:click="check(item,'D')">D</button></td>
-							<td><span id="spand"  ng:class="item.styleD">{{item.answer_d}}</span></td>
+							<td><button ng:disabled="{{item.disabled}}"
+									ng:click="check(item,'D')">D</button></td>
+							<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
 						</tr>
 						<tr>
-							<td><button ng:disabled="{{item.disabled}}" ng:click="check(item,'E')">E</button></td>
-							<td><span id="spane"  ng:class="item.styleE">{{item.answer_e}}</span></td>
+							<td><button ng:disabled="{{item.disabled}}"
+									ng:click="check(item,'E')">E</button></td>
+							<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>
 						</tr>
-			
+
 					</table>
 				</div>
 			</li>
 		</ul>
-
 	</div>
-</body>
-</html>
+	
+	<button ng:click="finishLepTest()">Zakończ test</button>
+	
+	{{debug}}
+</div>

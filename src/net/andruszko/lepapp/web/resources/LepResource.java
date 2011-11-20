@@ -2,6 +2,7 @@ package net.andruszko.lepapp.web.resources;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -11,13 +12,17 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import net.andruszko.lepapp.web.vo.LepItem;
 import net.andruszko.lepapp.web.vo.LepItems;
 import net.andruszko.lepapp.web.vo.LepSession;
 import net.andruszko.lepapp.web.vo.LepSessions;
 import net.andruszko.lepapp.web.vo.ObjectFactory;
+import net.andruszko.lepapp.web.vo.User;
 import net.andruszko.lepapp.web.vo.UserInfo;
 
 
@@ -66,15 +71,26 @@ public class LepResource {
         
     	ObjectFactory factory = new ObjectFactory();
     	UserInfo userInfo = factory.createUserInfo();
-    	userInfo.setLogin(currentUser);
+    	User user = new User();
+    	user.setFirstName("Mike");
+    	user.setLastName("Tyson");
+    	user.setLogin(currentUser);
     	
+    	userInfo.setUser(user);    	
+    	 ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+    	 HttpSession session=   attr.getRequest().getSession(true); // true == allow create
+    	 String sessionId = session.getId();
     	//System.out.println("currentUser "+currentUser+ " cache "+antyCache);
     	return Response.ok(factory.createUserInfo(userInfo)).build();
     }
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    @Path("/startLep")
-    public Response startLep(){
+    @Path("/startLep/{sessionId}/{lepId}/{langId}/{subSectionId}")
+    public Response startLep( @PathParam("sessionId") Integer sessionId,
+    						  @PathParam("lepId") Integer lepId,
+    						  @PathParam("langId") Integer langId, 
+    						  @PathParam("subSectionId") Integer subSectionId)
+    	{
     	ObjectFactory factory = new ObjectFactory();
     	LepItems items = factory.createLepItems();
     	
