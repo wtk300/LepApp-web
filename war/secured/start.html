@@ -8,7 +8,7 @@
 			<tr>
 				<td>Ilość pytań:</td>
 				<td>{{lepItems.lepItems.$count()-lepItems.lepItems.$count('disabled==true')}}/{{lepItems.lepItems.$count()}}</td>
-				
+
 			</tr>
 			<tr>
 				<td>Proprawne odp.:</td>
@@ -26,48 +26,68 @@
 
 		</table>
 	</div>
-	
+
 	<div>
-		<ul>
-			<li lep:question="item" ng:repeat="item in lepItems.lepItems">[{{$index+
-				1}}] {{item.question}}<br />
-				<div>
 
-					<table>
-						<tr>
-							<td><button id="ansa" ng:disabled="{{item.disabled}}"
-									ng:click="check(item,'A')">A</button></td>
-							<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
+		<div lep:question="item" ng:repeat="item in lepItems.lepItems">
 
-						</tr>
-						<tr>
-							<td><button id="ansb" ng:disabled="{{item.disabled}}"
-									ng:click="check(item,'B')">B</button></td>
-							<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
-						</tr>
-						<tr>
-							<td><button ng:disabled="{{item.disabled}}"
-									ng:click="check(item,'C')">C</button></td>
-							<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
-						</tr>
-						<tr>
-							<td><button ng:disabled="{{item.disabled}}"
-									ng:click="check(item,'D')">D</button></td>
-							<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
-						</tr>
-						<tr>
-							<td><button ng:disabled="{{item.disabled}}"
-									ng:click="check(item,'E')">E</button></td>
-							<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>
-						</tr>
 
-					</table>
+			<div class="DROPSHADOW DROPSHADOW1">
+				<div class="DROPSHADOW DROPSHADOW2">
+					<div class="DROPSHADOW DROPSHADOW3">
+						<div class="DROPSHADOW DROPSHADOW4">
+							<div class="SECTION MEDIUM_SECTION">
+								<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
+
+									
+									<div class="main">
+									
+										[{{$index+1}}] {{item.question}} {{item.subSectionId}}<br />
+									<!-- 											<span ng:bind-template="nr {{item.subSectionId}}" -->
+									<!-- 												lep:section=""></span> <br /> -->
+
+										<table>
+											<tr>
+												<td><button id="ansa" ng:disabled="{{item.disabled}}"
+														ng:click="check(item,'A')">A</button></td>
+												<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
+
+											</tr>
+											<tr>
+												<td><button id="ansb" ng:disabled="{{item.disabled}}"
+														ng:click="check(item,'B')">B</button></td>
+												<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
+											</tr>
+											<tr>
+												<td><button ng:disabled="{{item.disabled}}"
+														ng:click="check(item,'C')">C</button></td>
+												<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
+											</tr>
+											<tr>
+												<td><button ng:disabled="{{item.disabled}}"
+														ng:click="check(item,'D')">D</button></td>
+												<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
+											</tr>
+											<tr>
+												<td><button ng:disabled="{{item.disabled}}"
+														ng:click="check(item,'E')">E</button></td>
+												<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>
+											</tr>
+
+										</table>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</li>
-		</ul>
+			</div>
+		</div>
 	</div>
-	
+
 	<button ng:click="finishLepTest()">Zakończ test</button>
-	
+
 	{{debug}}
 </div>

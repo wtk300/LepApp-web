@@ -1,3 +1,34 @@
+angular.directive('lep:bind', function(expression, compiledElement) {
+    var compiler = this;
+    return function(linkElement) {
+        var currentScope = this;
+        currentScope.$watch(expression, function(value) {
+            linkElement.text(value);
+        });
+    };
+});
+
+angular.directive('lep:section', function(expression, compiledElement) {
+    var compiler = this;
+    
+    
+    var sectionMap = {"10": "Pedzia10",
+            "20": "two",
+            "30": "costam 3"};
+
+    
+    return function(linkElement) {
+//        	var value = sectionMap[compiledElement.text()];
+//        	if (value == undefined ){
+//        		value = "crap  "+ compiledElement.text();
+//        	}
+//            linkElement.text(value);
+    	
+    	  linkElement.text("dupa "+linkElement.text());
+        
+    };
+});
+
 angular.widget('@lep:question2', function(arrayProperty, compileElement) {
     var compiler = this;
     var sequence = 0;

@@ -46,7 +46,7 @@ angular.service('securityService',function(resource){
 	                    verifyCache: false	
 	                }
 	            });            
-	            return angular.fromJson(res.retrive({antycache:""+new Date().getTime() }));
+	            return res.retrive({antycache:""+new Date().getTime() });
 	        }
 	    }
 },{$inject:['$resource']});

@@ -176,6 +176,7 @@
 		</xs:annotation>
 		<xs:sequence>
 
+
 			<xs:element name="position" type="xs:int">
 				<xs:annotation>
 					<xs:documentation>lp</xs:documentation>
@@ -185,6 +186,13 @@
 			<xs:element name="question" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>tresci pytnia</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+					
+			<xs:element name="subSectionId" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>poddział</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 

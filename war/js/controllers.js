@@ -27,20 +27,36 @@ function ContactCtrl(invalidWidgets, contactService,securityService) {
 	
 	self.$invalidWidgets = invalidWidgets;
 	self.contactService = contactService;
-	self.securityService = securityService;
-	self.loggedUser = securityService.getLoggedUser();
+	var $securityService = securityService;
 	
-	 
-	self.$watch("loggedUser",function(){
+	
+
+	var getUser = function(){
 		
-		if (self.loggedUser != undefined){
-			self.user = self.loggedUser.user.login;
-			self.contact.firstName = self.loggedUser.user.firstName;
-			self.contact.LastName = self.loggedUser.user.LastName;
-		}else{
-			self.user = "Gość";
-		}
-	});
+		self.$set("contact.firstName","login "+angular.filter.json($securityService.getLoggedUser()));
+		return angular.fromJson($securityService.getLoggedUser());
+	}
+	
+	
+	self.loggedUser = $securityService.getLoggedUser();
+	 
+//	self.$watch("loggedUser",function(newValue,oldValue){
+//		
+//		self.$set("contact.firstName",angular.toJson(newValue));
+//		self.$set("contact.lastName",angular.toJson(oldValue));
+//		
+//		if (angular.isDefined(newValue.user)){
+//			self.user = newValue.user.login;
+//			self.$set("contact.firstName",angular.toJson(newValue.user.login));	
+////			self.contact.firstName = self.loggedUser.user.firstName;
+////			self.contact.lastName = self.loggedUser.user.lastName;
+//		}else{
+//			 
+//		//	self.$set("contact.firstName","aaaaa");
+//			
+//			
+//		}
+//	});
 	
 	
 	self.send = function() {
