@@ -2,8 +2,12 @@ package net.andruszko.lepapp.web.resources;
 
 import java.util.Collection;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,14 +16,15 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import net.andruszko.lepapp.web.assembler.LepItemAssembler;
+import net.andruszko.lepapp.web.em.EMFService;
+import net.andruszko.lepapp.web.entity.LepSession;
 import net.andruszko.lepapp.web.vo.LepItem;
 import net.andruszko.lepapp.web.vo.LepItems;
-import net.andruszko.lepapp.web.vo.LepSession;
 import net.andruszko.lepapp.web.vo.LepSessions;
 import net.andruszko.lepapp.web.vo.ObjectFactory;
 import net.andruszko.lepapp.web.vo.User;
@@ -34,31 +39,32 @@ public class LepResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response sessions() {
 		ObjectFactory factory = new ObjectFactory();
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query query = em.createQuery("select lp from LepSession lp order by desc");
 
 		// LepItems items = factory.createLepItems();
 		// LepItem item = factory.createLepItem();
 		// //item.set
-		// items.getLepItems().add(item);
+		 
 		LepSessions sessions = factory.createLepSessions();
-		LepSession session = factory.createLepSession();
-		session.setDesc("2009-10-01");
-		session.setId(10);
-		sessions.getLepSession().add(session);
-		session = factory.createLepSession();
-		session.setDesc("2010-10-01");
-		session.setId(20);
-		sessions.getLepSession().add(session);
-		session = factory.createLepSession();
-		session.setDesc("2011-10-01");
-		session.setId(30);
-		sessions.getLepSession().add(session);
+		for (Object s : query.getResultList()){
+			LepSession ls = (LepSession)s;
+			
+			net.andruszko.lepapp.web.vo.LepSession session = factory.createLepSession();
+			session.setDesc(ls.getDesc());
+			session.setId(ls.getId());
+			sessions.getLepSession().add(session);
+		}
+		
 
 		return Response.ok(factory.createLepSessions(sessions)).build();
 	}
 
 	@Path("/{antycache}/loggedUser")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public Response getLoggedUser(@PathParam("antycache") String antyCache) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -87,6 +93,101 @@ public class LepResource {
 		userInfo.setSessionId(sessionId);
 		// System.out.println("currentUser "+currentUser+ " cache "+antyCache);
 		return Response.ok(factory.createUserInfo(userInfo)).build();
+	}
+	
+	@Path("/init")
+	@GET
+	public Response init(){
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.getTransaction().begin();
+		LepSession session = new LepSession();
+		session.setId(10L);
+		session.setDesc("2008-09");
+		em.persist(session);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(20L);
+		session.setDesc("2009-02");
+		em.persist(session);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(30L);
+		session.setDesc("2009-09");
+		em.persist(session);
+		em.getTransaction().commit();
+
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(40L);
+		session.setDesc("2010-02");
+		em.persist(session);
+		em.getTransaction().commit();
+	
+		
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(50L);
+		session.setDesc("2010-09");
+		em.persist(session);
+		em.getTransaction().commit();
+		
+	
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(60L);
+		session.setDesc("2010-09");
+		em.persist(session);
+		em.getTransaction().commit();
+	
+		
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(70L);
+		session.setDesc("2011-02");
+		em.persist(session);
+		em.getTransaction().commit();
+
+
+		em.getTransaction().begin();
+		session = new LepSession();
+		session.setId(80L);
+		session.setDesc("2011-09");
+		em.persist(session);
+		em.getTransaction().commit();
+		em.close();
+		return Response.ok().build();
+	}
+	
+	@POST
+	@Consumes({MediaType.APPLICATION_XML})
+	@Path("/updateLep11L2")
+	public Response updateLepTest11L2(@PathParam("sessionId")Long sessionId, LepItems lepItems){
+		
+	
+		
+		EntityManager em = EMFService.get().createEntityManager();
+
+		
+		LepItemAssembler assembler = new LepItemAssembler();
+		for (net.andruszko.lepapp.web.vo.LepItem item : lepItems.getLepItems()){
+			em.getTransaction().begin();
+			net.andruszko.lepapp.web.entity.LepItem entity = assembler.write(item);
+			entity.setSession(em.find(LepSession.class, 80L));
+			em.persist(entity);
+			em.getTransaction().commit();
+		}
+		em.close();
+		return Response.ok().build();
 	}
 
 	@GET

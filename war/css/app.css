@@ -231,6 +231,15 @@ H2, H2 A:LINK, H2 A:VISITED, H2 A:ACTIVE {
 	width: 832px;
 }
 
+.LOGIN_SECTION {
+	font-family: times new roman;
+	color: #707165;
+	font-size: 12pt;
+	word-spacing: 2px;
+	line-height: 18pt;
+	width: 400px;
+}
+
 H1 {
 	color: #a69966;
 }

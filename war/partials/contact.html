@@ -1,38 +1,62 @@
-User {{loggedUser.sessionId | json}}
 
-<fieldset>
-	<legend>Kontakt</legend>
+<div class="DROPSHADOW DROPSHADOW1">
+	<div class="DROPSHADOW DROPSHADOW2">
+		<div class="DROPSHADOW DROPSHADOW3">
+			<div class="DROPSHADOW DROPSHADOW4">
+				<div class="SECTION MEDIUM_SECTION">
+					<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
+						<div class="main">
 
-	<table>
-		<tr>
-			<td>Imie</td>
-			<td><input type="text" name="contact.firstName" ng:required /></td>
-		</tr>
-		<tr>
-			<td>Nazwisko</td>
-			<td><input type="text" name="contact.lastName" ng:required  /></td>
-		</tr>
-		<tr>
-			<td>E-mail</td>
-			<td><input type="text" name="contact.email" ng:required ng:validate="email" /></td>
-		</tr>
-		
-		<tr>
-			<td>Treść</td>
-			<td><textarea rows="4" cols="40" name="contact.content" ng:required ></textarea></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>
-				<button ng:click="send()"  disabled="{{$invalidWidgets.visible() > 0}}">Wyślij</button>
-				<button ng:click="clear()">Wyczyść</button>
-				   
-			</td>
-		</tr>
-		
-	
-		
+							<b>User {{loggedUser.sessionId | json}}</b> <br />
 
-	</table>
-		debug {{contact | json}}
-</fieldset>
+							<fieldset>
+								<legend>Dane kontaktowe</legend>
+
+
+								<table>
+
+									<tr>
+										<td>Imie</td>
+										<td><input type="text" name="contact.firstName"
+											ng:required /></td>
+									</tr>
+									<tr>
+										<td>Nazwisko</td>
+										<td><input type="text" name="contact.lastName"
+											ng:required /></td>
+									</tr>
+									<tr>
+										<td>E-mail</td>
+										<td><input type="text" name="contact.email" ng:required
+											ng:validate="email" /></td>
+									</tr>
+
+									<tr>
+										<td>Treść</td>
+										<td><textarea rows="4" cols="40" name="contact.content"
+												ng:required></textarea></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<button ng:click="send()"
+												disabled="{{$invalidWidgets.visible() > 0}}">Wyślij</button>
+											<button ng:click="clear()">Wyczyść</button>
+
+										</td>
+									</tr>
+
+
+
+
+								</table>
+							</fieldset>
+							debug {{contact | json}}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

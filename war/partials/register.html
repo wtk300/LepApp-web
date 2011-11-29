@@ -1,49 +1,66 @@
-<fieldset>
-	<legend>Dane użytkownika</legend>
-
-	<table>
-		<tr>
-			<td>Login</td>
-			<td><input type="text" name="user.login" ng:required /></td>
-		</tr>
-		<tr>
-			<td>Hasło</td>
-			<td><input type="text" name="user.password" ng:required /></td>
-		</tr>
-		<tr>
-			<td>Powtórz haslo</td>
-			<td><input type="text" name="user.repeatpassword" ng:required/></td>
-		</tr>
-
-		<tr>
-			<td>Imię</td>
-			<td><input type="text" name="user.firstName" ng:required /></td>
-		</tr>
-		<tr>
-			<td>Nazwisko</td>
-			<td><input type="text" name="user.lastName" ng:required /></td>
-		</tr>
+<div class="DROPSHADOW DROPSHADOW2">
+	<div class="DROPSHADOW DROPSHADOW3">
+		<div class="DROPSHADOW DROPSHADOW4">
+			<div class="SECTION MEDIUM_SECTION">
+				<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
+					<div class="main">
 
 
-		<tr>
-			<td>E-mail</td>
-			<td><input type="text" name="user.email" ng:required ng:validate="email" /></td>
-		</tr>
-		
-		<tr>
-			<td>Akcpetuję regulamin</td>
-			<td><input type="checkbox" name="user.acceptTerms" /></td>
-		</tr>
-		
-		<tr>
-			<td></td>
-			<td><button ng:click="register()" disabled="{{$invalidWidgets.visible() > 5}}">Zapisz</button></td>
-		</tr>
+						<fieldset>
+							<legend>Dane użytkownika</legend>
+
+							<table>
+								<tr>
+									<td>Login</td>
+									<td><input type="text" name="user.login" ng:required /></td>
+								</tr>
+								<tr>
+									<td>Hasło</td>
+									<td><input type="text" name="user.password" ng:required /></td>
+								</tr>
+								<tr>
+									<td>Powtórz haslo</td>
+									<td><input type="text" name="user.repeatpassword"
+										ng:required /></td>
+								</tr>
+
+								<tr>
+									<td>Imię</td>
+									<td><input type="text" name="user.firstName" ng:required /></td>
+								</tr>
+								<tr>
+									<td>Nazwisko</td>
+									<td><input type="text" name="user.lastName" ng:required /></td>
+								</tr>
 
 
-	</table>
+								<tr>
+									<td>E-mail</td>
+									<td><input type="text" name="user.email" ng:required
+										ng:validate="email" /></td>
+								</tr>
 
-	debug {{user | json}}
-	
+								<tr>
+									<td>Akcpetuję regulamin</td>
+									<td><input type="checkbox" name="user.acceptTerms" /></td>
+								</tr>
 
-</fieldset>
+								<tr>
+									<td></td>
+									<td><button ng:click="register()"
+											disabled="{{$invalidWidgets.visible() > 5}}">Zapisz</button></td>
+								</tr>
+
+
+							</table>
+
+							debug {{user | json}}
+
+
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

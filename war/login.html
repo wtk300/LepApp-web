@@ -5,32 +5,55 @@
 </head>
 <body onload="document.f.j_username.focus();">
 
-		<form id="loginForm" name="loginForm" action="j_spring_security_check" method="post">
-			<table>
-				<tr>
-					<td>Login</td>
-					<td><input id="usernameFiled" type="text" name="j_username" /></td>
-				</tr>
-				<tr>
-					<td>Hasło</td>
-					<td><input id="passwordField" type="password" name="j_password" /></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="right"><input type="submit" value="Zaloguj"></td>
-				</tr>
-			</table>
-			
-			debug login: admin haslo: admin
 
-		</form>
-		
-		<div ng:show="error==1" class="error">
-			<p>Niepoprawne hasło lub login</p> 
+	<div class="DROPSHADOW DROPSHADOW1">
+		<div class="DROPSHADOW DROPSHADOW2">
+			<div class="DROPSHADOW DROPSHADOW3">
+				<div class="DROPSHADOW DROPSHADOW4">
+					<div class="SECTION LOGIN_SECTION">
+						<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
+							<div class="main">
+
+							<form id="loginForm" name="loginForm"
+								action="j_spring_security_check" method="post">
+								<table>
+									<tr>
+										<td>Login</td>
+										<td><input id="usernameFiled" type="text"
+											name="j_username" /></td>
+									</tr>
+									<tr>
+										<td>Hasło</td>
+										<td><input id="passwordField" type="password"
+											name="j_password" /></td>
+									</tr>
+									<tr>
+										<td colspan="2" align="right"><input type="submit"
+											value="Zaloguj"></td>
+									</tr>
+								</table>
+
+								debug login: admin haslo: admin
+
+							</form>
+
+							<div ng:show="error==1" class="error">
+								<p>Niepoprawne hasło lub login</p>
+							</div>
+
+							<div ng:show="error==2" class="error">
+								<p class="error">Przekroczona ilość użytkowników dla jednego
+									loginu</p>
+							</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		
-		<div ng:show="error==2" class="error">
-			<p class="error">Przekroczona ilość użytkowników dla jednego loginu</p> 
-		</div>
+	</div>
+	</div>
 
 </body>
 </html>
