@@ -88,7 +88,7 @@ function LepTestCtrl(sessionService, securityService) {
 	var $securityService = securityService;
 	var self = this;
 
-	self.sessions = sessionService.getSessionsInfo();
+	
 
 	self.sessionId = "10";
 
@@ -125,7 +125,8 @@ function StartLepCtrl(startService) {
 
 	self.quantity = 0;
 	
-	 
+	self.error = false;
+	self.errorMsg = "";
 	
 	self.questionQuantity = function() {
 		
@@ -136,20 +137,33 @@ function StartLepCtrl(startService) {
 	self.finishLepTest= function(){
 		self.endLep = new Date();
 		if (angular.isArray(self.lepItems.lepItems)){
-			self.debug = "isFuckinArrary "+angular.Array.count(self.lepItems.lepItems);
-		}else{
-			self.debug = "isNotFuckinArrary"
+			var count = angular.Array.count(self.lepItems.lepItems,function(lepItem){
+				return !lepItem.disabled;
+				
+			});
+			
+			if (count > 198){
+				self.error = true;
+				self.errorMsg = "Nie zostały zaznaczone wszyskie odpowiedzi.";
+			}else{
+				self.error = false;
+				self.endLep = new Date();
+			}
+			
 		}
 	}
 
 	self.check = function(item, type) {
 		if (item.correct_ans == type) {
 			item['style' + type] = "ans_correct";
+			item.isCorrect=true;
 			self.correctans++;
 		} else {
 			item['style' + type] = "ans_incorrect";
 			item['style' + item.correct_ans] = "ans_correct";
+			item.isCorrect=false;
 			self.incorrectans++;
+			
 		}
 		item.disabled = true;
 

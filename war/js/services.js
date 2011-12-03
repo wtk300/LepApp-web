@@ -3,7 +3,7 @@
 /**
  * App service which is responsible for the main configuration of the app.
  */
-angular.service('RootService', function($route, $location, $window) {
+angular.service('RootService', function($route, $location, $window,sessionService) {
 
   $route.when('/contact', {template: 'partials/contact.html', controller: ContactCtrl});
   $route.when('/home', {template: 'partials/home.html', controller: MyCtrl2});
@@ -31,8 +31,10 @@ angular.service('RootService', function($route, $location, $window) {
   
 	var self = this;
 	self.user = "mtyson "+new Date();
+	
+	self.sessions = sessionService.getSessionsInfo();
 
-}, {$inject:['$route', '$location', '$window'], $eager: true});
+}, {$inject:['$route', '$location', '$window', 'lepSessionService'], $eager: true});
 
 
 angular.service('securityService',function(resource){

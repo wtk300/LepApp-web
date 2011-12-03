@@ -1,31 +1,102 @@
-<div id="stats">
-	<div>
-		<table>
-			<tr>
-				<td>Data rozpoczęcia testu:</td>
-				<td>{{startLep | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-			</tr>
-			<tr>
-				<td>Ilość pytań:</td>
-				<td>{{lepItems.lepItems.$count()-lepItems.lepItems.$count('disabled==true')}}/{{lepItems.lepItems.$count()}}</td>
+<div style="width: 700px">
+	<div class="MEDIUM_SECTION">
 
-			</tr>
-			<tr>
-				<td>Proprawne odp.:</td>
-				<td>{{correctans}}</td>
-			</tr>
-			<tr>
-				<td>Nieproprawne odp.:</td>
-				<td>{{incorrectans}}</td>
-			</tr>
+		<fieldset>
+			<legend>Statystyka</legend>
+			<table>
+				<tr>
+					<td>Data rozpoczęcia testu:</td>
+					<td>{{startLep | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+				</tr>
 
-			<tr>
-				<td>Skuteczność:</td>
-				<td>{{percentage()}}%</td>
-			</tr>
+				<tr ng:hide="endLep == undefined">
+					<td>Data końca testu:</td>
+					<td>{{endLep | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+				</tr>
+				<tr>
+					<td>Ilość pytań:</td>
+					<td>{{lepItems.lepItems.$count()-lepItems.lepItems.$count('disabled==true')}}/{{lepItems.lepItems.$count()}}</td>
 
-		</table>
+				</tr>
+				
+				<tr>
+					<td>Poprawne odp.:</td>
+					<td>{{correctans}}</td>
+				</tr>
+				<tr>
+					<td>Niepoprawne odp.:</td>
+					<td>{{incorrectans}}</td>
+				</tr>
+
+				<tr>
+					<td>Skuteczność:</td>
+					<td>{{percentage()}}%</td>
+				</tr>
+				
+				<tr ng:hide="endLep == undefined ">
+					<td>Choroby wew.</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==10 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==10'))*100)  | number:2}}%</t>
+
+				</tr>
+				<tr ng:hide="endLep == undefined ">
+					<td>Pediatira</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==20 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==20'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+				<tr ng:hide="endLep == undefined ">
+					<td>Chirurgia</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==30 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==30'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+				<tr ng:hide="endLep == undefined ">
+					<td>Ginekologia i położnictwo</td>
+					<td ng:class="">{{((lepItems.lepItems.$count('disabled==true && subSectionId==40 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==40'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+				<tr ng:hide="endLep == undefined ">
+					<td>Medycyna rodzinna</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==50 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==50'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+					<tr ng:hide="endLep == undefined ">
+					<td>Psychiatria</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==60 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==60'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+					<tr ng:hide="endLep == undefined ">
+					<td>Intensywna terapia i medycyna ratunkowa</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==70 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==70'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+					<tr ng:hide="endLep == undefined ">
+					<td>Bioetyka i prawo medyczne</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==80 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==80'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+					<tr ng:hide="endLep == undefined ">
+					<td>Orzecznictwo lekarskie</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==90 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==90'))*100)  | number:2}}%</t>
+
+				</tr>
+				
+					<tr ng:hide="endLep == undefined ">
+					<td>Zdrowie publiczne</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==100 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==100'))*100)  | number:2}}%</t>
+
+				</tr>
+
+			</table>
+		</fieldset>
 	</div>
+
+	<br />
 
 	<div>
 
@@ -37,12 +108,12 @@
 					<div class="DROPSHADOW DROPSHADOW3">
 						<div class="DROPSHADOW DROPSHADOW4">
 							<div class="SECTION MEDIUM_SECTION">
-								<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">									
+								<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
 									<div class="main">
-									
-										[{{$index+1}}] {{item.question}} {{item.subSectionId}}<br />
-									<!-- 											<span ng:bind-template="nr {{item.subSectionId}}" -->
-									<!-- 												lep:section=""></span> <br /> -->
+
+										[{{$index+1}}] {{item.question}}<br />
+										<!-- 											<span ng:bind-template="nr {{item.subSectionId}}" -->
+										<!-- 												lep:section=""></span> <br /> -->
 
 										<table>
 											<tr>
@@ -85,7 +156,13 @@
 		</div>
 	</div>
 
+	<br />
+
 	<button ng:click="finishLepTest()">Zakończ test</button>
+
+	<div ng:show="error==true" class="error">
+		<p class="error">{{errorMsg}}</p>
+	</div>
 
 	{{debug}}
 </div>

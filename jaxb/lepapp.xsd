@@ -190,7 +190,7 @@
 			</xs:element>
 			
 					
-			<xs:element name="subSectionId" type="xs:int">
+			<xs:element name="subSectionId" type="xs:long">
 				<xs:annotation>
 					<xs:documentation>poddział</xs:documentation>
 				</xs:annotation>

@@ -52,6 +52,14 @@ footer {
 	color: red;
 }
 
+.passsection {
+	color: green;
+}
+
+.failsection {
+	color: red;
+}
+
 .menu:before {
 	content: "[";
 }

@@ -1,6 +1,8 @@
 package net.andruszko.lepapp.web.resources;
 
 import java.util.Collection;
+import java.util.Dictionary;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -22,6 +24,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import net.andruszko.lepapp.web.assembler.LepItemAssembler;
 import net.andruszko.lepapp.web.em.EMFService;
+import net.andruszko.lepapp.web.entity.DictSubSection;
 import net.andruszko.lepapp.web.entity.LepSession;
 import net.andruszko.lepapp.web.vo.LepItem;
 import net.andruszko.lepapp.web.vo.LepItems;
@@ -43,6 +46,8 @@ public class LepResource {
 		EntityManager em = EMFService.get().createEntityManager();
 		
 		Query query = em.createQuery("select lp from LepSession lp order by desc");
+		
+		
 
 		// LepItems items = factory.createLepItems();
 		// LepItem item = factory.createLepItem();
@@ -94,6 +99,154 @@ public class LepResource {
 		// System.out.println("currentUser "+currentUser+ " cache "+antyCache);
 		return Response.ok(factory.createUserInfo(userInfo)).build();
 	}
+	
+	@Path("/initSubSection")
+	@GET
+	public Response initSubSection(){
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.getTransaction().begin();
+		DictSubSection section = new DictSubSection(); 
+		section.setId(10L);
+		section.setDescrition("Choroby wewnętrzne");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(20L);
+		section.setDescrition("Pediatria");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(30L);
+		section.setDescrition("Chirurgia");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(40L);
+		section.setDescrition("Ginekologia i położnictwo");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(50L);
+		section.setDescrition("Medycyna rodzinna");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(60L);
+		section.setDescrition("Psychiatria");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(70L);
+		section.setDescrition("Intesywna terapia i medycyna ratunkowa");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(80L);
+		section.setDescrition("Bioetyka i prawo medyczne");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(90L);
+		section.setDescrition("Orzecznictwo lekarskie");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		
+		em.getTransaction().begin();
+		section = new DictSubSection(); 
+		section.setId(100L);
+		section.setDescrition("Zdrowie publiczne");
+		em.persist(section);
+		
+		em.getTransaction().commit();
+		
+		
+		
+		
+		em.close();
+		return Response.ok().build();
+	}
+	@Path("/replenishSubSection")
+	@GET
+	public Response replenishSubSections(){
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query query = em.createQuery("select li from LepItem li order by position");
+		List<net.andruszko.lepapp.web.entity.LepItem> list = query.getResultList();
+		
+		for (net.andruszko.lepapp.web.entity.LepItem item : list){
+			em.getTransaction().begin();
+			int position = item.getPosition();
+			if (position >=1 && position <= 39){
+				item.setSubSectionId(10L);
+			}else if (position >=40 && position <= 68){
+				item.setSubSectionId(20L);
+			}
+			else if (position >=69 && position <= 95){
+				item.setSubSectionId(30L);
+			}
+			else if (position >=96 && position <= 121){
+				item.setSubSectionId(40L);
+			}
+			else if (position >=122 && position <= 141){
+				item.setSubSectionId(50L);
+			}
+			else if (position >=142 && position <= 155){
+				item.setSubSectionId(60L);
+			}
+			else if (position >=156 && position <= 175){
+				item.setSubSectionId(70L);
+			}
+			else if (position >=176 && position <= 185){
+				item.setSubSectionId(80L);
+			}
+			else if (position >=186 && position <= 192){
+				item.setSubSectionId(90L);
+			}
+			else if (position >=193 && position <= 200){
+				item.setSubSectionId(100L);
+			}
+			
+	
+			em.persist(item);
+			em.getTransaction().commit();
+		}
+		em.close();
+		return Response.ok().build();
+	}
+		
+	
 	
 	@Path("/init")
 	@GET
@@ -182,7 +335,7 @@ public class LepResource {
 		for (net.andruszko.lepapp.web.vo.LepItem item : lepItems.getLepItems()){
 			em.getTransaction().begin();
 			net.andruszko.lepapp.web.entity.LepItem entity = assembler.write(item);
-			entity.setSession(em.find(LepSession.class, 80L));
+		//	entity.setSession(em.find(LepSession.class, 80L));
 			em.persist(entity);
 			em.getTransaction().commit();
 		}
@@ -193,50 +346,28 @@ public class LepResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("/startLep/{sessionId}/{lepId}/{langId}/{subSectionId}")
-	public Response startLep(@PathParam("sessionId") Integer sessionId,
-			@PathParam("lepId") Integer lepId,
-			@PathParam("langId") Integer langId,
-			@PathParam("subSectionId") Integer subSectionId) {
+	public Response startLep(@PathParam("sessionId")Long sessionId,
+			@PathParam("lepId") Long lepId,
+			@PathParam("langId") Long langId,
+			@PathParam("subSectionId") Long subSectionId) {
 		ObjectFactory factory = new ObjectFactory();
 		LepItems items = factory.createLepItems();
 
-		for (int i = 0; i < 255; i++) {
-			LepItem item = factory.createLepItem();
-			item.setPosition(i);
-			item.setQuestion("Pytanie czy ale ma kota a kot ma kota ble bele "
-					+ i);
-			item.setAnswerA("odpowiedz A");
-			item.setAnswerB("odpowiedz B");
-			item.setAnswerC("odpowiedz C");
-			item.setAnswerD("odpowiedz D");
-			item.setAnswerE("odpowiedz F");
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query query = em.createQuery("select li from LepItem li order by position");
 
-			if (i % 2 == 0) {
-				item.setCorrectAns("A");
-				item.setSubSectionId(10);
-			} else {
-				item.setCorrectAns("B");
-				item.setSubSectionId(20);
-			}
-
-			if (i % 3 == 0) {
-				item.setCorrectAns("C");
-				item.setSubSectionId(30);
-			}
-
-			if (i % 7 == 0) {
-				item.setCorrectAns("D");
-				item.setSubSectionId(40);
-			}
-
-			if (i % 5 == 0) {
-				item.setCorrectAns("E");
-				item.setSubSectionId(50);
-			}
-
-			items.getLepItems().add(item);
+		LepSessions sessions = factory.createLepSessions();
+		
+		
+		LepItemAssembler assembler = new LepItemAssembler();
+		for (Object o: query.getResultList()){
+			
+			net.andruszko.lepapp.web.entity.LepItem item = (net.andruszko.lepapp.web.entity.LepItem)o;		
+			items.getLepItems().add(assembler.read(item));
 		}
-
+		
+		
 		return Response.ok(factory.createLepItems(items)).build();
 	}
 

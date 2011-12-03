@@ -9,6 +9,7 @@
 	Aktulanie zalogowany jako {{loggedUser.user.login}} and {{login}}
 
 	<br />
+	
 	<div class="DROPSHADOW DROPSHADOW1">
 		<div class="DROPSHADOW DROPSHADOW2">
 			<div class="DROPSHADOW DROPSHADOW3">
@@ -30,14 +31,14 @@
 									</tr>
 									<tr>
 										<td>Wybierz język:</td>
-										<td><select name="langId" ng:format="number">
+										<td><select name="langId" ng:format="number" ng:disabled="true">
 												<option value="10">Polski</option>
 												<option value="20">Angielski</option>
 										</select></td>
 									</tr>
 									<tr>
 										<td>Wybierz typ egzaminu:</td>
-										<td><select name="lepTypeId" ng:format="number">
+										<td><select name="lepTypeId" ng:format="number" ng:disabled="true">
 												<option value="10">LEP</option>
 												<option value="20">DLEP</option>
 										</select></td>
