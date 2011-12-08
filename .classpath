@@ -18,7 +18,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/oauth-server-1.1.2-ea-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-acl-3.0.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-config-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-core-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-core-3.0.7.RELEASE.jar" sourcepath="/home/wtk300/Desktop/spring-security-3.0.7.RELEASE/dist/spring-security-core-3.0.7.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-taglibs-3.0.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-web-3.0.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-web-3.0.6.RELEASE.jar"/>
@@ -28,5 +28,6 @@
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/appengine-java-sdk"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang3-3.1-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-tx-3.0.6.RELEASE.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

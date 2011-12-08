@@ -17,38 +17,85 @@
 	<b:bean id="sessionRegistry"
 		class="org.springframework.security.core.session.SessionRegistryImpl" />
 
+
+	<!-- We just actually need to set the default failure url here -->
+	<b:bean id="customAuthenticationFailureHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<b:property name="defaultFailureUrl" value="/krams/auth/login?error=true" />
+	</b:bean>
+
+	<!-- We just actually need to set the default target url here -->
+	<b:bean id="customAuthenticationSuccessHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+		<b:property name="defaultTargetUrl" value="/krams/main/common" />
+	</b:bean>
+
+	<!-- Custom filter for username and password. The real customization is 
+		done in the customAthenticationManager -->
+	<b:bean id="authenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<b:property name="authenticationManager" ref="customAuthenticationManager" />
+		<b:property name="authenticationFailureHandler" ref="customAuthenticationFailureHandler" />
+		<b:property name="authenticationSuccessHandler" ref="customAuthenticationSuccessHandler" />
+
+	</b:bean>
+
+
+	<!-- The AuthenticationEntryPoint is responsible for redirecting the user 
+		to a particular page, like a login page, whenever the server sends back a 
+		response requiring authentication
+		http://krams915.blogspot.com/2010/12/spring-security-mvc-integration-using_26.html 
+		-->
+	<!-- See Spring-Security Reference 5.4.1 for more info -->
+	<b:bean id="authenticationEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+
+		<b:property name="loginFormUrl" value="/krams/auth/login" />
+	</b:bean>
+	
+	
+
 	<http access-denied-page="/accessDenied.jsp" auto-config="true">
 
-		<intercept-url pattern="/del.html" access="ROLE_PROXY"/>
+		<intercept-url pattern="/del.html" access="ROLE_PROXY" />
 		<intercept-url pattern="/secured/**" access="ROLE_PROXY" />
 		<intercept-url pattern="/index.html#/map" access="ROLE_PROXY" />
-		
-		
+
+
 		<form-login login-page="/index.html#/login"
-			authentication-failure-url="/index.html#/login?error=1" 
-			always-use-default-target="false"
-			
-			 />
-									  
+			authentication-failure-url="/index.html#/login?error=1"
+			always-use-default-target="false" />
+
 		<logout logout-success-url="/partials/logoutsuccess.html" />
 
 		<session-management>
 			<concurrency-control max-sessions="1"
 				expired-url="/index.html#/login?error=2" session-registry-ref="sessionRegistry" />
-			
+
 		</session-management>
-		
+
 	</http>
 
+	<b:bean id="customAuthenticationManager" class="net.andruszko.lepapp.web.auth.CustomAuthManager" />
+
+	<b:bean id="authenticationFilter2"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+
+		<b:property name="authenticationManager" ref="customAuthenticationManager" />
+ 
+	</b:bean>
+	
+	
+	<b:bean id="customUserDetailsService" class="net.andruszko.lepapp.web.auth.CustomUserDetailsService">
+
+	</b:bean>
+
 	<authentication-manager alias="authenticationManager">
-		<authentication-provider>
+
+
+		<authentication-provider user-service-ref="customUserDetailsService">
 			<password-encoder hash="plaintext" />
-			<user-service>
-				<user name="admin" password="admin" authorities="ROLE_ADMIN,ROLE_SUPERVISOR" />
-				<user name="user" password="temp" authorities="ROLE_PROXY" />
-				<user name="user2" password="admin" authorities="ROLE_ADMIN" />
-				<user name="tester" password="admin" authorities="ROLE_TRR" />
-			</user-service>
+			
 		</authentication-provider>
 	</authentication-manager>
 
@@ -68,11 +115,11 @@
 		user -->
 	<!-- In this example 'rod' has ROLE_SUPERVISOR that can switch to regular 
 		ROLE_USER(s) -->
-	<b:bean id="switchUserProcessingFilter"
-		class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter"
-		autowire="byType">
-		<b:property name="targetUrl" value="/secured/index.htm" />
-	</b:bean>
+<!-- 	<b:bean id="switchUserProcessingFilter" -->
+<!-- 		class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter" -->
+<!-- 		autowire="byType"> -->
+<!-- 		<b:property name="targetUrl" value="/secured/index.htm" /> -->
+<!-- 	</b:bean> -->
 
 	<!-- <b:bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler"> -->
 	<!-- <b:property name="permissionEvaluator" ref="permissionEvaluator"/> -->

@@ -23,6 +23,7 @@ public class CustomAuthManager implements AuthenticationManager {
 			throw new BadCredentialsException("Ivalid user/password");
 		}
 		
+		System.out.println("principal  "+ principal + " "+credentials);
 		
 		GrantedAuthority[]  grantedAuth = new GrantedAuthority[]{new GrantedAuthorityImpl("ROLE_ADMIN")};
 		User user = new User(principal,credentials,true,true,true,true,grantedAuth);
