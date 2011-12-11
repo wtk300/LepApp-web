@@ -19,17 +19,16 @@
 								<table>
 									<tr>
 										<td>Login</td>
-										<td><input id="usernameFiled" type="text"
-											name="j_username" /></td>
+										<td><input id="usernameFiled" type="text" name="j_username" ng:required/></td>
 									</tr>
 									<tr>
 										<td>Hasło</td>
 										<td><input id="passwordField" type="password"
-											name="j_password" /></td>
+											name="j_password" ng:required/></td>
 									</tr>
 									<tr>
 										<td colspan="2" align="right"><input type="submit"
-											value="Zaloguj"></td>
+											value="Zaloguj" disabled="{{$invalidWidgets.visible() > 0}}" ></td>
 									</tr>
 								</table>
 

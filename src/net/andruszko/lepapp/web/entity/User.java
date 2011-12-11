@@ -13,9 +13,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    
+    public static String LOGIN = "login"; 
     private String login;
 
+    
     private String firstName;
 
     private String lastName;
@@ -23,6 +24,13 @@ public class User {
     private String email;
     
     private String password;
+    
+    private String mobile;
+    
+    private boolean accountNonExpired = false;
+    private boolean accountNonLocked = false;
+    private boolean credentialsNonExpired = false;
+    private boolean enabled = true;
 
 
 
@@ -73,8 +81,47 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
-    
 
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
 
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+	
+	
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 }

@@ -12,49 +12,47 @@
 							<table>
 								<tr>
 									<td>Login</td>
-									<td><input type="text" name="user.login" ng:required /></td>
+									<td><input type="text" name="newUser.login" ng:required /></td>
 								</tr>
 								<tr>
 									<td>Hasło</td>
-									<td><input type="text" name="user.password" ng:required /></td>
+									<td><input type="password"  name="newUser.password" ng:required /></td>
 								</tr>
 								<tr>
 									<td>Powtórz haslo</td>
-									<td><input type="text" name="user.repeatpassword"
-										ng:required /></td>
+									<td><input type="password"  name="newUser.repeatpassword" type="password" ng:required /></td>
 								</tr>
 
 								<tr>
 									<td>Imię</td>
-									<td><input type="text" name="user.firstName" ng:required /></td>
+									<td><input type="text" name="newUser.firstName" ng:required /></td>
 								</tr>
 								<tr>
 									<td>Nazwisko</td>
-									<td><input type="text" name="user.lastName" ng:required /></td>
+									<td><input type="text" name="newUser.lastName" ng:required /></td>
 								</tr>
 
 
 								<tr>
 									<td>E-mail</td>
-									<td><input type="text" name="user.email" ng:required
-										ng:validate="email" /></td>
+									<td><input type="text" name="newUser.email" ng:validate="email"  ng:required /></td>
 								</tr>
 
 								<tr>
-									<td>Akcpetuję regulamin</td>
-									<td><input type="checkbox" name="user.acceptTerms" /></td>
+									<td>Akceptuję regulamin</td>
+									<td><input type="checkbox" name="newUser.acceptTerms" /></td>
 								</tr>
 
 								<tr>
 									<td></td>
 									<td><button ng:click="register()"
-											disabled="{{$invalidWidgets.visible() > 5}}">Zapisz</button></td>
+											ng:disabled="{{$invalidWidgets.visible() > 5 || newUser.acceptTerms == false}}">Zapisz</button></td>
 								</tr>
 
 
 							</table>
 
-							debug {{user | json}}
+							debug {{newUser | json}}
 
 
 						</fieldset>

@@ -7,7 +7,7 @@
 					<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
 						<div class="main">
 
-							<b>User {{loggedUser.sessionId | json}}</b> <br />
+							<b>User {{loggedUser.user.login }}</b> <br />
 
 							<fieldset>
 								<legend>Dane kontaktowe</legend>
@@ -18,17 +18,17 @@
 									<tr>
 										<td>Imie</td>
 										<td><input type="text" name="contact.firstName"
-											ng:required /></td>
+											ng:required ng:disabled="{{contact.authUser}}"/></td>
 									</tr>
 									<tr>
 										<td>Nazwisko</td>
 										<td><input type="text" name="contact.lastName"
-											ng:required /></td>
+											ng:required ng:disabled="{{contact.authUser}}" /></td>
 									</tr>
 									<tr>
 										<td>E-mail</td>
 										<td><input type="text" name="contact.email" ng:required
-											ng:validate="email" /></td>
+											ng:validate="email" ng:disabled="{{contact.authUser}}"/></td>
 									</tr>
 
 									<tr>

@@ -6,21 +6,16 @@ function RegisterCtrl(invalidWidgets, userService) {
 
 	this.register = function() {
 
-		self.user.password = hex_md5(self.user.password);
-		self.user.repeatpassword = hex_md5(self.user.repeatpassword);
-		userService.regiserUser(self.user);
+		self.newUser.password = hex_md5(self.newUser.password);
+		self.newUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
+		userService.regiserUser(self.newUser);
 	}
 }
 
 RegisterCtrl.$inject = [ '$invalidWidgets', 'userService' ];
 
 
-function RootCtrl() {
-
-
-}
-
-
+function RootCtrl() {}
 
 function ContactCtrl(invalidWidgets, contactService,securityService) {
 	var self = this;
@@ -39,25 +34,31 @@ function ContactCtrl(invalidWidgets, contactService,securityService) {
 	
 	
 	self.loggedUser = $securityService.getLoggedUser();
-	 
-//	self.$watch("loggedUser",function(newValue,oldValue){
-//		
-//		self.$set("contact.firstName",angular.toJson(newValue));
-//		self.$set("contact.lastName",angular.toJson(oldValue));
-//		
-//		if (angular.isDefined(newValue.user)){
-//			self.user = newValue.user.login;
-//			self.$set("contact.firstName",angular.toJson(newValue.user.login));	
-////			self.contact.firstName = self.loggedUser.user.firstName;
-////			self.contact.lastName = self.loggedUser.user.lastName;
-//		}else{
-//			 
-//		//	self.$set("contact.firstName","aaaaa");
-//			
-//			
-//		}
-//	});
 	
+	
+	 
+	self.$watch("loggedUser.user",function(newValue,oldValue){
+		
+		if (angular.isDefined(newValue)){
+			
+			if (newValue.login != "anonymousUser"){
+				self.$set("contact.login",newValue.login);
+				self.$set("contact.authUser",true);
+				self.$set("contact.firstName",newValue.firstName);
+				self.$set("contact.lastName",newValue.lastName);
+			}
+			
+			
+		}
+		
+	});
+	
+//	self.$watch("loggedUser.user.lastName",function(newValue,oldValue){
+//		
+//		self.$set("contact.firstName",newValue);
+//		self.$set("contact.lastName",oldValue);
+//	});
+//	
 	
 	self.send = function() {
 		contactService.regiserContact(self.contact);
@@ -75,44 +76,35 @@ function ContactCtrl(invalidWidgets, contactService,securityService) {
 }
 ContactCtrl.$inject = [ '$invalidWidgets', 'contactService','securityService' ];
 
-function LoginCtrl() {
-	var self = this;
-
-	self.error = self.params.error;
-
-	self.params = self.params;
-
-}
-
-function LepTestCtrl(sessionService, securityService) {
+function LepExamCtrl(sessionService, securityService,startService,location) {
 	var $securityService = securityService;
+	var startService = startService
 	var self = this;
-
 	
-
+	
+	
+	self.startExam = function(){
+		self.lepItems = startService.getLepTestItems(10, 20, 30, 40, 50);
+		location.updateHash('/startExam',{id :1231})
+	}
+	
 	self.sessionId = "10";
 
 	self.loggedUser = securityService.getLoggedUser();
 
 }
-LepTestCtrl.$inject = [ 'lepSessionService', 'securityService' ];
+LepExamCtrl.$inject = [ 'lepSessionService', 'securityService', 'startLepService','$location' ];
 
-function LogoutCtrl(securityService) {
-	var $securityService = securityService;
-	var self = this;
-
-	self.loggedUser = securityService.getLoggedUser();
-}
-LogoutCtrl.$inject = [ 'securityService' ];
-
-function StartLepCtrl(startService) {
+function ResolveExamCtrl(startService) {
 	var startService = startService;
 	var self = this;
-	self.lepItems = startService.getLepTestItems(10, 20, 30, 40, 50);
+	
 	self.startLep = new Date();
 	self.endLep = undefined;
 	self.correctans = 0;
 	self.incorrectans = 0;
+	
+	self.lepItems = startService.getCurrentLepItems();
 
 	self.percentage = function() {
 
@@ -171,7 +163,29 @@ function StartLepCtrl(startService) {
 
 }
 
-StartLepCtrl.$inject = [ 'startLepService' ];
+ResolveExamCtrl.$inject = [ 'startLepService' ];
+
+
+function LogoutCtrl(securityService) {
+	var $securityService = securityService;
+	var self = this;
+
+	self.loggedUser = securityService.getLoggedUser();
+}
+LogoutCtrl.$inject = [ 'securityService' ];
+
+function LoginCtrl(invalidWidgets) {
+	
+	var self = this;
+	
+	self.$invalidWidgets = invalidWidgets;
+	self.error = self.params.error;
+
+	self.params = self.params;
+
+}
+
+LoginCtrl.$inject = [ '$invalidWidgets' ];
 
 function MyCtrl2() {
 }

@@ -50,12 +50,15 @@
 	<b:bean id="authenticationEntryPoint"
 		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 
-		<b:property name="loginFormUrl" value="/krams/auth/login" />
+		<b:property name="loginFormUrl" value="/index.html#/login?error=3" />
 	</b:bean>
 	
 	
+	
 
-	<http access-denied-page="/accessDenied.jsp" auto-config="true">
+	<http access-denied-page="/accessDenied.jsp" auto-config="false" entry-point-ref="authenticationEntryPoint" >
+
+
 
 		<intercept-url pattern="/del.html" access="ROLE_PROXY" />
 		<intercept-url pattern="/secured/**" access="ROLE_PROXY" />
@@ -63,7 +66,8 @@
 
 
 		<form-login login-page="/index.html#/login"
-			authentication-failure-url="/index.html#/login?error=1"
+			authentication-failure-url="/index.html#/login?error=1"		
+			default-target-url="/index.html#/chooseExam"
 			always-use-default-target="false" />
 
 		<logout logout-success-url="/partials/logoutsuccess.html" />
@@ -87,15 +91,19 @@
 	
 	
 	<b:bean id="customUserDetailsService" class="net.andruszko.lepapp.web.auth.CustomUserDetailsService">
-
+		<b:property name="userService" ref="userService" />
 	</b:bean>
+	
+	<b:bean id="userService" class="net.andruszko.lepapp.web.service.UserServiceImpl">	
+	</b:bean>
+	
+	
 
 	<authentication-manager alias="authenticationManager">
 
 
 		<authentication-provider user-service-ref="customUserDetailsService">
-			<password-encoder hash="plaintext" />
-			
+			<password-encoder hash="md5" />			
 		</authentication-provider>
 	</authentication-manager>
 

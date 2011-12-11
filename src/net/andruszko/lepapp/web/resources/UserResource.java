@@ -1,43 +1,77 @@
 package net.andruszko.lepapp.web.resources;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Query;
 
 import net.andruszko.lepapp.web.assembler.UserAssembler;
 import net.andruszko.lepapp.web.em.EMFService;
 import net.andruszko.lepapp.web.vo.User;
 
+import org.codehaus.jettison.json.JSONObject;
+
 @Path("user")
 public class UserResource {
+	
+//	JSONObject createJson(Map map){
+//	 try {
+//         return new JSONObject(map);
+//        
+//     } catch (JSONException je){
+//         return null;
+//     }
+//	}
 
+	@Path("/checkLoginAvail/{sessionId}/{login}")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML} )
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response checkLoginAvail(@PathParam("sessionId") String sessionId, @PathParam("login") String login){
+		
+		return Response.ok().build();
+	}
+	
 	@Path("/register")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON})
 	public Response register(User input) {
-		System.out.println("input " + input.getLastName() + " "
-				+ input.getFirstName() + " " + input.getLogin() + " "
-				+ input.getPassword());
-
+		
 		EntityManager em = EMFService.get().createEntityManager();
+		try{
+			
+			System.out.println("input " + input.getLastName() + " "
+					+ input.getFirstName() + " " + input.getLogin() + " "
+					+ input.getPassword());
 
-		net.andruszko.lepapp.web.entity.User registeremUser = new UserAssembler()
-				.write(input);
-		em.persist(registeremUser);
-		em.close();
-		return Response.ok(registeremUser.getId()).build();
+			
+			
+			em.getTransaction().begin();
+			net.andruszko.lepapp.web.entity.User registeremUser = new UserAssembler().write(input);
+			em.persist(registeremUser);
+			em.getTransaction().commit();
+			
+			
+			Map<String,String> jsonMap = new HashMap<String,String>();	
+			jsonMap.put("userId", registeremUser.getId().toString());
+			JSONObject jsonObj = new JSONObject(jsonMap);
+			
+			return Response.ok(jsonObj).build();
+		}finally{
+			em.close();
+		}
+		
+		
 
 	}
 

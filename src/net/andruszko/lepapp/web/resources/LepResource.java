@@ -1,7 +1,6 @@
 package net.andruszko.lepapp.web.resources;
 
 import java.util.Collection;
-import java.util.Dictionary;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,13 +15,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import net.andruszko.lepapp.web.assembler.LepItemAssembler;
+import net.andruszko.lepapp.web.auth.CustomAuthUser;
 import net.andruszko.lepapp.web.em.EMFService;
 import net.andruszko.lepapp.web.entity.DictSubSection;
 import net.andruszko.lepapp.web.entity.LepSession;
@@ -46,12 +48,7 @@ public class LepResource {
 		EntityManager em = EMFService.get().createEntityManager();
 		
 		Query query = em.createQuery("select lp from LepSession lp order by desc");
-		
-		
 
-		// LepItems items = factory.createLepItems();
-		// LepItem item = factory.createLepItem();
-		// //item.set
 		 
 		LepSessions sessions = factory.createLepSessions();
 		for (Object s : query.getResultList()){
@@ -69,28 +66,41 @@ public class LepResource {
 
 	@Path("/{antycache}/loggedUser")
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	public Response getLoggedUser(@PathParam("antycache") String antyCache) {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String currentUser = auth.getName();
-		Collection<GrantedAuthority> grantedAuthroity = auth.getAuthorities();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		User user = new User();
+		user.setLogin(auth.getName());
+		if (auth instanceof AnonymousAuthenticationToken){
+			
+			AnonymousAuthenticationToken anonim = (AnonymousAuthenticationToken)auth;
+			WebAuthenticationDetails authDetails = (WebAuthenticationDetails)anonim.getDetails();
+			
+			user.setFirstName("Mike "+authDetails.getRemoteAddress());
+			user.setLastName("Tyson ");
+			
+			
+		}else if (auth instanceof UsernamePasswordAuthenticationToken){
+			
+			 UsernamePasswordAuthenticationToken logged = ( UsernamePasswordAuthenticationToken)auth;
+			 CustomAuthUser authUser = (CustomAuthUser)logged.getPrincipal();
+			 WebAuthenticationDetails authDetails = (WebAuthenticationDetails)logged.getDetails();
+			 
+			 
+			 user.setFirstName(authUser.getFirstName());
+			 user.setLastName(authUser.getLastName());
 
-		// for (GrantedAuthority ga : grantedAuthroity){
-		// System.out.println(""+ga.getAuthority());
-		// }
-
+		
+		}else{
+			throw new IllegalStateException("Not inplements instance "+auth.getClass().getSimpleName());
+		}
+		
 		ObjectFactory factory = new ObjectFactory();
 		UserInfo userInfo = factory.createUserInfo();
-
-		User user = new User();
-		user.setFirstName("Mike");
-		user.setLastName("Tyson");
-		user.setLogin(currentUser);
-
 		userInfo.setUser(user);
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
-				.currentRequestAttributes();
+		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession session = attr.getRequest().getSession(true); // true ==
 																	// allow
 																	// create
@@ -325,11 +335,8 @@ public class LepResource {
 	@Consumes({MediaType.APPLICATION_XML})
 	@Path("/updateLep11L2")
 	public Response updateLepTest11L2(@PathParam("sessionId")Long sessionId, LepItems lepItems){
-		
 	
-		
 		EntityManager em = EMFService.get().createEntityManager();
-
 		
 		LepItemAssembler assembler = new LepItemAssembler();
 		for (net.andruszko.lepapp.web.vo.LepItem item : lepItems.getLepItems()){

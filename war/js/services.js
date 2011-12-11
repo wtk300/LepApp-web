@@ -10,18 +10,20 @@ angular.service('RootService', function($route, $location, $window,sessionServic
   $route.when('/map', {template: 'partials/map.html', controller: MyCtrl2});
   $route.when('/login', {template: 'login.html?error=32', controller:LoginCtrl});
   $route.when('/register', {template: 'partials/register.html', controller:RegisterCtrl});
-  $route.when('/aboutTest', {template: 'partials/aboutTest.html', controller:undefined});
-  $route.when('/chooseTest', {template: 'partials/chooseTest.html', controller:LepTestCtrl});
-  $route.when('/startTest', {template: 'secured/start.html', controller:StartLepCtrl});
+  $route.when('/aboutExam', {template: 'partials/aboutExam.html', controller:undefined});
+  $route.when('/chooseExam', {template: 'partials/chooseExam.html', controller:LepExamCtrl});
+  $route.when('/startExam', {template: 'secured/start.html', controller:ResolveExamCtrl});
   $route.when('/logout', {template: '/j_spring_security_logout', controller:LogoutCtrl});
   $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
   $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
 
   $route.parent(this);
+  
+ 
 
   $route.onChange(function() {
     if ($location.hash === '') {
-      $location.updateHash('/contact');
+      $location.updateHash('/login',{first: 1});
      
     } else {
       $route.current.scope.params = $route.current.params;
@@ -114,7 +116,13 @@ angular.service('contactService',function(resource,$xhr){
 
 angular.service('startLepService',function(resource){
 	
+	  var self = this;
+	  	  
 	  return {
+		  	getCurrentLepItems : function(){
+		  		return self.currentLepItems;
+		  	},
+		  	
 	        getLepTestItems: function(sessionId,lepId,langId,subSectionId){
 	            var res = resource('resources/lep/startLep/:sessionId/:lepId/:langId/:subSectionId',
 	            		{sessionId: sessionId, lepId: lepId ,langId : langId,subSectionId: subSectionId},
@@ -124,7 +132,8 @@ angular.service('startLepService',function(resource){
 	                    
 	                }
 	            });            
-	            return angular.fromJson(res.retrive());
+	            self.currentLepItems = angular.fromJson(res.retrive());
+	            return self.currentLepItems;
 	        }
 	    }
 },{$inject:['$resource']});
