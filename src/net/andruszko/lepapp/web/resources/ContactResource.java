@@ -8,7 +8,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -24,7 +23,7 @@ public class ContactResource {
 
 	@Path("/register")
 	@POST
-	@Produces({ MediaType.TEXT_PLAIN})
+	@Produces({ MediaType.APPLICATION_JSON})
 	@Consumes({ MediaType.APPLICATION_JSON})
 	public Response register(ContactVO input) {
 
@@ -36,12 +35,12 @@ public class ContactResource {
 			em.persist(contact);
 			em.getTransaction().commit();
 			
-			GenericEntity<Long> entity = 
-					  new GenericEntity<Long>(contact.getId()) {};
+//			GenericEntity<Long> entity = 
+//					  new GenericEntity<Long>(contact.getId()) {};
 					  Map<String,String> jsonMap = new HashMap<String,String>();	
 						jsonMap.put("contactId",contact.getId().toString());
 						JSONObject jsonObj = new JSONObject(jsonMap);
-			return Response.ok().build();	
+			return Response.ok(contact.getId()).build();	
 		}
 		
 		

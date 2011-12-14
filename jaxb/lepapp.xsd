@@ -42,6 +42,11 @@
 						<xs:documentation>e-mail</xs:documentation>
 					</xs:annotation>
 				</xs:element>
+				<xs:element name="login" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>e-mail</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 
 			</xs:sequence>
 		</xs:complexType>

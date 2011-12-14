@@ -60,13 +60,8 @@ public class UserResource {
 			net.andruszko.lepapp.web.entity.User registeremUser = new UserAssembler().write(input);
 			em.persist(registeremUser);
 			em.getTransaction().commit();
-			
-			
-			Map<String,String> jsonMap = new HashMap<String,String>();	
-			jsonMap.put("userId", registeremUser.getId().toString());
-			JSONObject jsonObj = new JSONObject(jsonMap);
-			
-			return Response.ok(jsonObj).build();
+						
+			return Response.ok(registeremUser.getId()).build();
 		}finally{
 			em.close();
 		}
@@ -89,12 +84,12 @@ public class UserResource {
 
 		List<net.andruszko.lepapp.web.entity.User> query = q.getResultList();
 
-		for (net.andruszko.lepapp.web.entity.User input : query) {
-			System.out.println("lastname " + input.getLastName()
-					+ " firstname " + input.getFirstName() + " login "
-					+ input.getLogin() + " password " + input.getPassword()
-					+ " id " + input.getId());
-		}
+//		for (net.andruszko.lepapp.web.entity.User input : query) {
+//			System.out.println("lastname " + input.getLastName()
+//					+ " firstname " + input.getFirstName() + " login "
+//					+ input.getLogin() + " password " + input.getPassword()
+//					+ " id " + input.getId());
+//		}
 
 		return Response.ok(user).build();
 	}

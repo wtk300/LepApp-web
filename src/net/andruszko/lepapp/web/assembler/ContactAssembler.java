@@ -11,6 +11,7 @@ public class ContactAssembler {
 		c.setEmail(input.getEmail());
 		c.setFirstName(input.getFirstName());
 		c.setLastName(input.getLastName());
+		c.setLogin(input.getLogin());
 		return c;
 	}
 }

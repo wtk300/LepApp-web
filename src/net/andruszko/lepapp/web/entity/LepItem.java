@@ -78,8 +78,8 @@ public class LepItem {
 	
 
 
-	public Text getQuestion() {
-		return question;
+	public String getQuestion() {
+		return question == null ? null : question.getValue();
 	}
 
 	public void setQuestion(String question) {

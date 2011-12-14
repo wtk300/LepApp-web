@@ -18,7 +18,7 @@
 									<tr>
 										<td>Imie</td>
 										<td><input type="text" name="contact.firstName"
-											ng:required ng:disabled="{{contact.authUser}}"/></td>
+											ng:required ng:disabled="{{contact.authUser}}" /></td>
 									</tr>
 									<tr>
 										<td>Nazwisko</td>
@@ -28,7 +28,7 @@
 									<tr>
 										<td>E-mail</td>
 										<td><input type="text" name="contact.email" ng:required
-											ng:validate="email" ng:disabled="{{contact.authUser}}"/></td>
+											ng:validate="email" ng:disabled="{{contact.authUser}}" /></td>
 									</tr>
 
 									<tr>
@@ -45,13 +45,34 @@
 
 										</td>
 									</tr>
+									<tr ng:show="contact.id > 0" >
+										<td></td>
+										<td>
+											<div class="success">
+												<p class="success">Kontakt został wysłany poprawnie.</p>
+											</div>
+										</td>
+									</tr>
+
+									<tr ng:show="contact.id < 0" >
+										<td></td>
+										<td>
+											<div class="error">
+												<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
+											</div>
+										</td>
+									</tr>
 
 
 
 
 								</table>
+
+
+
+
 							</fieldset>
-							debug {{contact | json}}
+							debug {{contact | json}} id {{response.id }}
 
 						</div>
 					</div>

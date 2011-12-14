@@ -23,19 +23,8 @@ function ContactCtrl(invalidWidgets, contactService,securityService) {
 	self.$invalidWidgets = invalidWidgets;
 	self.contactService = contactService;
 	var $securityService = securityService;
-	
-	
-
-	var getUser = function(){
 		
-		self.$set("contact.firstName","login "+angular.filter.json($securityService.getLoggedUser()));
-		return angular.fromJson($securityService.getLoggedUser());
-	}
-	
-	
 	self.loggedUser = $securityService.getLoggedUser();
-	
-	
 	 
 	self.$watch("loggedUser.user",function(newValue,oldValue){
 		
@@ -47,8 +36,6 @@ function ContactCtrl(invalidWidgets, contactService,securityService) {
 				self.$set("contact.firstName",newValue.firstName);
 				self.$set("contact.lastName",newValue.lastName);
 			}
-			
-			
 		}
 		
 	});
@@ -59,18 +46,47 @@ function ContactCtrl(invalidWidgets, contactService,securityService) {
 //		self.$set("contact.lastName",oldValue);
 //	});
 //	
+
+	self.$watch("response",function(newValue,oldValue){
+		if (angular.isDefined(newValue)){
+			if (angular.isDefined(self.response.id)){
+				self.contact.id = self.response.id;		
+				if (angular.isDefined(self.contact.login)){
+					self.contact.content = "";				
+				}else{
+					clearAll();
+				}
+			}else{
+				
+			}
+		}
+	});
 	
 	self.send = function() {
-		contactService.regiserContact(self.contact);
+		self.response = contactService.registerContact(self.contact);
 
 	}
-
-	self.clear = function() {
+	
+	var clearAll = function(){
 		self.contact.firstName = "";
 		self.contact.lastName = "";
 		self.contact.email = "";
 		self.contact.content = "";
+		
+	}
+	
 
+	self.clear = function() {
+		
+		if (angular.isDefined(self.contact.login)){
+			self.contact.content = "";
+			self.contact.id = null;
+		}else{
+		
+			clearAll();
+			self.contact.id = null;
+		}
+		
 	}
 
 }

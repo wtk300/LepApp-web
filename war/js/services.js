@@ -97,7 +97,7 @@ angular.service('userService',function(resource,$xhr){
 angular.service('contactService',function(resource,$xhr){
 	
 	  return {
-	        regiserContact: function(contact){
+	        registerContact: function(contact){
 	        	$xhr.defaults.headers.post['Content-Type']='application/json';
 	        	$xhr.defaults.headers.put['Content-Type']='application/json';
 	        	$xhr.defaults.headers.delete['Content-Type']='application/json';

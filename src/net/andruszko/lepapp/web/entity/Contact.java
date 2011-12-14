@@ -1,9 +1,12 @@
 package net.andruszko.lepapp.web.entity;
 
+import javax.jdo.annotations.Persistent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.google.appengine.api.datastore.Text;
 
 @Entity
 public class Contact {
@@ -12,8 +15,13 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String content;
 	
+	 @Persistent(defaultFetchGroup = "true") 
+	 private com.google.appengine.api.datastore.Text content;
+	
+	
+	private String login; 
+	 
 	private String email;
 	
 	private String firstName;
@@ -29,11 +37,11 @@ public class Contact {
 	}
 
 	public String getContent() {
-		return content;
+		return content == null ? null : content.getValue();
 	}
 
 	public void setContent(String content) {
-		this.content = content;
+		this.content = new Text(content);
 	}
 
 	public String getEmail() {
@@ -58,6 +66,14 @@ public class Contact {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 	
 	

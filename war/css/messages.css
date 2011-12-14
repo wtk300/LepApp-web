@@ -21,6 +21,7 @@ div.info_600 {
 }
 
 div.success {
+	width: 300px;
 	color: #4F8A10;
 	background-color: #DFF2BF;
 	background-image: url('../img/messages/success.png');
