@@ -17,51 +17,55 @@
 							<div class="main">
 
 								<b>Aktulanie zalogowany jako {{loggedUser.user.login}}</b> <br />
-								<fieldset>
-									<legend>Wybór egzaminu</legend>
+								<ng:form>
+									<fieldset>
+										<legend>Wybór egzaminu</legend>
 
-									<table>
-										<tr>
-											<td>Wybierz sesję:</tfad>
-											<td><select name="sessionId" ng:format="number"
-												ng:options="c.id as c.desc for c in sessions.lepSession"
-												class="nullable">
-											</select></td>
-										</tr>
-										<tr>
-											<td>Wybierz język:</td>
-											<td><select name="langId" ng:format="number"
-												ng:disabled="{{true}}">
-													<option value="10">Polski</option>
-													<option value="20">Angielski</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td>Wybierz typ egzaminu:</td>
-											<td><select name="lepTypeId" ng:format="number"
-												ng:disabled="{{true}}">
-													<option value="10">LEP</option>
-													<option value="20">DLEP</option>
-											</select></td>
-										</tr>
-										<tr ng:show="lepTypeId == 10">
-											<td>Wybierz poddział:</td>
-											<td><select name="sectionId" ng:format="number">
-													<option value="10">Wszystkie</option>
-													<option value="20">Ginekologia</option>
-													<option value="30">Interna</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td><br/><button ng:click="startExam()"
-														ng:disabled="{{loggedUser.user.login == 'anonymousUser'}}">Uruchom</button></td>
-										</tr>
+										<table>
+											<tr>
+												<td>Wybierz sesję:</td>
+												<td><select name="sessionId" ng:model="sessionId"
+													ng:options="c.id as c.desc for c in sessions.lepSession"
+													class="nullable">
+												</select></td>
+											</tr>
+											<tr>
+												<td>Wybierz język:</td>
+												<td><select ng:model="langId" name="langId"
+													ng:disabled="{{true}}">
+														<option value="10">Polski</option>
+														<option value="20">Angielski</option>
+												</select></td>
+											</tr>
+											<tr>
+												<td>Wybierz typ egzaminu:</td>
+												<td><select name="lepTypeId"  ng:model="lepTypeId">
+														<option value="10">LEP</option>
+														<option value="20">DLEP</option>
+												</select></td>
+											</tr>
+											<tr ng:show="lepTypeId == 10">
+												<td>Wybierz poddział:</td>
+												<td><select ng:model="sectionId">
+														<option value="10">Wszystkie</option>
+														<option value="20">Ginekologia</option>
+														<option value="30">Interna</option>
+												</select></td>
+											</tr>
+											<tr>
+												<td></td>
+												<td><br />
+												<button ng:click="startExam()"
+														ng:disabled="{{loggedUser.user.isAuth == false}}">Uruchom</button></td>
+											</tr>
 
 
 
-									</table>
-								</fieldset>
+										</table>
+									</fieldset>
+								</ng:form>
+								
+								<pre></pre>
 								<br />
 							</div>
 						</div>

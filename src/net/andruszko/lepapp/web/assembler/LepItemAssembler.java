@@ -15,9 +15,6 @@ public class LepItemAssembler {
 		item.setSubSectionId(lepItem.getSubSectionId());
 		item.setQuestion(lepItem.getQuestion());
 		
-		
-		
-		
 		return item;
 	}
 	
@@ -32,6 +29,7 @@ public class LepItemAssembler {
 		item.setPosition(lepItem.getPosition());
 		item.setSubSectionId(lepItem.getSubSectionId());
 		item.setQuestion(lepItem.getQuestion());
+		item.setId(lepItem.getId());
 		
 		
 		

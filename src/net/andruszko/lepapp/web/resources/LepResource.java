@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -27,8 +28,8 @@ import net.andruszko.lepapp.web.assembler.LepItemAssembler;
 import net.andruszko.lepapp.web.auth.CustomAuthUser;
 import net.andruszko.lepapp.web.em.EMFService;
 import net.andruszko.lepapp.web.entity.DictSubSection;
+import net.andruszko.lepapp.web.entity.LepItem;
 import net.andruszko.lepapp.web.entity.LepSession;
-import net.andruszko.lepapp.web.vo.LepItem;
 import net.andruszko.lepapp.web.vo.LepItems;
 import net.andruszko.lepapp.web.vo.LepSessions;
 import net.andruszko.lepapp.web.vo.ObjectFactory;
@@ -71,14 +72,19 @@ public class LepResource {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		User user = new User();
-		user.setLogin(auth.getName());
+		
 		if (auth instanceof AnonymousAuthenticationToken){
 			
 			AnonymousAuthenticationToken anonim = (AnonymousAuthenticationToken)auth;
 			WebAuthenticationDetails authDetails = (WebAuthenticationDetails)anonim.getDetails();
 			
-			user.setFirstName("Mike "+authDetails.getRemoteAddress());
-			user.setLastName("Tyson ");
+			user.setLogin(auth.getName());
+			user.setFirstName("Gall");
+			user.setLastName("Anonim ");
+			user.setIsAuth(false);
+			for (GrantedAuthority ga : anonim.getAuthorities()){
+				user.setLastName(user.getLastName()+  " "+ga.getAuthority());
+			}
 			
 			
 		}else if (auth instanceof UsernamePasswordAuthenticationToken){
@@ -87,9 +93,10 @@ public class LepResource {
 			 CustomAuthUser authUser = (CustomAuthUser)logged.getPrincipal();
 			 WebAuthenticationDetails authDetails = (WebAuthenticationDetails)logged.getDetails();
 			 
-			 
+			 user.setLogin(auth.getName());
 			 user.setFirstName(authUser.getFirstName());
 			 user.setLastName(authUser.getLastName());
+			 user.setIsAuth(true);
 
 		
 		}else{
@@ -333,21 +340,22 @@ public class LepResource {
 	
 	@POST
 	@Consumes({MediaType.APPLICATION_XML})
-	@Path("/updateLep11L2")
-	public Response updateLepTest11L2(@PathParam("sessionId")Long sessionId, LepItems lepItems){
+	@Produces({MediaType.APPLICATION_XML})
+	@Path("/updateLep/{sessionId}")
+	public Response updateLep(@PathParam("sessionId")Long sessionId, LepItems lepItems){
 	
 		EntityManager em = EMFService.get().createEntityManager();
 		
 		LepItemAssembler assembler = new LepItemAssembler();
 		for (net.andruszko.lepapp.web.vo.LepItem item : lepItems.getLepItems()){
 			em.getTransaction().begin();
-			net.andruszko.lepapp.web.entity.LepItem entity = assembler.write(item);
-		//	entity.setSession(em.find(LepSession.class, 80L));
+			net.andruszko.lepapp.web.entity.LepItem entity = assembler.write(item);		
+			entity.setSessionId(sessionId);
 			em.persist(entity);
 			em.getTransaction().commit();
 		}
 		em.close();
-		return Response.ok().build();
+		return Response.ok("<id>1</id>").build();
 	}
 
 	@GET
@@ -362,11 +370,9 @@ public class LepResource {
 
 		EntityManager em = EMFService.get().createEntityManager();
 		
-		Query query = em.createQuery("select li from LepItem li order by position");
+		Query query = em.createQuery("select li from LepItem li where li."+LepItem.SESSION_ID+ "=?1 order by position");
+		query.setParameter("1", sessionId);
 
-		LepSessions sessions = factory.createLepSessions();
-		
-		
 		LepItemAssembler assembler = new LepItemAssembler();
 		for (Object o: query.getResultList()){
 			

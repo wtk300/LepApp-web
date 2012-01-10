@@ -38,10 +38,13 @@ public class LepItem {
     private String answerE;
 
     private String correctAns;
-//    
+////    
 //    @ManyToOne(fetch=FetchType.LAZY)
 //    private LepSession session;
-    
+//    
+    public static final String SESSION_ID = "sessionId"; 
+    		
+    public Long sessionId;
 
 	public Long getSubSectionId() {
 		return subSectionId;
@@ -66,7 +69,8 @@ public class LepItem {
 //	public void setSession(LepSession session) {
 //		this.session = session;
 //	}
-
+//	
+	
 	public int getPosition() {
 		return position;
 	}
@@ -77,6 +81,14 @@ public class LepItem {
 
 	
 
+
+	public Long getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(Long sessionId) {
+		this.sessionId = sessionId;
+	}
 
 	public String getQuestion() {
 		return question == null ? null : question.getValue();

@@ -18,7 +18,10 @@ import net.andruszko.lepapp.web.assembler.UserAssembler;
 import net.andruszko.lepapp.web.em.EMFService;
 import net.andruszko.lepapp.web.vo.User;
 
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jettison.json.JSONObject;
+
+import sun.swing.StringUIClientPropertyKey;
 
 @Path("user")
 public class UserResource {
@@ -49,6 +52,10 @@ public class UserResource {
 		
 		EntityManager em = EMFService.get().createEntityManager();
 		try{
+			
+			if (StringUtils.isBlank(input.getLogin()) || StringUtils.isBlank(input.getPassword())){
+				return Response.notModified().build();
+			}
 			
 			System.out.println("input " + input.getLastName() + " "
 					+ input.getFirstName() + " " + input.getLogin() + " "

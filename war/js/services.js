@@ -3,7 +3,7 @@
 /**
  * App service which is responsible for the main configuration of the app.
  */
-angular.service('RootService', function($route, $location, $window,sessionService) {
+angular.service('rootService', function($route, $location, $window,sessionService,securityService) {
 
   $route.when('/contact', {template: 'partials/contact.html', controller: ContactCtrl});
   $route.when('/home', {template: 'partials/home.html', controller: MyCtrl2});
@@ -20,23 +20,37 @@ angular.service('RootService', function($route, $location, $window,sessionServic
   $route.parent(this);
   
  
-
-  $route.onChange(function() {
-    if ($location.hash === '') {
-      $location.updateHash('/login',{first: 1});
-     
-    } else {
-      $route.current.scope.params = $route.current.params;
+  this.$on("$afterRouteChange", function(current,previous) {
+      
       $window.scrollTo(0,0);
-    }
+
   });
   
+
+//  $route.onChange(function() {
+//    if ($location.hash === '') {
+//      $location.updateHash('/login',{first: 1});
+//     
+//    } else {
+//      $route.current.scope.params = $route.current.params;
+//      $window.scrollTo(0,0);
+//    }
+//  });
+  
+  $route.otherwise('/login?first=1');
+  
 	var self = this;
-	self.user = "mtyson "+new Date();
+	self.loginDetails = securityService.getLoggedUser();
 	
 	self.sessions = sessionService.getSessionsInfo();
+	
+	return {
+		setUser : function(user){
+			self.user = user;
+		}
+	}
 
-}, {$inject:['$route', '$location', '$window', 'lepSessionService'], $eager: true});
+}, {$inject:['$route', '$location', '$window', 'lepSessionService','securityService'], $eager: true});
 
 
 angular.service('securityService',function(resource){
@@ -77,7 +91,7 @@ angular.service('userService',function(resource,$xhr){
 	        regiserUser: function(user){
 	        	$xhr.defaults.headers.post['Content-Type']='application/json';
 	        	$xhr.defaults.headers.put['Content-Type']='application/json';
-	        	$xhr.defaults.headers.delete['Content-Type']='application/json';
+	        	
 	            var res = resource('resources/user/register',{},
 	            {
 	                retrive : {
@@ -99,8 +113,7 @@ angular.service('contactService',function(resource,$xhr){
 	  return {
 	        registerContact: function(contact){
 	        	$xhr.defaults.headers.post['Content-Type']='application/json';
-	        	$xhr.defaults.headers.put['Content-Type']='application/json';
-	        	$xhr.defaults.headers.delete['Content-Type']='application/json';
+	        	$xhr.defaults.headers.put['Content-Type']='application/json';	        
 	            var res = resource('resources/contact/register',{},
 	            {
 	                
@@ -123,7 +136,7 @@ angular.service('startLepService',function(resource){
 		  		return self.currentLepItems;
 		  	},
 		  	
-	        getLepTestItems: function(sessionId,lepId,langId,subSectionId){
+	        getLepExamItems: function(sessionId,lepId,langId,subSectionId){
 	            var res = resource('resources/lep/startLep/:sessionId/:lepId/:langId/:subSectionId',
 	            		{sessionId: sessionId, lepId: lepId ,langId : langId,subSectionId: subSectionId},
 	            {
@@ -132,8 +145,8 @@ angular.service('startLepService',function(resource){
 	                    
 	                }
 	            });            
-	            self.currentLepItems = angular.fromJson(res.retrive());
-	            return self.currentLepItems;
+	            return res.retrive();
+	            
 	        }
 	    }
 },{$inject:['$resource']});

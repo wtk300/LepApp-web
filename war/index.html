@@ -1,22 +1,33 @@
 <!doctype html>
-<html xmlns:ng="http://angularjs.org/">
+<html xmlns:ng="http://angularjs.org">
 <head>
 <meta charset="utf-8">
-<title>Testy na LEP</title>
+<title>Egzaminy na LEP</title>
 <link rel="stylesheet" href="css/app.css" />
 <link rel="stylesheet" href="css/messages.css" />
+
+<script src="lib/angular/angular.js" ng:autobind></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/widgets.js"></script>
+<script src="js/md5-min.js"></script>
+
 </head>
-<body ng:controller="RootCtrl">
+<body>
 
 	<ul class="menu">
-		<li><a href="#/home">Home</a></li>
-		<li><a href="#/contact">Kontakt</a></li>		
-		<li><a href="#/login">Twoje konto</a></li>
-		<li><a href="#/register">Rejestracja</a></li>
-		<li><a href="#/aboutExam">O egzaminie</a></li>
-		<li><a href="#/chooseExam">Egzamin</a></li>
-		<li><a href="#/logout">Wyloguj</a></li>
+<!-- 		<li><a href="#/home">Home</a></li> -->
+		<li><a href="#/contact">Contact</a></li>
+<!-- 		<li><a href="#/login">Twoje konto</a></li> -->
+<!-- 		<li><a href="#/register">Rejestracja</a></li> -->
+<!-- 		<li><a href="#/aboutExam">O egzaminie</a></li> -->
+<!-- 		<li><a href="#/chooseExam">Egzamin</a></li> -->
+<!-- 		<li><a href="#/logout">Wyloguj</a></li> -->
 	</ul>
+
+	Aktualnie zalogowany jako:
+	<pre>{{loginDetails.user.login }}</pre>
 
 	<table>
 
@@ -46,11 +57,5 @@
 
 
 
-	<script src="lib/angular/angular.js" ng:autobind></script>
-	<script src="js/services.js"></script>
-	<script src="js/controllers.js"></script>
-	<script src="js/filters.js"></script>
-	<script src="js/widgets.js"></script>
-	<script src="js/md5-min.js"></script>
 </body>
 </html>

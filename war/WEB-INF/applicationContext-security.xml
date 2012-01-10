@@ -61,14 +61,16 @@
 
 
 		<intercept-url pattern="/del.html" access="ROLE_PROXY" />
-		<intercept-url pattern="/secured/**" access="ROLE_PROXY" />
+		<intercept-url pattern="secured/**" access="ROLE_PROXY" />
 		<intercept-url pattern="/index.html#/map" access="ROLE_PROXY" />
 
 
 		<form-login login-page="/index.html#/login"
 			authentication-failure-url="/index.html#/login?error=1"		
 			default-target-url="/index.html#/chooseExam"
-			always-use-default-target="false" />
+			always-use-default-target="true" />
+			
+		<anonymous username="Anonim" granted-authority="ROLE_ANONIM"/>
 
 		<logout logout-success-url="/partials/logoutsuccess.html" />
 
@@ -77,6 +79,10 @@
 				expired-url="/index.html#/login?error=2" session-registry-ref="sessionRegistry" />
 
 		</session-management>
+		
+		
+		
+		
 
 	</http>
 
@@ -99,7 +105,7 @@
 	
 	
 
-	<authentication-manager alias="authenticationManager">
+	<authentication-manager alias="authenticationManager" >
 
 
 		<authentication-provider user-service-ref="customUserDetailsService">

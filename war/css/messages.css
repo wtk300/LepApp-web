@@ -1,4 +1,4 @@
-div.info2,div.info_600, div.success,div.warning,div.error {
+div.info,div.info_600, div.success,div.warning,div.error {
 	border: 1px solid;
 	margin: 10px 0px;
 	padding: 15px 10px 15px 50px;
@@ -6,15 +6,18 @@ div.info2,div.info_600, div.success,div.warning,div.error {
 	background-position: 10px center;
 }
 
-div.info2 {        
+
+div.info_600 {
+        
+    width: 600px;
 	color: #00529B;
 	background-color: #BDE5F8;
 	background-image: url('../img/messages/info.png');
 }
 
-div.info_600 {
+div.info {
         
-    width: 600px;
+    width: 300px;
 	color: #00529B;
 	background-color: #BDE5F8;
 	background-image: url('../img/messages/info.png');

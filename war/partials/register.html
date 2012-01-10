@@ -16,16 +16,19 @@
 								</tr>
 								<tr>
 									<td>Hasło</td>
-									<td><input type="password"  name="newUser.password" ng:required /></td>
+									<td><input type="password" name="newUser.password"
+										ng:required /></td>
 								</tr>
 								<tr>
 									<td>Powtórz haslo</td>
-									<td><input type="password"  name="newUser.repeatpassword" type="password" ng:required /></td>
+									<td><input type="password" name="newUser.repeatpassword"
+										type="password" ng:required /></td>
 								</tr>
 
 								<tr>
 									<td>Imię</td>
-									<td><input type="text" name="newUser.firstName" ng:required /></td>
+									<td><input type="text" name="newUser.firstName"
+										ng:required /></td>
 								</tr>
 								<tr>
 									<td>Nazwisko</td>
@@ -35,18 +38,48 @@
 
 								<tr>
 									<td>E-mail</td>
-									<td><input type="text" name="newUser.email" ng:validate="email"  ng:required /></td>
+									<td><input type="text" name="newUser.email"
+										ng:validate="email" ng:required /></td>
 								</tr>
 
 								<tr>
 									<td>Akceptuję regulamin</td>
 									<td><input type="checkbox" name="newUser.acceptTerms" /></td>
 								</tr>
-
+								
 								<tr>
 									<td></td>
 									<td><button ng:click="register()"
-											ng:disabled="{{$invalidWidgets.visible() > 5 || newUser.acceptTerms == false}}">Zapisz</button></td>
+											ng:disabled="{{$invalidWidgets.visible() > 5}}">Zapisz</button></td>
+								</tr>
+
+								
+
+								<tr ng:show="newUser.id > 0">
+									<td></td>
+									<td>
+										<div class="success">
+											<p class="success">Konto zostało założone.</p>
+										</div>
+									</td>
+								</tr>
+
+								<tr ng:show="contact.id < 0">
+									<td></td>
+									<td>
+										<div class="error">
+											<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
+										</div>
+									</td>
+								</tr>
+								
+								<tr ng:show="showInfoTerms==true">
+									<td></td>
+									<td>
+										<div class="info">
+											<p class="info">Musisz zaakceptować regulamin.</p>
+										</div>
+									</td>
 								</tr>
 
 

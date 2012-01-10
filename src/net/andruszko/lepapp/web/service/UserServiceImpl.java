@@ -13,11 +13,10 @@ public class UserServiceImpl implements UserService {
 	public User getUser(String userName) {
 		EntityManager em = EMFService.get().createEntityManager();
 		
-		Query queryTest = em.createQuery("select u from User u");
-		for (Object o: queryTest.getResultList()){
-			User u = (User)o; 
-			System.out.println("fuck ye "+u.getLogin()+" "+u.getPassword());
-		}
+//		Query queryTest = em.createQuery("select u from User u");
+//		for (Object o: queryTest.getResultList()){
+//			User u = (User)o; 			
+//		}
 		
 		Query query = em.createQuery("select u from User u where u."+User.LOGIN + " = ?1");
 		query.setParameter("1", userName);

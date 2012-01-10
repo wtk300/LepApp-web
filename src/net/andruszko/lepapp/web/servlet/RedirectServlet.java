@@ -32,8 +32,10 @@ private static Logger logger = Logger.getLogger( RedirectServlet.class);
 		 */
 		
 		
-		logger.error("servlet start "+new Date());
-		final String destination = "/index.html";
+		System.out.println(""+request.getContextPath() + " date "+new Date()+ " "+request.getRequestURL().append("?").append(request.getQueryString()));
+		
+		
+		final String destination = "/index.html?invalidSession=true";
 		response.sendRedirect(response.encodeRedirectURL(destination));
 
 	}

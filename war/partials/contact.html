@@ -7,72 +7,78 @@
 					<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
 						<div class="main">
 
-							<b>User {{loggedUser.user.login }}</b> <br />
 
 							<fieldset>
 								<legend>Dane kontaktowe</legend>
+								<ng:form name="contactForm">
+									<table>
 
+										<tr>
+											<td>Imie</td>
+											<td><input type="text" name="firstName"
+												ng:model="contact.firstName" required
+												ng:disabled="{{contact.authUser}}" /></td>
+										</tr>
+										<tr>
+											<td>Nazwisko</td>
+											<td><input type="text" name="lastName"
+												ng:model="contact.lastName" required
+												ng:disabled="{{contact.authUser}}" /></td>
+										</tr>
+										<tr>
+											<td>E-mail</td>
+											<td><input type="text" name="email"
+												ng:model="contact.email" required ng:validate="email"
+												ng:disabled="{{contact.authUser}}" /></td>
+										</tr>
 
-								<table>
+										<tr>
+											<td>Treść</td>
+											<td><textarea rows="4" cols="40" name="content"
+													ng:model="contact.content" required></textarea></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<button ng:click="send()"
+													disabled="{{contactForm.$invalid == true}}">Wyślij</button>
+												<button ng:click="clear()">Wyczyść</button>
 
-									<tr>
-										<td>Imie</td>
-										<td><input type="text" name="contact.firstName"
-											ng:required ng:disabled="{{contact.authUser}}" /></td>
-									</tr>
-									<tr>
-										<td>Nazwisko</td>
-										<td><input type="text" name="contact.lastName"
-											ng:required ng:disabled="{{contact.authUser}}" /></td>
-									</tr>
-									<tr>
-										<td>E-mail</td>
-										<td><input type="text" name="contact.email" ng:required
-											ng:validate="email" ng:disabled="{{contact.authUser}}" /></td>
-									</tr>
+											</td>
+										</tr>
+										<tr ng:show="contact.id != undefined && contact.id > 0">
+											<td></td>
+											<td>
+												<div class="success">
+													<p class="success">Kontakt został wysłany poprawnie.</p>
+												</div>
+											</td>
+										</tr>
 
-									<tr>
-										<td>Treść</td>
-										<td><textarea rows="4" cols="40" name="contact.content"
-												ng:required></textarea></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>
-											<button ng:click="send()"
-												disabled="{{$invalidWidgets.visible() > 0}}">Wyślij</button>
-											<button ng:click="clear()">Wyczyść</button>
+										<tr ng:show="contact.id != undefined && contact.id < 0 ">
+											<td></td>
+											<td>
+												<div class="error">
+													<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
+												</div>
+											</td>
+										</tr>
 
-										</td>
-									</tr>
-									<tr ng:show="contact.id > 0" >
-										<td></td>
-										<td>
-											<div class="success">
-												<p class="success">Kontakt został wysłany poprawnie.</p>
-											</div>
-										</td>
-									</tr>
-
-									<tr ng:show="contact.id < 0" >
-										<td></td>
-										<td>
-											<div class="error">
-												<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
-											</div>
-										</td>
-									</tr>
-
-
-
-
-								</table>
-
-
-
+									</table>									
+						
+								</ng:form>
 
 							</fieldset>
-							debug {{contact | json}} id {{response.id }}
+
+
+
+							contact with pre :<pre>{{contact}}</pre> <br/>
+							contact without pre: {{contact}} <br/>
+							
+							contactForm without pre: {{contactForm}}<br />
+							contactForm with pre: <pre>{{contactForm}}</pre><br />
+							
+							
 
 						</div>
 					</div>
