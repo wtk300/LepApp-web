@@ -20,12 +20,12 @@ angular.service('rootService', function($route, $location, $window,sessionServic
   $route.parent(this);
   
  
-  this.$on("$afterRouteChange", function(current,previous) {
-      
-      $window.scrollTo(0,0);
-
-  });
-  
+//  this.$on("$afterRouteChange", function(route.current,previous) {
+//      
+//      
+//
+//  });
+//  
 
 //  $route.onChange(function() {
 //    if ($location.hash === '') {
@@ -37,18 +37,13 @@ angular.service('rootService', function($route, $location, $window,sessionServic
 //    }
 //  });
   
-  $route.otherwise('/login?first=1');
-  
-	var self = this;
-	self.loginDetails = securityService.getLoggedUser();
+//  $route.otherwise('/login?first=1');
+//  
+//	var self = this;
+//	self.loginDetails = securityService.getLoggedUser();
+//	
+//	self.sessions = sessionService.getSessionsInfo();
 	
-	self.sessions = sessionService.getSessionsInfo();
-	
-	return {
-		setUser : function(user){
-			self.user = user;
-		}
-	}
 
 }, {$inject:['$route', '$location', '$window', 'lepSessionService','securityService'], $eager: true});
 
