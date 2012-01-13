@@ -14,9 +14,7 @@
 				<div class="DROPSHADOW DROPSHADOW4">
 					<div class="SECTION MEDIUM_SECTION">
 						<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-							<div class="main">
-
-								<b>Aktulanie zalogowany jako {{loggedUser.user.login}}</b> <br />
+							<div class="main">								
 								<ng:form>
 									<fieldset>
 										<legend>Wybór egzaminu</legend>
@@ -54,10 +52,13 @@
 											</tr>
 											<tr>
 												<td></td>
-												<td><br />
-												<button ng:click="startExam()"
-														ng:disabled="{{loggedUser.user.isAuth == false}}">Uruchom</button></td>
+												<td> 
+													<button ng:click="startExam()" 
+													ng:disabled="!loggedUser.user.isAuth">Uruchom</button></td>
 											</tr>
+											
+											
+											
 
 
 

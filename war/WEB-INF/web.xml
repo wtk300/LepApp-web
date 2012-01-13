@@ -24,6 +24,30 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-class>net.andruszko.lepapp.web.servlet.WarmUpServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>LoginErrorServlet</servlet-name>
+		<servlet-class>net.andruszko.lepapp.web.servlet.LoginErrorServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>LoginSuccessServlet</servlet-name>
+		<servlet-class>net.andruszko.lepapp.web.servlet.LoginSuccessServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>LoginSuccessServlet</servlet-name>
+		<url-pattern>/loginSuccess</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>LoginErrorServlet</servlet-name>
+		<url-pattern>/loginError</url-pattern>
+	</servlet-mapping>
+	
+	
 
 
 	<servlet-mapping>

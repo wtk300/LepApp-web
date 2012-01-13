@@ -66,8 +66,8 @@
 
 
 		<form-login login-page="/index.html#/login"
-			authentication-failure-url="/index.html#/login?error=1"		
-			default-target-url="/index.html#/chooseExam"
+			authentication-failure-url="/loginError"		
+			default-target-url="/loginSuccess"
 			always-use-default-target="true" />
 			
 		<anonymous username="Anonim" granted-authority="ROLE_ANONIM"/>

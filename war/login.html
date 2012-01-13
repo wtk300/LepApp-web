@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Strona logowania</title>
 </head>
-<body onload="document.f.j_username.focus();">
+<body>
 
 
 	<div class="DROPSHADOW DROPSHADOW1">
@@ -12,38 +12,44 @@
 				<div class="DROPSHADOW DROPSHADOW4">
 					<div class="SECTION LOGIN_SECTION">
 						<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-							<div class="main">
+							<div class="main ng-cloak div_padding" ng:cloak >
 
-							<form id="loginForm" name="loginForm"
-								action="j_spring_security_check" method="post">
-								<table>
-									<tr>
-										<td>Login</td>
-										<td><input id="usernameFiled" type="text" name="j_username" ng:required/></td>
-									</tr>
-									<tr>
-										<td>Hasło</td>
-										<td><input id="passwordField" type="password"
-											name="j_password" ng:required/></td>
-									</tr>
-									<tr>
-										<td colspan="2" align="right"><input type="submit"
-											value="Zaloguj" disabled="{{$invalidWidgets.visible() > 0}}" ></td>
-									</tr>
-								</table>
+								<form name="loginForm">
+									<table>
+										<tr>
+											<td>Login</td>
+											<td><input type="text" 
+												name="j_username"
+												ng:model="username" required /> 
+												<span class="error"
+												ng:show="loginForm.j_username.$error.REQUIRED">Required!</span>
+											</td>
 
-								debug login: admin haslo: admin
+										</tr>
+										<tr>
+											<td>Hasło</td>
+											<td><input type="password" ng:model="password"
+												name="j_password" /></td>
+										</tr>
+										<tr>
+											<td colspan="2" align="right">
+												<button ng:click="send()">Zaloguj</button>
+												
+												
+											</td>
+										</tr>
+									</table>
 
-							</form>
+								</form>
 
-							<div ng:show="error==1" class="error">
-								<p>Niepoprawne hasło lub login</p>
-							</div>
+								<div ng:show="params.code==401" class="error">
+										<p>Niepoprawne hasło lub login.</p>
+									</div>
 
-							<div ng:show="error==2" class="error">
-								<p class="error">Przekroczona ilość użytkowników dla jednego
-									loginu</p>
-							</div>
+									<div ng:show="params.error==2" class="error">
+										<p class="error">Przekroczona ilość użytkowników dla
+											jednego loginu</p>
+									</div>
 							</div>
 
 						</div>

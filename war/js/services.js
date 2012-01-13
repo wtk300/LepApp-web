@@ -19,30 +19,22 @@ angular.service('rootService', function($route, $location, $window,sessionServic
 
   $route.parent(this);
   
- 
 //  this.$on("$afterRouteChange", function(route.current,previous) {
-//      
-//      
-//
-//  });
-//  
-
-//  $route.onChange(function() {
-//    if ($location.hash === '') {
-//      $location.updateHash('/login',{first: 1});
-//     
-//    } else {
-//      $route.current.scope.params = $route.current.params;
-//      $window.scrollTo(0,0);
-//    }
 //  });
   
-//  $route.otherwise('/login?first=1');
-//  
-//	var self = this;
-//	self.loginDetails = securityService.getLoggedUser();
-//	
-//	self.sessions = sessionService.getSessionsInfo();
+  $route.otherwise('#/login?first=1');
+  
+ 
+	var self = this;
+	
+	self.lepItems = {};
+	self.loggedUser = securityService.getLoggedUser();
+	
+	self.refreshUser = function(){
+		self.loggedUser = securityService.getLoggedUser();
+	}
+	
+	self.sessions = sessionService.getSessionsInfo();
 	
 
 }, {$inject:['$route', '$location', '$window', 'lepSessionService','securityService'], $eager: true});
@@ -125,6 +117,8 @@ angular.service('contactService',function(resource,$xhr){
 angular.service('startLepService',function(resource){
 	
 	  var self = this;
+	  
+	  self.currentLepItems = {};
 	  	  
 	  return {
 		  	getCurrentLepItems : function(){
@@ -139,8 +133,9 @@ angular.service('startLepService',function(resource){
 	                    method: 'GET'
 	                    
 	                }
-	            });            
-	            return res.retrive();
+	            });       
+	            self.currentLepItems = res.retrive();
+	            return self.currentLepItems;
 	            
 	        }
 	    }

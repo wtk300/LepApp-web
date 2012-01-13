@@ -108,13 +108,13 @@ function LepExamCtrl(sessionService, securityService, startService, $location) {
 	var startService = startService
 	var self = this;
 	var location = $location;
+	
+	
 
 	self.startExam = function() {
 		// sessionId,lepId,langId,subSectionId
-		// self.lepItems = startService.getLepExamItems(self.sessionId,
-		// self.lepTypeId, self.langId, 50);
-		// self.lepItems = startService.getLepExamItems(10,
-		// 20, 30, 50);
+		this.lepItems = startService.getLepExamItems(self.sessionId,self.lepTypeId, self.langId, 50);
+		 
 		location.path('/startExam').search({
 			lepTypeId : self.lepTypeId,
 			sessionId : self.sessionId
@@ -127,22 +127,19 @@ function LepExamCtrl(sessionService, securityService, startService, $location) {
 
 	self.lepTypeId = 10;
 
-	self.loggedUser = securityService.getLoggedUser();
-
 }
 LepExamCtrl.$inject = [ 'lepSessionService', 'securityService',
 		'startLepService', '$location' ];
 
-function ResolveExamCtrl(startService, $window) {
-	var startService = startService;
+function ResolveExamCtrl($startService, $window) {
+	
 	var self = this;
 
+	self.startService = $startService;
 	self.startLep = new Date();
 	self.endLep = undefined;
 	self.correctans = 0;
 	self.incorrectans = 0;
-
-	self.lepItems = startService.getCurrentLepItems();
 
 	self.percentage = function() {
 
@@ -157,6 +154,8 @@ function ResolveExamCtrl(startService, $window) {
 
 	self.error = false;
 	self.errorMsg = "";
+	
+	self.lepItems = self.startService.getCurrentLepItems();
 
 	self.questionQuantity = function() {
 
@@ -211,19 +210,41 @@ function LogoutCtrl(securityService) {
 
 	self.loggedUser = securityService.getLoggedUser();
 }
-LogoutCtrl.$inject = [ 'securityService' ];
+LogoutCtrl.$inject = [ 'securityService'];
 
-function LoginCtrl($routeParams) {
+function LoginCtrl($routeParams,$xhr,$location) {
 
 	var self = this;
 
 	self.params = $routeParams;
+	
+	self.xhr = $xhr;
+	
+	self.location = $location;
 
 	self.error = self.params.error;
+	
+	self.username = "admin";
+	self.password = "admin";
+	
+    this.send = function(){
+        
+        self.xhr('POST', 'j_spring_security_check?j_username='+self.username+'&j_password='+self.password,
+        function(code,response){
+        	
+        	self.refreshUser();
+            self.location.path('/chooseExam').search({code: code}).replace();
+            
+        }             
+        ,function(code,response){
+        	self.refreshUser();
+            self.location.path('/login').search({code: code});             
+        });
+   }
 
 }
 
-LoginCtrl.$inject = [ '$routeParams' ];
+LoginCtrl.$inject = [ '$routeParams','$xhr','$location' ];
 
 function MyCtrl2() {
 }
