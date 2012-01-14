@@ -46,17 +46,21 @@ function ContactCtrl(contactService, securityService) {
 
 	self.contact = {};
 
-	self.$watch("loginDetails.user", function(scope, newValue, oldValue) {
+	self.$watch("loggedUser.user", function(scope, newValue, oldValue) {
 
-		self.contact.id = undefined;
+		scope.contact.id = undefined;
 		if (angular.isDefined(newValue)) {
 
-			if (newValue.isAuth == true) {
+			if (newValue.isAuth == 'true') {
 
-				self.contact.login = newValue.login;
-				self.contact.firstName = newValue.firstName;
-				self.contact.lastName = newValue.lastName;
+				scope.contact.login = newValue.login;
+				scope.contact.firstName = newValue.firstName;
+				scope.contact.lastName = newValue.lastName;
+				scope.contact.authUser = true;
+			}else{
+				scope.contact.authUser = false;				
 			}
+			
 		}
 
 	});
@@ -64,9 +68,9 @@ function ContactCtrl(contactService, securityService) {
 	self.$watch("response.id", function(scope, newValue, oldValue) {
 
 		if (angular.isDefined(newValue)) {
-			self.contact.id = newValue;
-			if (angular.isDefined(self.contact.login)) {
-				self.contact.content = "";
+			scope.contact.id = newValue;
+			if (angular.isDefined(scope.contact.login)) {
+				scope.contact.content = "";
 			} else {
 				clearAll();
 			}
@@ -109,6 +113,23 @@ function LepExamCtrl(sessionService, securityService, startService, $location) {
 	var self = this;
 	var location = $location;
 	
+	self.isUserAuth = false;
+	
+	self.$watch("loggedUser.user", function(scope, newValue, oldValue) {
+
+		scope.isUserAuth = false;
+		if (angular.isDefined(newValue)) {
+
+			if (newValue.isAuth == 'true') {
+				
+				scope.isUserAuth = true;
+			}else{
+				scope.isUserAuth = false;				
+			}
+			
+		}
+
+	});
 	
 
 	self.startExam = function() {
