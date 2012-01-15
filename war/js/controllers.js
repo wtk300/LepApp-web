@@ -5,31 +5,54 @@ function RegisterCtrl(userService) {
 
 	self.newUser = {};
 
+	self.loginPattern = /^[a-z0-9_]{5,10}$/;
+	
+	self.passwordPattern = /^[a-zA-Z0-9_!@#$%]{5,20}$/
+
+	self.requiredField = 'Pole wymagane.';
+
+	self.showError = false;
+
+	var cleanUser = function(scope) {
+		scope.newUser.login = "";
+		scope.newUser.firstName = "";
+		scope.newUser.lastName = "";
+		scope.newUser.email = "";
+		scope.newUser.repeatpassword = "";
+		scope.newUser.password = "";
+		scope.newUser.acceptTerms = false;
+		scope.showError = false;
+	}
+
 	self.$watch("response.id", function(scope, newValue, oldValue) {
 		if (angular.isDefined(newValue)) {
-			self.newUser.id = newValue;
-			self.newUser.login = "";
-			self.newUser.firstName = "";
-			self.newUser.lastName = "";
-			self.newUser.email = "";
-			self.newUser.repeatpassword = "";
-			self.newUser.password = "";
-			self.newUser.acceptTerms = false;
+			//cleanUser(scope)
 		}
 	});
 
 	this.register = function() {
-
+		self.showError = true;
+		
 		if (self.newUser.acceptTerms == false) {
 			self.showInfoTerms = true;
 			return;
 		} else {
 			self.showInfoTerms = false;
 		}
+		
+		if (self.registerForm.$valid){
+			self.newUser.password = hex_md5(self.newUser.password);
+			self.newUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
+			self.response = userService.regiserUser(self.newUser);
+			cleanUser(this);
+		}
 
-		self.newUser.password = hex_md5(self.newUser.password);
-		self.newUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
-		self.response = userService.regiserUser(self.newUser);
+		
+	}
+	
+	this.cancel = function(){
+		
+		cleanUser(this);
 	}
 }
 
@@ -57,10 +80,10 @@ function ContactCtrl(contactService, securityService) {
 				scope.contact.firstName = newValue.firstName;
 				scope.contact.lastName = newValue.lastName;
 				scope.contact.authUser = true;
-			}else{
-				scope.contact.authUser = false;				
+			} else {
+				scope.contact.authUser = false;
 			}
-			
+
 		}
 
 	});
@@ -112,30 +135,30 @@ function LepExamCtrl(sessionService, securityService, startService, $location) {
 	var startService = startService
 	var self = this;
 	var location = $location;
-	
+
 	self.isUserAuth = false;
-	
+
 	self.$watch("loggedUser.user", function(scope, newValue, oldValue) {
 
 		scope.isUserAuth = false;
 		if (angular.isDefined(newValue)) {
 
 			if (newValue.isAuth == 'true') {
-				
+
 				scope.isUserAuth = true;
-			}else{
-				scope.isUserAuth = false;				
+			} else {
+				scope.isUserAuth = false;
 			}
-			
+
 		}
 
 	});
-	
 
 	self.startExam = function() {
 		// sessionId,lepId,langId,subSectionId
-		this.lepItems = startService.getLepExamItems(self.sessionId,self.lepTypeId, self.langId, 50);
-		 
+		this.lepItems = startService.getLepExamItems(self.sessionId,
+				self.lepTypeId, self.langId, 50);
+
 		location.path('/startExam').search({
 			lepTypeId : self.lepTypeId,
 			sessionId : self.sessionId
@@ -153,7 +176,7 @@ LepExamCtrl.$inject = [ 'lepSessionService', 'securityService',
 		'startLepService', '$location' ];
 
 function ResolveExamCtrl($startService, $window) {
-	
+
 	var self = this;
 
 	self.startService = $startService;
@@ -175,7 +198,7 @@ function ResolveExamCtrl($startService, $window) {
 
 	self.error = false;
 	self.errorMsg = "";
-	
+
 	self.lepItems = self.startService.getCurrentLepItems();
 
 	self.questionQuantity = function() {
@@ -229,43 +252,46 @@ function LogoutCtrl(securityService) {
 	var $securityService = securityService;
 	var self = this;
 
-	self.loggedUser = securityService.getLoggedUser();
+	self.refreshUser();
 }
-LogoutCtrl.$inject = [ 'securityService'];
+LogoutCtrl.$inject = [ 'securityService' ];
 
-function LoginCtrl($routeParams,$xhr,$location) {
+function LoginCtrl($routeParams, $xhr, $location) {
 
 	var self = this;
 
 	self.params = $routeParams;
-	
+
 	self.xhr = $xhr;
-	
+
 	self.location = $location;
 
 	self.error = self.params.error;
-	
+
 	self.username = "admin";
 	self.password = "admin";
-	
-    this.send = function(){
-        
-        self.xhr('POST', 'j_spring_security_check?j_username='+self.username+'&j_password='+self.password,
-        function(code,response){
-        	
-        	self.refreshUser();
-            self.location.path('/chooseExam').search({code: code}).replace();
-            
-        }             
-        ,function(code,response){
-        	self.refreshUser();
-            self.location.path('/login').search({code: code});             
-        });
-   }
+
+	this.send = function() {
+
+		self.xhr('POST', 'j_spring_security_check?j_username=' + self.username
+				+ '&j_password=' + self.password, function(code, response) {
+
+			self.refreshUser();
+			self.location.path('/chooseExam').search({
+				code : code
+			}).replace();
+
+		}, function(code, response) {
+			self.refreshUser();
+			self.location.path('/login').search({
+				code : code
+			});
+		});
+	}
 
 }
 
-LoginCtrl.$inject = [ '$routeParams','$xhr','$location' ];
+LoginCtrl.$inject = [ '$routeParams', '$xhr', '$location' ];
 
 function MyCtrl2() {
 }

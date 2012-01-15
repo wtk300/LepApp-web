@@ -5,90 +5,116 @@
 				<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
 					<div class="main">
 
+						<form name="registerForm">
+							<fieldset>
+								<legend>Dane użytkownika</legend>
 
-						<fieldset>
-							<legend>Dane użytkownika</legend>
+								<table>
+									<tr>
+										<td>Login</td>
+										<td>
+											<input type="text" name="login" ng:model="newUser.login" required ng:pattern="loginPattern" />										
+											<span ng:show="registerForm.login.$error.PATTERN">Login musi zawierać </span>
+											<span ng:show="registerForm.login.$error.REQUIRED && showError">{{requiredField}}</span>
+										</td>
+									</tr>
+									<tr>
+										<td>Hasło</td>
+										<td><input type="password" name="password" ng:model="newUser.password" ng:pattern="passwordPattern" required />
+											<span ng:show="registerForm.password.$error.PATTERN">Min 5 znaków alfa numeryczych plus !@#$_</span>
+											<span ng:show="registerForm.password.$error.REQUIRED && showError">{{requiredField}}</span>
+										</td>
+									</tr>
+									<tr>
+										<td>Powtórz hasło</td>
+										<td><input type="password" name="repeatpassword" ng:model="newUser.repeatpassword"  required />
+											<span ng:show="registerForm.repeatpassword.$error.REQUIRED && showError">{{requiredField}}</span>
+											<span 
+											ng:show="registerForm.repeatpassword.$valid && registerForm.password.$valid && newUser.password != newUser.repeatpassword">											
+											Hasło musi być identyczne.</span>
+										</td>
+									</tr>
 
-							<table>
-								<tr>
-									<td>Login</td>
-									<td><input type="text" name="newUser.login" ng:required /></td>
-								</tr>
-								<tr>
-									<td>Hasło</td>
-									<td><input type="password" name="newUser.password"
-										ng:required /></td>
-								</tr>
-								<tr>
-									<td>Powtórz haslo</td>
-									<td><input type="password" name="newUser.repeatpassword"
-										type="password" ng:required /></td>
-								</tr>
-
-								<tr>
-									<td>Imię</td>
-									<td><input type="text" name="newUser.firstName"
-										ng:required /></td>
-								</tr>
-								<tr>
-									<td>Nazwisko</td>
-									<td><input type="text" name="newUser.lastName" ng:required /></td>
-								</tr>
-
-
-								<tr>
-									<td>E-mail</td>
-									<td><input type="text" name="newUser.email"
-										ng:validate="email" ng:required /></td>
-								</tr>
-
-								<tr>
-									<td>Akceptuję regulamin</td>
-									<td><input type="checkbox" name="newUser.acceptTerms" /></td>
-								</tr>
-								
-								<tr>
-									<td></td>
-									<td><button ng:click="register()"
-											ng:disabled="{{$invalidWidgets.visible() > 5}}">Zapisz</button></td>
-								</tr>
-
-								
-
-								<tr ng:show="newUser.id > 0">
-									<td></td>
-									<td>
-										<div class="success">
-											<p class="success">Konto zostało założone.</p>
-										</div>
-									</td>
-								</tr>
-
-								<tr ng:show="contact.id < 0">
-									<td></td>
-									<td>
-										<div class="error">
-											<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
-										</div>
-									</td>
-								</tr>
-								
-								<tr ng:show="showInfoTerms==true">
-									<td></td>
-									<td>
-										<div class="info">
-											<p class="info">Musisz zaakceptować regulamin.</p>
-										</div>
-									</td>
-								</tr>
+									<tr>
+										<td>Imię</td>
+										<td><input type="text" name="firstName" ng:model="newUser.firstName" required />
+											<span ng:show="registerForm.firstName.$error.REQUIRED && showError">{{requiredField}}</span>
+											</td>
+									</tr>
+									<tr>
+										<td>Nazwisko</td>
+										<td>
+											<input type="text" name="lastName" ng:model="newUser.lastName" required />
+											<span ng:show="registerForm.lastName.$error.REQUIRED && showError">{{requiredField}}</span>	
+										</td>
+										
+									</tr>
 
 
-							</table>
+									<tr>
+										<td>E-mail</td>
+										<td>
+											<input type="email" name="email" ng:model="newUser.email" required />
+											<span ng:show="registerForm.email.$error.REQUIRED && showError">{{requiredField}}</span>
+											<span ng:show="registerForm.email.$error.EMAIL">Nieproprawny format e-mail.</span>
+											
+										</td>
+									</tr>
 
-							debug {{newUser | json}}
+									<tr>
+										<td>Akceptuję regulamin</td>
+										<td><input type="checkbox" name="acceptTerms"
+											ng:model="newUser.acceptTerms" /></td>
+									</tr>
+
+									<tr>
+										<td></td>
+										<td>
+											<button ng:click="register()">Zapisz</button>
+											<button ng:click="cancel()">Anuluj</button>
+										</td>
+									</tr>
 
 
-						</fieldset>
+
+									<tr ng:show="newUser.id > 0">
+										<td></td>
+										<td>
+											<div class="success">
+												<p class="success">Konto zostało założone.</p>
+											</div>
+										</td>
+									</tr>
+
+									<tr ng:show="newUser.id < 0">
+										<td></td>
+										<td>
+											<div class="error">
+												<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
+											</div>
+										</td>
+									</tr>
+
+									<tr ng:show="!newUser.acceptTerms && showError">
+										<td></td>
+										<td >
+											<div class="info">	
+												<p>Musisz zaakceptować regulamin.</p>
+											</div>
+										</td>
+									</tr>
+
+
+								</table>
+
+							
+
+
+							</fieldset>
+
+						</form>
+						
+							debug <pre>{{registerForm}}</pre>
 					</div>
 				</div>
 			</div>
