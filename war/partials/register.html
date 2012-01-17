@@ -13,7 +13,7 @@
 									<tr>
 										<td>Login</td>
 										<td>
-											<input type="text" name="login" ng:model="newUser.login" required ng:pattern="loginPattern" />										
+											<input type="text" name="login" ng:model="newUser.login" required ng:pattern="loginPattern" autofocus/>										
 											<span ng:show="registerForm.login.$error.PATTERN">Login musi zawierać </span>
 											<span ng:show="registerForm.login.$error.REQUIRED && showError">{{requiredField}}</span>
 										</td>
@@ -31,7 +31,7 @@
 											<span ng:show="registerForm.repeatpassword.$error.REQUIRED && showError">{{requiredField}}</span>
 											<span 
 											ng:show="registerForm.repeatpassword.$valid && registerForm.password.$valid && newUser.password != newUser.repeatpassword">											
-											Hasło musi być identyczne.</span>
+											Hasła muszą być identyczne.</span>
 										</td>
 									</tr>
 
@@ -114,7 +114,6 @@
 
 						</form>
 						
-							debug <pre>{{registerForm}}</pre>
 					</div>
 				</div>
 			</div>

@@ -248,13 +248,33 @@ function ResolveExamCtrl($startService, $window) {
 
 ResolveExamCtrl.$inject = [ 'startLepService', '$window' ];
 
-function LogoutCtrl(securityService) {
+function LogoutCtrl(securityService,$xhr,$location) {
 	var $securityService = securityService;
 	var self = this;
+	self.xhr = $xhr;
+	self.location = $location;
+	
+	self.logout = function(){
+		self.xhr('GET', 'logout', function(code, response) {
 
-	self.refreshUser();
+			self.refreshUser();
+			self.location.path('/login').search({
+				code : code+2000
+			}).replace();
+			
+
+		}, function(code, response) {
+			self.refreshUser();
+			self.location.path('/login').search({
+				code : code+3000
+			}).replace();
+		});
+	}
+	
+	this.logout();
+	
 }
-LogoutCtrl.$inject = [ 'securityService' ];
+LogoutCtrl.$inject = [ 'securityService','$xhr','$location' ];
 
 function LoginCtrl($routeParams, $xhr, $location) {
 

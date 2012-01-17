@@ -72,7 +72,7 @@
 			
 		<anonymous username="Anonim" granted-authority="ROLE_ANONIM"/>
 
-		<logout logout-success-url="/partials/logoutsuccess.html" />
+		<logout logout-success-url="/partials/logoutsuccess.html" logout-url="/logout" invalidate-session="true"/>
 
 		<session-management>
 			<concurrency-control max-sessions="1"

@@ -13,7 +13,7 @@ angular.service('rootService', function($route, $location, $window,sessionServic
   $route.when('/aboutExam', {template: 'partials/aboutExam.html', controller:undefined});
   $route.when('/chooseExam', {template: 'partials/chooseExam.html', controller:LepExamCtrl});
   $route.when('/startExam', {template: 'secured/start.html', controller:ResolveExamCtrl});
-  $route.when('/logout', {template: '/j_spring_security_logout', controller:LogoutCtrl});
+  $route.when('/logout', {template: '/logout', controller:LogoutCtrl});
   $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
   $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
 
@@ -22,7 +22,7 @@ angular.service('rootService', function($route, $location, $window,sessionServic
 //  this.$on("$afterRouteChange", function(route.current,previous) {
 //  });
   
-  $route.otherwise('#/login?first=1');
+  	$route.otherwise('/login');
   
  
 	var self = this;

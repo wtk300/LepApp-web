@@ -24,16 +24,17 @@
 												ng:model="contact.lastName" required
 												ng:disabled="{{contact.authUser}}" /></td>
 										</tr>
-										<tr>
+										<tr ng:show="!contact.authUser">
+										
 											<td>E-mail</td>
-											<td><input type="text" name="email"
-												ng:model="contact.email" required ng:validate="email"
+											<td><input type="email" name="email"
+												ng:model="contact.email" required
 												ng:disabled="{{contact.authUser}}" /></td>
 										</tr>
 
 										<tr>
 											<td>Treść</td>
-											<td><textarea rows="4" cols="40" name="content"
+											<td><textarea rows="6" cols="70" name="content"
 													ng:model="contact.content" required></textarea></td>
 										</tr>
 										<tr>
@@ -64,12 +65,9 @@
 										</tr>
 
 									</table>									
-						
-								
 
 							</fieldset>
-
-
+					
 						</div>
 					</div>
 				</div>

@@ -20,7 +20,7 @@
 											<td>Login</td>
 											<td><input type="text" 
 												name="j_username"
-												ng:model="username" required /> 
+												ng:model="username" required autofocus /> 
 												<span class="error"
 												ng:show="loginForm.j_username.$error.REQUIRED">Required!</span>
 											</td>
@@ -29,7 +29,7 @@
 										<tr>
 											<td>Hasło</td>
 											<td><input type="password" ng:model="password"
-												name="j_password" /></td>
+												name="j_password" required /></td>
 										</tr>
 										<tr>
 											<td colspan="2" align="right">

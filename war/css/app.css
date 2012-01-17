@@ -312,3 +312,32 @@ H6 {
 }
 
 
+input{
+		
+		width: 270px;
+		height: 20px;
+		padding: 5px 10px;
+		padding-right: 20px;
+		border: 1px solid #AAA;
+		
+		&:focus.ng-invalid{			
+				border-color: #FF3366;
+		}
+
+		&:focus{
+			background: #FFF;
+			border: 1px solid #555;		
+
+		}
+		
+
+
+}
+
+input.ng-valid{
+			background: #FFF url("/img/valid.png") no-repeat 98% center;
+}
+
+
+
+
