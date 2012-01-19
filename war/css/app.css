@@ -311,6 +311,11 @@ H6 {
 	padding: 0pt 12pt 8pt 0;
 }
 
+.ansbutton{
+	padding: 0px;
+	background: yellow;
+}
+
 
 input{
 		
@@ -320,19 +325,21 @@ input{
 		padding-right: 20px;
 		border: 1px solid #AAA;
 		
-		&:focus.ng-invalid{			
-				border-color: #FF3366;
-		}
-
-		&:focus{
-			background: #FFF;
-			border: 1px solid #555;		
+		:focus{
+			background: blue;
+			border: 1px solid #555;
+			
 
 		}
+
+/* 		&:focus.ng-invalid{ */
+/* 				background: #FFF url("/img/invalid.png") no-repeat 98% center !important; */
+/* 				border-color: #FF3366; */
+/* 			} */
 		
-
-
 }
+
+
 
 input.ng-valid{
 			background: #FFF url("/img/valid.png") no-repeat 98% center;

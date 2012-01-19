@@ -22,7 +22,12 @@ angular.service('rootService', function($route, $location, $window,sessionServic
 //  this.$on("$afterRouteChange", function(route.current,previous) {
 //  });
   
-  	$route.otherwise('/login');
+ 
+  	
+  	$route.otherwise({
+  	   redirectTo : "/login"
+  	});
+
   
  
 	var self = this;
