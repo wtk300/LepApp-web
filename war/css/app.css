@@ -1,21 +1,20 @@
 /* app css stylesheet */
 root {
-    display: block;
+	display: block;
 }
 
-#top{
-	float:top
+#top {
+	float: top
 }
 
 #desktop {
-    float: left;
-    padding-left: 20px;
-    width: 900px
-  
+	float: left;
+	padding-left: 20px;
+	width: 900px
 }
 
 .main {
-	padding: 10px;	
+	padding: 10px;
 }
 
 footer {
@@ -23,16 +22,14 @@ footer {
 }
 
 #questions {
-    float: left;    
-    width: 900px
-  
+	float: left;
+	width: 900px
 }
 
 #stats {
-    float: left;
-    padding-left: 20px;
-    width: 500px
-  
+	float: left;
+	padding-left: 20px;
+	width: 500px
 }
 
 .menu {
@@ -41,8 +38,6 @@ footer {
 	margin-bottom: 2em;
 	padding: 0 0 0.5em;
 }
-
-
 
 .ans_correct {
 	color: green;
@@ -82,11 +77,9 @@ footer {
 	padding: 0;
 }
 
-
 .div_padding {
 	padding: 15px;
 }
-
 
 fieldset {
 	padding: 15px;
@@ -96,13 +89,16 @@ p.error {
 	color: red;
 }
 
+.validerror {
+	color: red;
+}
 
 #CONTENT_TEXT {
 	float: left;
 	padding-right: 0px;
 }
 
-#CONTENT_TEXT A:LINK, #CONTENT_TEXT A:VISITED, #CONTENT_TEXT A:ACTIVE {
+#CONTENT_TEXT A:LINK,#CONTENT_TEXT A:VISITED,#CONTENT_TEXT A:ACTIVE {
 	color: #707165;
 }
 
@@ -116,8 +112,8 @@ p.error {
 	margin-right: 20px;
 }
 
-#CONTENT_TEXT h1, #CONTENT_TEXT h1 A:LINK, #CONTENT_TEXT h1 A:VISITED, #CONTENT_TEXT h1 A:ACTIVE {
-
+#CONTENT_TEXT h1,#CONTENT_TEXT h1 A:LINK,#CONTENT_TEXT h1 A:VISITED,#CONTENT_TEXT h1 A:ACTIVE
+	{
 	color: #a69966;
 	font-size: 26pt;
 	margin: 0;
@@ -147,32 +143,33 @@ p.error {
 }
 
 .DROPSHADOW {
-	float:left;
+	float: left;
 }
 
 .DROPSHADOW1 {
-	border:1px solid #F9F9F9;
+	border: 1px solid #F9F9F9;
 	border-top: 0;
 }
 
 .DROPSHADOW2 {
-	border:1px solid #F3F3F3;
+	border: 1px solid #F3F3F3;
 	border-top: 0;
 }
 
 .DROPSHADOW3 {
-	border:1px solid #EDEDED;
+	border: 1px solid #EDEDED;
 	border-top: 0;
 }
 
 .DROPSHADOW4 {
-	border:1px solid #E7E7E7;
+	border: 1px solid #E7E7E7;
 	border-top: 0;
 }
 
-#CONTENT_PANEL { 
+#CONTENT_PANEL {
 	min-height: 606px;
 }
+
 .SECTION_OUTER {
 	margin-right: 10px;
 	margin-bottom: 14px;
@@ -213,21 +210,21 @@ p.error {
 
 .SMALL_SECTION .PRICE .NEW {
 	font-size: 20pt;
-	font-weight:bold;
+	font-weight: bold;
 	color: #555555;
 }
 
 .SMALL_SECTION .PRICE span {
 	font-size: 15pt;
-	font-weight:normal;
+	font-weight: normal;
 	color: #555555;
 }
 
-A:LINK, A:VISITED, A:ACTIVE {
+A:LINK,A:VISITED,A:ACTIVE {
 	color: #959595;
 }
 
-H2, H2 A:LINK, H2 A:VISITED, H2 A:ACTIVE {
+H2,H2 A:LINK,H2 A:VISITED,H2 A:ACTIVE {
 	font-family: times new roman;
 	font-weight: normal;
 	font-size: 18pt;
@@ -292,9 +289,11 @@ H6 {
 .SECTION_CONTENT {
 	padding: 10px 00px 10px 20px;
 }
+
 .SECTION_CONTENT_IMAGE_START {
 	padding: 10px 0px 00px 00px;
 }
+
 .SECTION_CONTENT_IMAGE_START IMG {
 	padding: 0px 10px 10px 10px;
 }
@@ -311,40 +310,58 @@ H6 {
 	padding: 0pt 12pt 8pt 0;
 }
 
-.ansbutton{
+.ansbutton {
 	padding: 0px;
 	background: yellow;
 }
 
-
-input{
-		
-		width: 270px;
-		height: 20px;
-		padding: 5px 10px;
-		padding-right: 20px;
-		border: 1px solid #AAA;
-		
-		:focus{
-			background: blue;
-			border: 1px solid #555;
-			
-
-		}
-
-/* 		&:focus.ng-invalid{ */
-/* 				background: #FFF url("/img/invalid.png") no-repeat 98% center !important; */
-/* 				border-color: #FF3366; */
-/* 			} */
-		
+textarea {
+	padding: 5px 10px;
+	padding-right: 20px;
+	border: 1px solid #AAA;
 }
 
-
-
-input.ng-valid{
-			background: #FFF url("/img/valid.png") no-repeat 98% center;
+fieldset {
+	border: 1px solid #AAA;
 }
 
+input {
+	width: 270px;
+	height: 20px;
+	padding: 5px 10px;
+	padding-right: 20px;
+	border: 1px solid #AAA;
 
+	/* 		&:focus.ng-invalid{ */
+	/* 				background: #FFF url("/img/invalid.png") no-repeat 98% center !important; */
+	/* 				border-color: #FF3366; */
+	/* 			} */
+}
 
+input.ng-valid {
+	background: #FFF url("/img/valid.png") no-repeat 98% center;
+}
 
+span.error {
+	font-size: 11px;
+	color: red;
+	/* 	border:1px solid red;	 */
+	padding: 5px 5px 5px 5px;
+	width: 300px;
+}
+
+input.ng-invalid {
+	background: #FFF url("/img/invalid.png") no-repeat 98% center !important;	
+/* 	border-color: #FF3366 */
+}
+
+span.error_hint {
+	color: red;
+	border: 1px solid red;
+	padding: 5px 5px 5px 5px;
+	width: 300px;
+	position: absolute;
+	margin: -12px 0 0 14px;
+	display: inline;
+	font-size: 11px;
+}

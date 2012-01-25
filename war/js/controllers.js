@@ -5,7 +5,7 @@ function RegisterCtrl(userService) {
 
 	self.newUser = {};
 
-	self.loginPattern = /^[a-z0-9_]{5,10}$/;
+	self.loginPattern = /^[a-z0-9_]{3,25}$/;
 	
 	self.passwordPattern = /^[a-zA-Z0-9_!@#$%]{5,20}$/
 
@@ -29,6 +29,16 @@ function RegisterCtrl(userService) {
 			//cleanUser(scope)
 		}
 	});
+	
+	this.onfocusEvent = function() {
+		
+		console.log('focus');
+	}
+	
+	this.onBlurEvent = function(){
+		console.log('onblur')
+	}
+	
 
 	this.register = function() {
 		self.showError = true;
@@ -178,6 +188,16 @@ LepExamCtrl.$inject = [ 'lepSessionService', 'securityService',
 function ResolveExamCtrl($startService, $window) {
 
 	var self = this;
+	
+	self.loading = true;
+	
+	 self.$on("$afterRouteChange", function(current,previous) {
+		 console.log(angular.toJson(current));
+		 
+		 current.currentScope.loading = false;
+		 
+	 });
+		  
 
 	self.startService = $startService;
 	self.startLep = new Date();

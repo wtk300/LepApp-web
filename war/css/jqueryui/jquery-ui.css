@@ -55,7 +55,7 @@
 ----------------------------------*/
 .ui-widget { font-family: Helvetica, Arial, sans-serif; font-size: 1.1em; }
 .ui-widget .ui-widget { font-size: 1em; }
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Helvetica, Arial, sans-serif; font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Helvetica, Arial, sans-serif; font-size: 10px; }
 .ui-widget-content { border: 1px solid #dddddd; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #444444; }
 .ui-widget-content a { color: #444444; }
 .ui-widget-header { border: 1px solid #dddddd; background: #dddddd url(images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x; color: #444444; font-weight: bold; }
@@ -401,8 +401,8 @@ button.ui-button-icon-only { width: 2.4em; } /* button elements seem to need a l
 button.ui-button-icons-only { width: 3.7em; } 
 
 /*button text element */
-.ui-button .ui-button-text { display: block; line-height: 1.4;  }
-.ui-button-text-only .ui-button-text { padding: .4em 1em; }
+.ui-button .ui-button-text { display: block; line-height: 1.; font-size: 12px;  }
+.ui-button-text-only .ui-button-text { padding: .2em 1em; }
 .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text { padding: .4em; text-indent: -9999999px; }
 .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: .4em 1em .4em 2.1em; }
 .ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: .4em 2.1em .4em 1em; }
