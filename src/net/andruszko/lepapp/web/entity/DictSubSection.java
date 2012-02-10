@@ -2,7 +2,11 @@ package net.andruszko.lepapp.web.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+/**
+ * 
+ * @author wtk300
+ *
+ */
 @Entity
 public class DictSubSection {
 	

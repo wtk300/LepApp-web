@@ -294,7 +294,7 @@ function LogoutCtrl(securityService,$xhr,$location) {
 	this.logout();
 	
 }
-LogoutCtrl.$inject = [ 'securityService','$xhr','$location' ];
+LogoutCtrl.$inject = [ 'securityService','$http','$location' ];
 
 function LoginCtrl($routeParams, $xhr, $location) {
 
@@ -331,7 +331,7 @@ function LoginCtrl($routeParams, $xhr, $location) {
 
 }
 
-LoginCtrl.$inject = [ '$routeParams', '$xhr', '$location' ];
+LoginCtrl.$inject = [ '$routeParams', '$http', '$location' ];
 
 function MyCtrl2() {
 }

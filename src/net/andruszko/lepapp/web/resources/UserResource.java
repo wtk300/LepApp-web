@@ -1,9 +1,6 @@
 package net.andruszko.lepapp.web.resources;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,21 +16,9 @@ import net.andruszko.lepapp.web.em.EMFService;
 import net.andruszko.lepapp.web.vo.User;
 
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jettison.json.JSONObject;
-
-import sun.swing.StringUIClientPropertyKey;
-
 @Path("user")
 public class UserResource {
 	
-//	JSONObject createJson(Map map){
-//	 try {
-//         return new JSONObject(map);
-//        
-//     } catch (JSONException je){
-//         return null;
-//     }
-//	}
 
 	@Path("/checkLoginAvail/{sessionId}/{login}")
 	@GET

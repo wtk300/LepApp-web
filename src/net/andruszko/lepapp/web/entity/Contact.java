@@ -7,7 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.google.appengine.api.datastore.Text;
-
+/**
+ * 
+ * @author wtk300
+ *
+ */
 @Entity
 public class Contact {
 

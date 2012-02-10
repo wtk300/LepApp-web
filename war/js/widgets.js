@@ -1,7 +1,8 @@
-angular.directive('lep:button', function(expression, compiledElement) {
-    var compiler = this;
-    return function(element) {
-    	
-    	element.button();
-    }
+angular.module('lepModule.widgets', [], function() {
+    // temporary hack until we have proper directive injection.
+    angular.directive('lep:button', function() {
+        return ['$element', function(element) {            
+        	element.button();
+        }];
+    });
 });

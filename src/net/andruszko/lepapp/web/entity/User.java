@@ -6,6 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
+/**
+ * 
+ * @author wtk300
+ *
+ */
+
 @Entity
 public class User {
 	
