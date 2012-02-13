@@ -1,7 +1,6 @@
 package net.andruszko.lepapp.web.servlet;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,23 +18,8 @@ private static Logger logger = Logger.getLogger( RedirectServlet.class);
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-		 
-
-		/*
-		 * Destination, it can be any relative or context specific path. if the
-		 * path starts without '/' it is interpreted as relative to the current
-		 * request URI. if the path starts with '/' it is interpreted as
-		 * relative to the context.
-		 */
-		
-		
-		System.out.println(""+request.getContextPath() + " date "+new Date()+ " "+request.getRequestURL().append("?").append(request.getQueryString()));
-		
-		
-		final String destination = "/index.html?invalidSession=true";
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {	
+		final String destination = "/index.html";
 		response.sendRedirect(response.encodeRedirectURL(destination));
 
 	}

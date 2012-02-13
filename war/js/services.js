@@ -44,7 +44,7 @@ angular.module('lepModule.services', [], function($provide) {
 		                    
 		                },
 			            register : {
-		                    method: 'POST',	                    
+		                    method: 'POST'	                    
 		                    
 		                }
 		            });            
@@ -62,7 +62,7 @@ angular.module('lepModule.services', [], function($provide) {
 		            {
 		                
 			            register : {
-		                    method: 'POST',	                    
+		                    method: 'POST'                    
 		                    
 		                }
 		            });            

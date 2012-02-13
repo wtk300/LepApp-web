@@ -37,6 +37,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+		<servlet>
+		<servlet-name>LogoutSuccessServlet</servlet-name>
+		<servlet-class>net.andruszko.lepapp.web.servlet.LogoutSuccessServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>LogoutSuccessServlet</servlet-name>
+		<url-pattern>/logoutSuccess</url-pattern>
+	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>LoginSuccessServlet</servlet-name>
 		<url-pattern>/loginSuccess</url-pattern>

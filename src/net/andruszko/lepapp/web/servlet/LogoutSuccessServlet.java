@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LoginSuccessServlet extends HttpServlet {
+public class LogoutSuccessServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 6803921352149410129L;
 
@@ -24,7 +24,8 @@ public class LoginSuccessServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
