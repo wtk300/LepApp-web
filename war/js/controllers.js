@@ -6,63 +6,67 @@ function RegisterCtrl(userService) {
 	self.newUser = {};
 
 	self.loginPattern = /^[a-z0-9_]{3,25}$/;
-	
+
 	self.passwordPattern = /^[a-zA-Z0-9_!@#$%]{5,20}$/
 
 	self.requiredField = 'Pole wymagane.';
 
 	self.showError = false;
 
-	var cleanUser = function(scope) {
-		scope.newUser.login = "";
-		scope.newUser.firstName = "";
-		scope.newUser.lastName = "";
-		scope.newUser.email = "";
-		scope.newUser.repeatpassword = "";
-		scope.newUser.password = "";
-		scope.newUser.acceptTerms = false;
-		scope.showError = false;
+	self.cleanUser = function() {
+		self.newUser.login = "";
+		self.newUser.firstName = "";
+		self.newUser.lastName = "";
+		self.newUser.email = "";
+		self.newUser.repeatpassword = "";
+		self.newUser.password = "";
+		self.newUser.acceptTerms = false;
+		self.showError = false;
 	}
 
 	self.$watch("response.id", function(scope, newValue, oldValue) {
 		if (angular.isDefined(newValue)) {
-			//cleanUser(scope)
+			// cleanUser(scope)
 		}
 	});
-	
+
 	this.onfocusEvent = function() {
-		
+
 		console.log('focus');
 	}
-	
-	this.onBlurEvent = function(){
+
+	this.onBlurEvent = function() {
 		console.log('onblur')
 	}
-	
 
 	this.register = function() {
 		self.showError = true;
-		
+
 		if (self.newUser.acceptTerms == false) {
 			self.showInfoTerms = true;
 			return;
 		} else {
 			self.showInfoTerms = false;
 		}
-		
-		if (self.registerForm.$valid){
-			self.newUser.password = hex_md5(self.newUser.password);
-			self.newUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
-			self.response = userService.regiserUser(self.newUser);
-			cleanUser(this);
+
+		if (self.registerForm.$valid
+				&& angular
+						.equals(self.newUser.repeatpassword, newUser.password)) {
+
+			self.forSendUser = angular.copy(self.newUser);
+
+			self.forSendUser.password = hex_md5(self.newUser.password);
+			self.forSendUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
+			self.response = userService.regiserUser(forSendUser);
+
+			self.cleanUser();
 		}
 
-		
 	}
-	
-	this.cancel = function(){
-		
-		cleanUser(this);
+
+	this.cancel = function() {
+
+		sel.cleanUser();
 	}
 }
 
@@ -188,16 +192,15 @@ LepExamCtrl.$inject = [ 'lepSessionService', 'securityService',
 function ResolveExamCtrl($startService, $window) {
 
 	var self = this;
-	
+
 	self.loading = true;
-	
-	 self.$on("$afterRouteChange", function(current,previous) {
-		 console.log(angular.toJson(current));
-		 
-		 current.currentScope.loading = false;
-		 
-	 });
-		  
+
+	self.$on("$afterRouteChange", function(current, previous) {
+		console.log(angular.toJson(current));
+
+		current.currentScope.loading = false;
+
+	});
 
 	self.startService = $startService;
 	self.startLep = new Date();
@@ -268,65 +271,70 @@ function ResolveExamCtrl($startService, $window) {
 
 ResolveExamCtrl.$inject = [ 'startLepService', '$window' ];
 
-function LogoutCtrl(securityService,$xhr,$location) {
-	var $securityService = securityService;
-	var self = this;
-	self.xhr = $xhr;
-	self.location = $location;
+function LogoutCtrl(securityService, $http, $location) {
 	
-	self.logout = function(){
-		self.xhr('GET', 'logout', function(code, response) {
+	var self = this;
+	self.http = $http;
+	self.location = $location;
+
+	self.logout = function() {
+		self.http.get('logout')
+		.success(function(data, status, headers, config) {
 
 			self.refreshUser();
 			self.location.path('/login').search({
-				code : code+2000
+				code : status + 2000
 			}).replace();
-			
 
-		}, function(code, response) {
+		})
+		.error(function(data, status, headers, config) {
 			self.refreshUser();
 			self.location.path('/login').search({
-				code : code+3000
+				code : status + 3000
 			}).replace();
 		});
 	}
 	
-	this.logout();
-	
-}
-LogoutCtrl.$inject = [ 'securityService','$http','$location' ];
+	self.logout();
 
-function LoginCtrl($routeParams, $xhr, $location) {
+	
+
+}
+LogoutCtrl.$inject = [ 'securityService', '$http', '$location' ];
+
+function LoginCtrl($routeParams, $http, $location) {
 
 	var self = this;
 
 	self.params = $routeParams;
 
-	self.xhr = $xhr;
+	self.http = $http;
 
 	self.location = $location;
 
 	self.error = self.params.error;
 
-	self.username = "admin";
-	self.password = "admin";
+//	self.username = "admin";
+//	self.password = "admin";
 
 	this.send = function() {
 
-		self.xhr('POST', 'j_spring_security_check?j_username=' + self.username
-				+ '&j_password=' + self.password, function(code, response) {
+		self.http.post(
+				'j_spring_security_check?j_username=' + self.username+ '&j_password=' + self.password)
+				
+				.success(function(data, status, headers, config) {
+					self.refreshUser();
+					self.location.path('/chooseExam').search({
+						code : status
+					}).replace();
+				 })
+				.error(function(data, status, headers, config) {
+					self.refreshUser();
+					self.location.path('/login').search({
+						code : status
+					});
+				});
 
-			self.refreshUser();
-			self.location.path('/chooseExam').search({
-				code : code
-			}).replace();
-
-		}, function(code, response) {
-			self.refreshUser();
-			self.location.path('/login').search({
-				code : code
-			});
-		});
 	}
 
 }

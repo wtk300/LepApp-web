@@ -22,6 +22,8 @@ angular.module('lepModule', ['lepModule.services', 'lepModule.widgets'])
   	   redirectTo : "/login"
   	});
   	
+  	
+  	
   	$route.parent($rootScope);
 
 
@@ -29,11 +31,15 @@ angular.module('lepModule', ['lepModule.services', 'lepModule.widgets'])
 	 $rootScope.loggedUser = securityService.getLoggedUser();
 	
 	 $rootScope.refreshUser = function(){
-		self.loggedUser = securityService.getLoggedUser();
+		$rootScope.loggedUser = securityService.getLoggedUser();
 	 }
 	
 	 $rootScope.sessions = sessionService.getSessionsInfo();
 	
+	 
+	 $rootScope.isAuth = function(){		 
+		 return $rootScope.loggedUser.user.isAuth;
+	 }
     
     
      

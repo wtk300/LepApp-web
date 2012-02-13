@@ -30,8 +30,8 @@
 		<li><a href="#/login">Twoje konto</a></li>
 		<li><a href="#/register">Rejestracja</a></li>
 		<li><a href="#/aboutExam">O egzaminie</a></li>
-		<li ng:show="loggedUser.user.isAuth"><a href="#/chooseExam">Egzamin</a></li>
-		<li ng:show="loggedUser.user.isAuth"><a href="#/logout">Wyloguj {{loggedUser.user.login}}</a></li>
+		<li ng:show="isAuth()"><a href="#/chooseExam">Egzamin</a></li>
+		<li ng:show="isAuth()"><a href="#/logout">Wyloguj {{loggedUser.user.login}}</a></li>
 	</ul>
 
 
