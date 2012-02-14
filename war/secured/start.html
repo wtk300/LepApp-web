@@ -1,6 +1,6 @@
-<span ng:show="loading">Loading...</span>
 
-<div ng:hide="loading" style="width: 700px" ng:cloak class="ng-cloak">
+
+<div style="width: 700px" ng:cloak class="ng-cloak">
 	<div class="MEDIUM_SECTION">
 
 		<fieldset>
@@ -17,7 +17,7 @@
 				</tr>
 				<tr>
 					<td>Ilość pytań:</td>
-					<td>{{lepItems.lepItems.$count()-lepItems.lepItems.$count('disabled==true')}}/{{lepItems.lepItems.$count()}}</td>
+					<td>{{lepItems.lepItems.$count()-lepItems.lepItems.$count('disabled==true')}}/{{lepItems.lepItems.count}}</td>
 
 				</tr>
 				
@@ -119,29 +119,47 @@
 
 										<table>
 											<tr>
-												<td><button id="ansa" class="ansbutton" lep:button ng:disabled="{{item.disabled}}"
-														ng:click="check(item,'A')">A</button></td>
+											  
+											  
+												<td>
+													<button ng:click="check(item,'A')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
+	   													<span class="ui-button-text">A</span>
+													</button>
+												</td>
+											  												
 												<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
 
 											</tr>
 											<tr>
-												<td><button class="ansbutton" id="ansb" lep:button ng:disabled="{{item.disabled}}"
-														ng:click="check(item,'B')">B</button></td>
+												<td>
+													<button ng:click="check(item,'B')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
+	   													<span class="ui-button-text">B</span>
+													</button>
+													</td>
 												<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
 											</tr>
 											<tr>
-												<td><button class="ansbutton" lep:button ng:disabled="{{item.disabled}}"
-														ng:click="check(item,'C')">C</button></td>
+												<td>
+													<button ng:click="check(item,'C')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
+	   													<span class="ui-button-text">C</span>
+													</button>												
+												</td>
 												<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
 											</tr>
 											<tr>
-												<td><button class="ansbutton" lep:button ng:disabled="{{item.disabled}}"
-														ng:click="check(item,'D')">D</button></td>
+												<td>
+													<button ng:click="check(item,'D')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
+	   													<span class="ui-button-text">D</span>
+													</button>
+												</td>
 												<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
 											</tr>
 											<tr>
-												<td><button  class="ansbutton" lep:button ng:disabled="{{item.disabled}}"
-														ng:click="check(item,'E')">E</button></td>
+												<td>
+													<button ng:click="check(item,'E')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
+	   													<span class="ui-button-text">E</span>
+													</button>
+												</td>
 												<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>
 											</tr>
 

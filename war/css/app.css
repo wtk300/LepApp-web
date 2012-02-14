@@ -57,10 +57,12 @@ footer {
 
 .menu:before {
 	content: "[";
+	color: #707165;
 }
 
 .menu:after {
 	content: "]";
+	color: #707165;
 }
 
 .menu>li {
@@ -70,6 +72,7 @@ footer {
 .menu>li:before {
 	content: "|";
 	padding-right: 0.3em;
+	color: #707165;
 }
 
 .menu>li:nth-child(1):before {
@@ -365,3 +368,5 @@ span.error_hint {
 	display: inline;
 	font-size: 11px;
 }
+
+a:link, a:visited, a:hover { color: #707165; text-decoration: none; }

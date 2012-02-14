@@ -37,14 +37,14 @@
 											</tr>
 											<tr>
 												<td>Wybierz typ egzaminu:</td>
-												<td><select name="lepTypeId"  ng:model="lepTypeId">
+												<td><select name="lepTypeId"  ng:model="lepTypeId" ng:disabled="{{true}}">
 														<option value="10">LEP</option>
 														<option value="20">DLEP</option>
 												</select></td>
 											</tr>
 											<tr ng:show="lepTypeId == 10">
 												<td>Wybierz poddział:</td>
-												<td><select ng:model="sectionId">
+												<td><select ng:model="sectionId" ng:disabled="{{true}}">
 														<option value="10">Wszystkie</option>
 														<option value="20">Ginekologia</option>
 														<option value="30">Interna</option>

@@ -196,7 +196,7 @@ function ResolveExamCtrl($startService, $window) {
 	self.loading = true;
 
 	self.$on("$afterRouteChange", function(current, previous) {
-		console.log(angular.toJson(current));
+		
 
 		current.currentScope.loading = false;
 
@@ -252,6 +252,7 @@ function ResolveExamCtrl($startService, $window) {
 	}
 
 	self.check = function(item, type) {
+		
 		if (item.correct_ans == type) {
 			item['style' + type] = "ans_correct";
 			item.isCorrect = true;

@@ -22,7 +22,8 @@ angular.module('lepModule.services', [], function($provide) {
 		            var res = resource('resources/lep/sessions',{},
 		            {
 		                retrive : {
-		                    method: 'GET'
+		                    method: 'GET',
+		                    verifyCache: false
 		                    
 		                }
 		            });            
@@ -34,17 +35,18 @@ angular.module('lepModule.services', [], function($provide) {
 	  $provide.factory('userService', ['$resource','$http', function(resource,$xhr) {
 		  return {
 		        regiserUser: function(user){
-		        	$xhr.defaults.headers.post['Content-Type']='application/json';
-		        	$xhr.defaults.headers.put['Content-Type']='application/json';
+		        	
 		        	
 		            var res = resource('resources/user/register',{},
 		            {
 		                retrive : {
-		                    method: 'GET'
+		                    method: 'GET',
+		                    verifyCache: false
 		                    
 		                },
 			            register : {
-		                    method: 'POST'	                    
+		                    method: 'POST',
+		                    verifyCache: false	                    
 		                    
 		                }
 		            });            
@@ -56,8 +58,8 @@ angular.module('lepModule.services', [], function($provide) {
 	  $provide.factory('contactService', ['$resource','$http', function(resource,$xhr) {
 		  return {
 		        registerContact: function(contact){
-		        	$xhr.defaults.headers.post['Content-Type']='application/json';
-		        	$xhr.defaults.headers.put['Content-Type']='application/json';	        
+//		        	$xhr.defaults.headers.post['Content-Type']='application/json';
+//		        	$xhr.defaults.headers.put['Content-Type']='application/json';	        
 		            var res = resource('resources/contact/register',{},
 		            {
 		                
@@ -86,7 +88,8 @@ angular.module('lepModule.services', [], function($provide) {
 		            		{sessionId: sessionId, lepId: lepId ,langId : langId,subSectionId: subSectionId},
 		            {
 		                retrive : {
-		                    method: 'GET'
+		                    method: 'GET',
+		                    verifyCache: false	       
 		                    
 		                }
 		            });       
