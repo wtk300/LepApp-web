@@ -18,13 +18,13 @@ angular.module('lepModule', ['lepModule.services', 'lepModule.widgets'])
     
     
   	
-  	$route.otherwise({
-  	   redirectTo : "/login"
-  	});
+	 $route.otherwise({
+	  	   redirectTo : "/login"
+	 });
+	  	
   	
   	
-  	
-  	$route.parent($rootScope);
+  	 $route.parent($rootScope);
 
 
 	 $rootScope.lepItems = {};
@@ -33,15 +33,16 @@ angular.module('lepModule', ['lepModule.services', 'lepModule.widgets'])
 	 $rootScope.refreshUser = function(){
 		$rootScope.loggedUser = securityService.getLoggedUser();
 	 }
+	 $rootScope.$watch('loggedUser.user.isAuth',function(scope,newValue){		 
+		 if (angular.isDefined(newValue)){
+			 scope.isAuth = newValue;
+		 }else{
+			 scope.isAuth = false;
+		 }
+	 })
 	
 	 $rootScope.sessions = sessionService.getSessionsInfo();
 	
-	 
-	 $rootScope.isAuth = function(){		 
-		 return $rootScope.loggedUser.user.isAuth;
-	 }
-    
-    
-     
-     
+	 $rootScope.isAuth = false;
+	
   }]);

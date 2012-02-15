@@ -1,15 +1,24 @@
 <!doctype html>
-<html xmlns:ng="http://angularjs.org" ng:app="lepModule">
+<html xmlns:ng="http://angularjs.org" ng:app="lepModule" lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="Keywords"
-	content="egzamin LEP,egzamin LDEP, lekarski egzamin państwowy, andruszko,centrum egzaminów medycznych " />
-<meta name="Description" content="lekarski egzamin państwowy" />
+<meta name="keywords" content="LEP, LDEP , egzamin-lep.andruszko.net ,lep-egzamin.andruszko.net, lekarski egzamin państwowy, egzamin-lep.andruszko.net, pytania LEP , testy LEP , CEM, cem , pytania LDEP , egzamin LEP , LEK , lekarski egzamin końcowy , egzamin LDEP , testy LDEP, pytania LEK , egzamin LEK , testy LEK" /> 
+<meta name="Description" content="Pytania i odpowiedzi na lekarski egzamin państwowy (LEP)" />
 <meta name="Robots" content="index,follow" />
 <title>Egzaminy na Lekarski Egzamin Państwowy</title>
 <link rel="stylesheet" href="css/app.css" />
 <link rel="stylesheet" href="css/messages.css" />
 <link rel="stylesheet" href="css/jqueryui/jquery-ui.css" />
+	<script src="lib/jquery/jquery-min.js"></script>
+	<script src="lib/jquery/jquery-ui.min.js"></script>
+	<script src="lib/angular/angular.js" ng:autobind></script>
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/widgets.js"></script>
+	<script src="js/md5-min.js"></script>
+	
 
 
 </head>
@@ -21,8 +30,8 @@
 		<li><a href="#/login">Twoje konto</a></li>
 		<li><a href="#/register">Rejestracja</a></li>
 		<li><a href="#/aboutExam">O egzaminie</a></li>
-		<li ng:show="isAuth()"><a href="#/chooseExam">Egzamin</a></li>
-		<li ng:show="isAuth()"><a href="#/logout">Wyloguj {{loggedUser.user.login}}</a></li>
+		<li ng:show="isAuth"><a href="#/chooseExam">Egzamin</a></li>
+		<li ng:show="isAuth"><a href="#/logout">Wyloguj {{loggedUser.user.login}}</a></li>
 	</ul>
 
 
@@ -49,16 +58,7 @@
 
 
 
-	<script src="lib/jquery/jquery-min.js"></script>
-	<script src="lib/jquery/jquery-ui.min.js"></script>
-	<script src="lib/angular/angular.js" ng:autobind></script>
-	<script src="js/app.js"></script>
-	<script src="js/services.js"></script>
-	<script src="js/controllers.js"></script>
-	<script src="js/filters.js"></script>
-	<script src="js/widgets.js"></script>
-	<script src="js/md5-min.js"></script>
-	
+
 
 </body>
 </html>
