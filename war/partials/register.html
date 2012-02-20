@@ -98,11 +98,11 @@
 
 
 
-									<tr ng:show="newUser.id > 0">
+									<tr ng:show="showSuccessRegistration">
 										<td></td>
 										<td>
 											<div class="success">
-												<p class="success">Konto zostało założone.</p>
+												<span class="success">Konto zostało założone.</span>
 											</div>
 										</td>
 										<td>
@@ -110,11 +110,11 @@
 										
 									</tr>
 
-									<tr ng:show="newUser.id < 0">
+									<tr ng:show="showBusyLogin">
 										<td></td>
 										<td>
 											<div class="error">
-												<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
+												<span class="error">Login jest już zajęty.</span>
 											</div>
 										</td>
 										<td>

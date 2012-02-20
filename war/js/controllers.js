@@ -13,6 +13,10 @@ function RegisterCtrl(userService) {
 
 	self.showError = false;
 
+	self.showSuccessRegistration = false;
+
+	self.showBusyLogin = false;
+
 	self.cleanUser = function() {
 		self.newUser.login = "";
 		self.newUser.firstName = "";
@@ -26,47 +30,44 @@ function RegisterCtrl(userService) {
 
 	self.$watch("response.id", function(scope, newValue, oldValue) {
 		if (angular.isDefined(newValue)) {
-			// cleanUser(scope)
+			if (newValue > 0) {
+				scope.showSuccessRegistration = true;
+				scope.showBusyLogin = false;
+				scope.cleanUser();
+
+			}
+			if (newValue == -1) {
+				scope.showSuccessRegistration = false;
+				scope.showBusyLogin = true;
+			}
+
 		}
 	});
-
-	this.onfocusEvent = function() {
-
-		console.log('focus');
-	}
-
-	this.onBlurEvent = function() {
-		console.log('onblur')
-	}
 
 	this.register = function() {
 		self.showError = true;
 
-		if (self.newUser.acceptTerms == false) {
-			self.showInfoTerms = true;
-			return;
-		} else {
+		
+		if (self.newUser.acceptTerms == true) {
+			
 			self.showInfoTerms = false;
-		}
+			if (self.registerForm.$valid && angular.equals(self.newUser.repeatpassword,self.newUser.password)) {
 
-		if (self.registerForm.$valid
-				&& angular
-						.equals(self.newUser.repeatpassword, newUser.password)) {
-
-			self.forSendUser = angular.copy(self.newUser);
-
-			self.forSendUser.password = hex_md5(self.newUser.password);
-			self.forSendUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
-			self.response = userService.regiserUser(forSendUser);
-
-			self.cleanUser();
+				self.forSendUser = angular.copy(self.newUser);
+				self.forSendUser.password = hex_md5(self.newUser.password);
+				self.forSendUser.repeatpassword = hex_md5(self.newUser.repeatpassword);
+				self.response = userService.regiserUser(self.forSendUser);
+			}
+			
+		} else {
+			self.showInfoTerms = true;			
 		}
 
 	}
 
 	this.cancel = function() {
 
-		sel.cleanUser();
+		self.cleanUser();
 	}
 }
 
@@ -196,7 +197,6 @@ function ResolveExamCtrl($startService, $window) {
 	self.loading = true;
 
 	self.$on("$afterRouteChange", function(current, previous) {
-		
 
 		current.currentScope.loading = false;
 
@@ -252,7 +252,7 @@ function ResolveExamCtrl($startService, $window) {
 	}
 
 	self.check = function(item, type) {
-		
+
 		if (item.correct_ans == type) {
 			item['style' + type] = "ans_correct";
 			item.isCorrect = true;
@@ -273,32 +273,29 @@ function ResolveExamCtrl($startService, $window) {
 ResolveExamCtrl.$inject = [ 'startLepService', '$window' ];
 
 function LogoutCtrl(securityService, $http, $location) {
-	
+
 	var self = this;
 	self.http = $http;
 	self.location = $location;
 
 	self.logout = function() {
-		self.http.get('logout')
-		.success(function(data, status, headers, config) {
+		self.http.get('logout').success(
+				function(data, status, headers, config) {
 
-			self.refreshUser();
-			self.location.path('/login').search({
-				code : status + 2000
-			}).replace();
+					self.refreshUser();
+					self.location.path('/login').search({
+						code : status + 2000
+					}).replace();
 
-		})
-		.error(function(data, status, headers, config) {
+				}).error(function(data, status, headers, config) {
 			self.refreshUser();
 			self.location.path('/login').search({
 				code : status + 3000
 			}).replace();
 		});
 	}
-	
-	self.logout();
 
-	
+	self.logout();
 
 }
 LogoutCtrl.$inject = [ 'securityService', '$http', '$location' ];
@@ -315,26 +312,26 @@ function LoginCtrl($routeParams, $http, $location) {
 
 	self.error = self.params.error;
 
-//	self.username = "admin";
-//	self.password = "admin";
+	// self.username = "admin";
+	// self.password = "admin";
 
 	this.send = function() {
 
 		self.http.post(
-				'j_spring_security_check?j_username=' + self.username+ '&j_password=' + self.password)
-				
-				.success(function(data, status, headers, config) {
-					self.refreshUser();
-					self.location.path('/chooseExam').search({
-						code : status
-					}).replace();
-				 })
-				.error(function(data, status, headers, config) {
-					self.refreshUser();
-					self.location.path('/login').search({
-						code : status
-					});
-				});
+				'j_spring_security_check?j_username=' + self.username
+						+ '&j_password=' + self.password)
+
+		.success(function(data, status, headers, config) {
+			self.refreshUser();
+			self.location.path('/chooseExam').search({
+				code : status
+			}).replace();
+		}).error(function(data, status, headers, config) {
+			self.refreshUser();
+			self.location.path('/login').search({
+				code : status
+			});
+		});
 
 	}
 

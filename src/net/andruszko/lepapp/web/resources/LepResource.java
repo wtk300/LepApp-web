@@ -3,7 +3,6 @@ package net.andruszko.lepapp.web.resources;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;

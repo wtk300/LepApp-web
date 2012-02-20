@@ -1,6 +1,8 @@
 
 angular.module('lepModule.services', [], function($provide) {
 	  $provide.factory('securityService', ['$resource', function(resource) {
+		  
+		  self.currentUserCache = undefined;
 		  return {
 		        getLoggedUser: function(){
 		            var res = resource('resources/lep/:antycache/loggedUser',{},
@@ -9,9 +11,15 @@ angular.module('lepModule.services', [], function($provide) {
 		                    method: 'GET',
 		                    verifyCache: false	
 		                }
-		            });            
-		            return angular.fromJson(res.retrive({antycache:""+new Date().getTime() }));
+		            });    
+		            var response =res.retrive({antycache:""+new Date().getTime() });
+	  				self.currentUserCache = response;
+		            return response;
+		        },
+		        getCurrentUser : function(){
+		        	return self.currentUserCache; 
 		        }
+	  
 		    }
 	  }]);
 	  
@@ -32,7 +40,7 @@ angular.module('lepModule.services', [], function($provide) {
 		    }
 	  }]);
 	  
-	  $provide.factory('userService', ['$resource','$http', function(resource,$xhr) {
+	  $provide.factory('userService', ['$resource', function(resource) {
 		  return {
 		        regiserUser: function(user){
 		        	
@@ -50,7 +58,7 @@ angular.module('lepModule.services', [], function($provide) {
 		                    
 		                }
 		            });            
-		            return angular.fromJson(res.register(user));
+		            return res.register(user);
 		        }
 		    }
 	  }]);
