@@ -17,8 +17,13 @@ import com.google.appengine.api.datastore.Text;
  *
  */
 @Entity
-public class LepItem {
+public class LepItem implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 

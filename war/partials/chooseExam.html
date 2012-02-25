@@ -8,61 +8,78 @@
 <body>
 
 
+
 	<div class="DROPSHADOW DROPSHADOW1">
 		<div class="DROPSHADOW DROPSHADOW2">
 			<div class="DROPSHADOW DROPSHADOW3">
 				<div class="DROPSHADOW DROPSHADOW4">
 					<div class="SECTION MEDIUM_SECTION">
 						<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-							<div class="main">								
+							<div class="main">
 								<ng:form>
-									<fieldset>
-										<legend>Wybór egzaminu</legend>
+									<div id="tabs" lep:tabs>
+										<ul>
+											<li><a href="#tabs-1">Wariant 1</a></li>
+											<li><a href="#tabs-2">Wariant 2</a></li>
 
-										<table>
-											<tr>
-												<td>Wybierz sesję:</td>
-												<td><select name="sessionId" ng:model="sessionId"
-													ng:options="c.id as c.desc for c in sessions.lepSession"
-													class="nullable">
-												</select></td>
-											</tr>
-											<tr>
-												<td>Wybierz język:</td>
-												<td><select ng:model="langId" name="langId"
-													ng:disabled="{{true}}">
-														<option value="10">Polski</option>
-														<option value="20">Angielski</option>
-												</select></td>
-											</tr>
-											<tr>
-												<td>Wybierz typ egzaminu:</td>
-												<td><select name="lepTypeId"  ng:model="lepTypeId" ng:disabled="{{true}}">
-														<option value="10">LEP</option>
-														<option value="20">DLEP</option>
-												</select></td>
-											</tr>
-											<tr ng:show="lepTypeId == 10">
-												<td>Wybierz poddział:</td>
-												<td><select ng:model="sectionId" ng:disabled="{{true}}">
-														<option value="10">Wszystkie</option>
-														<option value="20">Ginekologia</option>
-														<option value="30">Interna</option>
-												</select></td>
-											</tr>
-											<tr>
-												<td></td>
-												<td> 
-													<button lep:button ng:click="startExam()" 
-													ng:disabled="{{!isUserAuth}}">Uruchom</button></td>
-											</tr>
-														
+										</ul>
+										<div id="tabs-1" >
+											<fieldset>
+												<legend>Wybór egzaminu</legend>
 
-										</table>
-									</fieldset>
+												<table>
+													<tr>
+														<td>Wybierz sesję:</td>
+														<td><select name="sessionId" ng:model="sessionId"
+															ng:options="c.id as c.desc for c in sessions.lepSession"
+															class="nullable">
+														</select></td>
+													</tr>
+													<tr>
+														<td>Wybierz język:</td>
+														<td><select ng:model="langId" name="langId"
+															ng:disabled="{{true}}">
+																<option value="10">Polski</option>
+																<option value="20">Angielski</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td>Wybierz typ egzaminu:</td>
+														<td><select name="lepTypeId" ng:model="lepTypeId"
+															ng:disabled="{{true}}">
+																<option value="10">LEP</option>
+																<option value="20">DLEP</option>
+														</select></td>
+													</tr>
+													<tr ng:show="lepTypeId == 10">
+														<td>Wybierz poddział:</td>
+														<td><select ng:model="sectionId"
+															ng:disabled="{{true}}">
+																<option value="10">Wszystkie</option>
+																<option value="20">Ginekologia</option>
+																<option value="30">Interna</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>
+															<button lep:button ng:click="startExam()" ng:disabled="{{!isUserAuth}}">Uruchom</button>
+														</td>
+													</tr>
+
+
+												</table>
+											</fieldset>
+										</div>
+										<div id="tabs-2">
+											<span>In da progress ...</span>
+										</div>
+
+									</div>
+
+
 								</ng:form>
-								
-								<pre></pre>
+
 								<br />
 							</div>
 						</div>
@@ -76,6 +93,6 @@
 
 
 
-	</fieldset>
+
 </body>
 </html>

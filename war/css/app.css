@@ -369,4 +369,8 @@ span.error_hint {
 	font-size: 11px;
 }
 
+div.contentBox{
+    overflow: auto;  padding-top: 17.6px; padding-bottom: 17.6px; padding-left: 10.6px;
+}
+
 a:link, a:visited, a:hover { color: #707165; text-decoration: none; }

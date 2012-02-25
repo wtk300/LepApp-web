@@ -85,6 +85,8 @@ angular.module('lepModule.services', [], function($provide) {
 		  var self = this;
 		  
 		  self.currentLepItems = {};
+		  
+		  self.date = new Date().getTime();
 		  	  
 		  return {
 			  	getCurrentLepItems : function(){
@@ -101,8 +103,28 @@ angular.module('lepModule.services', [], function($provide) {
 		                    
 		                }
 		            });       
-		            self.currentLepItems = res.retrive();
-		            return self.currentLepItems;
+		            
+		            if (angular.isDefined(self.currentLepItems[sessionId])){		    
+		            	var copy ;		            	 
+		            	angular.copy(self.currentLepItems[sessionId],copy);
+		            	return copy;
+		            }else{		            	
+			            self.currentLepItems = res.retrive(function(lep,header){
+			            	console.log('from non cache')
+			            	if (angular.isObject(lep)){
+			            		console.log('is object '+self.date);
+			            	}else{
+			            		console.log('is not object'+self.date);
+			            	}
+			            	
+			            	return angular.copy(lep,self.currentLepItems[sessionId]);
+			            });
+			            			            
+			            return self.currentLepItems;
+		            	
+		            }
+		            
+
 		            
 		        }
 		    }

@@ -24,17 +24,26 @@
 </head>
 <body ng:cloak class="ng-cloak">
 
+     <!--[if lt IE 9]>
+       <lep:error errorText='You are using an old version of Internet Explorer.
+      	For better and safer browsing experience please upgrade IE or install Chrome browser'>
+  
+  		</lep:error>   
+  	 <![endif]-->
+  
+
+
+
 	<ul class="menu" >
 		<li><a href="#/home">Home</a></li>
+		<li><a href="#/news">Aktualności</a></li>
 		<li><a href="#/contact">Kontakt</a></li>
-		<li><a href="#/login">Twoje konto</a></li>
-		<li><a href="#/register">Rejestracja</a></li>
+		<li ng:hide="isAuth"><a href="#/login">Twoje konto</a></li>
+		<li ng:hide="isAuth"><a href="#/register">Rejestracja</a></li>
 		<li><a href="#/aboutExam">O egzaminie</a></li>
 		<li ng:show="isAuth"><a href="#/chooseExam">Egzamin</a></li>
 		<li ng:show="isAuth"><a href="#/logout">Wyloguj {{loggedUser.user.login}}</a></li>
 	</ul>
-
-
 
 	<table>
 
@@ -52,13 +61,7 @@
 			</td>
 		</tr>
 
-
-
 	</table>
-
-
-
-
 
 </body>
 </html>

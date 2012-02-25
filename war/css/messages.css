@@ -43,3 +43,8 @@ div.error {
 	background-image:url('../img/messages/error.png');
 }
 
+div.errornowidth , div.error {
+		width: 700px;
+
+}
+
