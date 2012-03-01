@@ -41,7 +41,7 @@
 											<td></td>
 											<td>
 												<button lep:button ng:click="send()"
-													disabled="{{contactForm.$invalid == true}}">Wyślij</button>
+													ng:disabled="{{contactForm.$invalid}}">Wyślij</button>
 												<button lep:button ng:click="clear()">Wyczyść</button>
 
 											</td>

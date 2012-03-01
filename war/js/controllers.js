@@ -150,6 +150,12 @@ function LepExamCtrl(sessionService, securityService, startService, $location) {
 	var startService = startService
 	var self = this;
 	var location = $location;
+	
+	self.schuffle = true;
+	
+	self.lepSections = sessionService.getLepSections();
+	
+	self.lepTypes = sessionService.getLepTypes();
 
 	self.isUserAuth = false;
 
@@ -223,10 +229,18 @@ function ResolveExamCtrl($startService, $window) {
 	self.errorMsg = "";
 
 	self.lepItems = self.startService.getCurrentLepItems();
+	
+	self.$watch('lepItems.lepItems',function(scope,newValue){
+		
+		if (angular.isDefined(newValue)){			
+			scope.quantity = newValue.length;
+		}
+	});
 
 	self.questionQuantity = function() {
 
-		// self.quantity = angular.Array.count(self.lepItems);
+		
+		self.quantity = angular.Array.count(self.lepItems);
 		return self.quantity;
 	}
 

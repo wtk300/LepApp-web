@@ -36,7 +36,31 @@ angular.module('lepModule.services', [], function($provide) {
 		                }
 		            });            
 		            return res.retrive();
+		        },
+		        getLepTypes: function(){
+		        	var types = {
+		        		10 : 'LEP',
+		        		20 : 'LDEP'
+		        	}
+		        	return types;
+		        },
+				
+		        getLepSections: function(){
+		        	var sections = {
+		        			10 :'Choroby wewnętrzne',
+		        			20: 'Pediatria',
+		        			30: 'Chirurgia',
+		        			40: 'Ginekologia i położnictwo',
+		        			50: 'Medycyna rodzinna',
+		        			60: 'Psychiatria',
+		        			70: 'Intesywna terapia i medycyna ratunkowa',
+		        			80: 'Bioetyka i prawo medyczne',
+		        			90: 'Orzecznictwo lekarskie',
+		        			100: 'Zdrowie publiczne'	
+		        	} 
+		        	return sections;
 		        }
+		        
 		    }
 	  }]);
 	  
