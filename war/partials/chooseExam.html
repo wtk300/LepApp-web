@@ -53,8 +53,7 @@
 													</tr>
 													<tr ng:show="lepTypeId == 10">
 														<td>Wybierz poddział:</td>
-														<td><select ng:model="sectionId"
-															ng:disabled="{{true}}">
+														<td><select ng:model="sectionId" ng:disabled="{{true}}">
 																<option value="1">Wszystkie</option>
 																<option value="10">Choroby wew</option>
 																<option value="20">Pediatria</option>
@@ -79,54 +78,47 @@
 										</div>
 										<div id="tabs-2">
 											<span>In da progress ...</span>
-											
+
 											<ib:boxHeader headerText="Opcje"></ib:boxHeader>
-												<div ib:boxContent>
-													<input type="checkbox" id="shuffle" ng:model="schuffle" /><label for="shuffle">Przetasuj pyania</label>
-													<select ng:model="lepTypeId"
-															ng:options="label for (key , value) in lepTypes" class="nullable">
-													</select>
-													
-												</div>
+											<div ib:boxContent>
+												<input type="checkbox" id="shuffle" ng:model="schuffle" /><label
+													for="shuffle">losowa kolejność pytań ?</label>
+											</div>
 
 											<ib:boxHeader headerText="Wybierz egzamin"></ib:boxHeader>
 											<div ib:boxContent>
-														<div ng:repeat="item in sessions.lepSession">
-															<input type="checkbox" id="idCheck{{$index}}" checked="checked" /><label for="idCheck{{$index}}">Egzamin {{item.desc}}</label> 
-														</div>			
-																											
+												<div ng:repeat="item in sessions.lepSession">
+													<input type="checkbox" id="idCheck{{$index}}"
+														checked="checked" /><label for="idCheck{{$index}}">Egzamin
+														{{item.desc}}</label>
 												</div>
-												
-												<ib:boxHeader headerText="Wybierz poddziały"></ib:boxHeader>
-												<div ib:boxContent>
-												
-														<div ng:repeat="(id, desc) in lepSections">
-															<input type="checkbox" id="idSection{{id}}" /><label for="idSection{{id}}">{{desc}}</label> 
-														</div>	
-														
-												</div>
-												
+
 											</div>
+
+											<ib:boxHeader headerText="Wybierz poddziały"></ib:boxHeader>
+											<div ib:boxContent>
+
+												<div ng:repeat="(id, desc) in lepSections">
+													<input type="checkbox" id="idSection{{id}}" /><label
+														for="idSection{{id}}">{{desc}}</label>
+												</div>
+
+											</div>
+
 										</div>
-
 									</div>
-
-
-								</ng:form>
-
-								<br />
 							</div>
-						</div>
 
+
+							</ng:form>
+
+							<br />
+						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
 </body>
 </html>
