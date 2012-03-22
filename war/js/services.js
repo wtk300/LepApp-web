@@ -89,9 +89,7 @@ angular.module('lepModule.services', [], function($provide) {
 	  
 	  $provide.factory('contactService', ['$resource','$http', function(resource,$xhr) {
 		  return {
-		        registerContact: function(contact){
-//		        	$xhr.defaults.headers.post['Content-Type']='application/json';
-//		        	$xhr.defaults.headers.put['Content-Type']='application/json';	        
+		        registerContact: function(contact){      
 		            var res = resource('resources/contact/register',{},
 		            {
 		                

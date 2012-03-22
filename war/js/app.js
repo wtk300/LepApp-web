@@ -1,5 +1,5 @@
 angular.module('lepModule', ['lepModule.services', 'lepModule.widgets'])
-.run(['$route','$rootScope', '$location', '$window', 'lepSessionService','securityService' , function($route,$rootScope, $location, $window,sessionService,securityService) {
+   .config(['$routeProvider',  function($route) {
 
 
 	  $route.when('/contact', {template: 'partials/contact.html', controller: ContactCtrl});
@@ -14,36 +14,33 @@ angular.module('lepModule', ['lepModule.services', 'lepModule.widgets'])
 	  $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
 	  $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
 	  $route.when('/news', {template: 'partials/news.html', controller:undefined});
-
-    var self = this;
-    
-    
+  
   	
-	 $route.otherwise({
+	  $route.otherwise({
 	  	   redirectTo : "/login"
-	 });
-	  	
-  	
-  	
-  	 $route.parent($rootScope);
+	  });
 
-
-	 $rootScope.lepItems = {};
-	 $rootScope.loggedUser = securityService.getLoggedUser();
-	
-	 $rootScope.refreshUser = function(){
-		$rootScope.loggedUser = securityService.getLoggedUser();
-	 }
-	 $rootScope.$watch('loggedUser.user.isAuth',function(scope,newValue){		 
-		 if (angular.isDefined(newValue)){
-			 scope.isAuth = newValue;
-		 }else{
-			 scope.isAuth = false;
+  }])
+  .run(['$rootScope','lepSessionService','securityService',function($rootScope,sessionService,securityService){
+	  
+	  	 $rootScope.lepItems = {};
+		 $rootScope.loggedUser = securityService.getLoggedUser();
+		
+		 $rootScope.refreshUser = function(){
+			$rootScope.loggedUser = securityService.getLoggedUser();
 		 }
-	 })
-	
-	 $rootScope.sessions = sessionService.getSessionsInfo();
-	
-	 $rootScope.isAuth = false;
-	
+		 $rootScope.$watch('loggedUser.user.isAuth',function(newValue,oldValue,scope){		 
+			 if (angular.isDefined(newValue)){
+				 scope.isAuth = newValue;
+			 }else{
+				 scope.isAuth = false;
+			 }
+		 })
+		
+		 $rootScope.sessions = sessionService.getSessionsInfo();
+		
+		 $rootScope.isAuth = false;
+
+	  
   }]);
+

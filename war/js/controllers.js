@@ -1,6 +1,6 @@
 /* App Controllers */
-function RegisterCtrl(userService) {
-	var self = this;
+function RegisterCtrl(self,userService) {
+	
 	self.userService = userService;
 
 	self.newUser = {};
@@ -28,7 +28,7 @@ function RegisterCtrl(userService) {
 		self.showError = false;
 	}
 
-	self.$watch("response.id", function(scope, newValue, oldValue) {
+	self.$watch("response.id", function(newValue, oldValue,scope) {
 		if (angular.isDefined(newValue)) {
 			if (newValue > 0) {
 				scope.showSuccessRegistration = true;
@@ -71,20 +71,20 @@ function RegisterCtrl(userService) {
 	}
 }
 
-RegisterCtrl.$inject = [ 'userService' ];
+RegisterCtrl.$inject = ['$scope', 'userService' ];
 
 function RootCtrl() {
 }
 
-function ContactCtrl(contactService, securityService) {
-	var self = this;
+function ContactCtrl($scope,contactService, securityService) {
+	
 
-	self.contactService = contactService;
+	$scope.contactService = contactService;
 	var $securityService = securityService;
 
-	self.contact = {};
+	$scope.contact = {};
 
-	self.$watch("loggedUser.user", function(scope, newValue, oldValue) {
+	$scope.$watch("loggedUser.user", function( newValue, oldValue,scope) {
 
 		scope.contact.id = undefined;
 		if (angular.isDefined(newValue)) {
@@ -103,7 +103,7 @@ function ContactCtrl(contactService, securityService) {
 
 	});
 
-	self.$watch("response.id", function(scope, newValue, oldValue) {
+	$scope.$watch("response.id", function( newValue, oldValue,scope) {
 
 		if (angular.isDefined(newValue)) {
 			scope.contact.id = newValue;
@@ -116,39 +116,39 @@ function ContactCtrl(contactService, securityService) {
 
 	});
 
-	self.send = function() {
-		self.response = contactService.registerContact(self.contact);
+	$scope.send = function() {
+		$scope.response = contactService.registerContact($scope.contact);
 
 	}
 
 	var clearAll = function() {
-		self.contact.firstName = "";
-		self.contact.lastName = "";
-		self.contact.email = "";
-		self.contact.content = "";
+		$scope.contact.firstName = "";
+		$scope.contact.lastName = "";
+		$scope.contact.email = "";
+		$scope.contact.content = "";
 
 	}
 
-	self.clear = function() {
+	$scope.clear = function() {
 
-		if (angular.isDefined(self.contact.login)) {
-			self.contact.content = "";
-			self.contact.id = null;
+		if (angular.isDefined($scope.contact.login)) {
+			$scope.contact.content = "";
+			$scope.contact.id = null;
 		} else {
 
 			clearAll();
-			self.contact.id = null;
+			$scope.contact.id = null;
 		}
 
 	}
 
 }
-ContactCtrl.$inject = [ 'contactService', 'securityService' ];
+ContactCtrl.$inject = ['$scope', 'contactService', 'securityService' ];
 
-function LepExamCtrl(sessionService, securityService, startService, $location) {
+function LepExamCtrl(self,sessionService, securityService, startService, $location) {
 	var $securityService = securityService;
 	var startService = startService
-	var self = this;
+	
 	var location = $location;
 	
 	self.schuffle = true;
@@ -193,12 +193,12 @@ function LepExamCtrl(sessionService, securityService, startService, $location) {
 	self.lepTypeId = 10;
 
 }
-LepExamCtrl.$inject = [ 'lepSessionService', 'securityService',
+LepExamCtrl.$inject = [ '$scope','lepSessionService', 'securityService',
 		'startLepService', '$location' ];
 
-function ResolveExamCtrl($startService, $window) {
+function ResolveExamCtrl(self,$startService, $window) {
 
-	var self = this;
+	
 
 	self.loading = true;
 
@@ -284,11 +284,11 @@ function ResolveExamCtrl($startService, $window) {
 
 }
 
-ResolveExamCtrl.$inject = [ 'startLepService', '$window' ];
+ResolveExamCtrl.$inject = ['$scope', 'startLepService', '$window' ];
 
-function LogoutCtrl(securityService, $http, $location) {
+function LogoutCtrl(self,securityService, $http, $location) {
 
-	var self = this;
+	
 	self.http = $http;
 	self.location = $location;
 
@@ -312,11 +312,11 @@ function LogoutCtrl(securityService, $http, $location) {
 	self.logout();
 
 }
-LogoutCtrl.$inject = [ 'securityService', '$http', '$location' ];
+LogoutCtrl.$inject = ['$scope', 'securityService', '$http', '$location' ];
 
-function LoginCtrl($routeParams, $http, $location) {
+function LoginCtrl(self,$routeParams, $http, $location) {
 
-	var self = this;
+	
 
 	self.params = $routeParams;
 
@@ -351,7 +351,7 @@ function LoginCtrl($routeParams, $http, $location) {
 
 }
 
-LoginCtrl.$inject = [ '$routeParams', '$http', '$location' ];
+LoginCtrl.$inject = ['$scope', '$routeParams', '$http', '$location' ];
 
 function MyCtrl2() {
 }
