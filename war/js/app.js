@@ -1,4 +1,4 @@
-angular.module('lepModule', ['lepModule.services', 'lepModule.widgets','ngResource'])
+angular.module('lepModule', ['ngResource','lepModule.services', 'lepModule.widgets'])
    .config(['$routeProvider',  function($route) {
 
 
