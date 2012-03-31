@@ -44,7 +44,7 @@ function RegisterCtrl(self,userService) {
 		}
 	});
 
-	this.register = function() {
+	self.register = function() {
 		self.showError = true;
 
 		
@@ -65,7 +65,7 @@ function RegisterCtrl(self,userService) {
 
 	}
 
-	this.cancel = function() {
+	self.cancel = function() {
 
 		self.cleanUser();
 	}
@@ -177,7 +177,7 @@ function LepExamCtrl(self,sessionService, securityService, startService, $locati
 
 	self.startExam = function() {
 		// sessionId,lepId,langId,subSectionId
-		this.lepItems = startService.getLepExamItems(self.sessionId,
+		self.lepItems = startService.getLepExamItems(self.sessionId,
 				self.lepTypeId, self.langId, 50);
 
 		location.path('/startExam').search({
@@ -329,7 +329,7 @@ function LoginCtrl(self,$routeParams, $http, $location) {
 	// self.username = "admin";
 	// self.password = "admin";
 
-	this.send = function() {
+	self.send = function() {
 
 		self.http.post(
 				'j_spring_security_check?j_username=' + self.username

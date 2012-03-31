@@ -7,10 +7,22 @@ angular.module('myApp.directives', []).
 
 angular.module('lepModule.widgets', [])
     // temporary hack until we have proper directive injection.
-    .directive('lep:button', function() {
-        return ['$element', function(element) {            
-        	element.button();
-        }];
+    .directive('lepbutton', function() {
+        
+        return {
+        	restrict : 'A',
+        	
+        	compile: function(tElement, tAttrs, transclude){
+        		console.log('elo frajero 2');
+        		 tElement.button();
+        	},
+        	
+        	 link: function(scope, iElement, iAttrs, controller){
+        		 console.log('elo frajero 22');
+//                element.button();
+             }
+        }
+        
     })
     
     .directive('lep:tabs', function() {
@@ -18,6 +30,7 @@ angular.module('lepModule.widgets', [])
         	element.tabs();
         }];
     })
+    
     
     .directive('ib:boxContent', function(expression, compiledElement) {
         
@@ -28,6 +41,25 @@ angular.module('lepModule.widgets', [])
         }]
     })
 
+//  myApp.directive('autocomplete', function() {
+//    return {
+//        restrict: 'E',
+//        replace: true,
+//        transclude: true,
+//        template: '<input name="autocomplete" type="text"/>',
+//        link: function(scope, element, attrs) {
+//            scope.$watch(attrs.list, function(value) {
+//                element.autocomplete({
+//                    source: value,
+//                    select: function(event, ui) {
+//                        scope[attrs.selection] = ui.item.value;
+//                        scope.$apply();
+//                    }
+//                });
+//            });
+//        }
+//    }
+//});
 
 //angular.widget('ib:boxHeader', function(compileElement){
 //    var compiler = this;
