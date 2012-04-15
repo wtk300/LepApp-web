@@ -36,14 +36,18 @@
 									</table>
 
 								</form>
+								
+							
+								<div ng:show="params.code=='401'">
+									<lep:error>								
+								 		Niepoprawne hasło lub login.
+									</lep:error>					
+								</div>				
+								
 
-								<div ng:show="params.code==401">
-									<lep:error errorText="Niepoprawne hasło lub login."></lep:error>									
-								</div>
-
-								<div ng:show="params.error==2" >									
-									<lep:error errorText="Przekroczona ilość użytkowników dla jednego loginu."></lep:error>
-								</div>
+<!-- 								<div ng:show="params.error==2" >									 -->
+<!-- 									<lep:error errorText="Przekroczona ilość użytkowników dla jednego loginu."></lep:error> -->
+<!-- 								</div> -->
 							</div>
 
 						</div>
@@ -52,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	
 
 </body>
 </html>

@@ -159,7 +159,7 @@ function LepExamCtrl(self,sessionService, securityService, startService, $locati
 
 	self.isUserAuth = false;
 
-	self.$watch("loggedUser.user", function(scope, newValue, oldValue) {
+	self.$watch("loggedUser.user", function(newValue, oldValue,scope) {
 
 		scope.isUserAuth = false;
 		if (angular.isDefined(newValue)) {
@@ -230,7 +230,7 @@ function ResolveExamCtrl(self,$startService, $window) {
 
 	self.lepItems = self.startService.getCurrentLepItems();
 	
-	self.$watch('lepItems.lepItems',function(scope,newValue){
+	self.$watch('lepItems.lepItems',function(newValue,oldValue,scope){
 		
 		if (angular.isDefined(newValue)){			
 			scope.quantity = newValue.length;
@@ -325,6 +325,9 @@ function LoginCtrl(self,$routeParams, $http, $location) {
 	self.location = $location;
 
 	self.error = self.params.error;
+	
+	self.showBadCredential = false;
+	
 
 	// self.username = "admin";
 	// self.password = "admin";
@@ -352,6 +355,12 @@ function LoginCtrl(self,$routeParams, $http, $location) {
 }
 
 LoginCtrl.$inject = ['$scope', '$routeParams', '$http', '$location' ];
+
+function NewsCtrl($scope){
+	$scope.title = 'hahah';
+}
+
+NewsCtrl.$inject = ['$scope'];
 
 function MyCtrl2() {
 }

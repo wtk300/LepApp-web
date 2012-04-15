@@ -7,75 +7,119 @@ angular.module('myApp.directives', []).
 
 angular.module('lepModule.widgets', [])
     // temporary hack until we have proper directive injection.
-    .directive('lepbutton', function() {
+    .directive('lepButton', function() {
         
         return {
         	restrict : 'A',
-        	
-        	compile: function(tElement, tAttrs, transclude){
-        		console.log('elo frajero 2');
-        		 tElement.button();
-        	},
-        	
-        	 link: function(scope, iElement, iAttrs, controller){
-        		 console.log('elo frajero 22');
-//                element.button();
+      
+        	 link: function(scope, iElement, iAttrs, controller){        		
+        		 iElement.button();
              }
         }
         
     })
     
-    .directive('lep:tabs', function() {
-        return ['$element', function(element) {            
-        	element.tabs();
-        }];
+    .directive('lepTabs', function() {
+    	
+        return {
+        	 restrict : 'A',
+        	        	
+        	 link: function(scope, iElement, iAttrs, controller){
+        		 
+        		 iElement.tabs();
+             }
+        }
+    	
     })
     
     
-    .directive('ib:boxContent', function(expression, compiledElement) {
+    .directive('lepBoxcontent', function() {
+    	
+    	  return {
+         	 restrict : 'A',
+         	        	
+         	 link: function(scope, iElement, iAttrs, controller){
+         		 
+         		 iElement.addClass('ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom contentBox');
+              }
+         }
+    })
+
+	.directive('lepBox', function() {
+	    return {
+	        restrict: 'E',
+	        replace: true,
+	        transclude: true,
+	        scope: { header:'bind'},
+	        
+	        template: 
+	        	'<div>'+
+	        		'<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" style="overflow: auto;  padding-top: 8.6px; padding-bottom: 8.6px; padding-left: 10.6px;">{{header}}</h3>'+
+	        		 '<div style="padding-right: 15px" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom contentBox" ng-transclude></div>' + 
+	        	'</div>',
+	        		
+	        link: function(ascope, element, attrs) {	        		
+	        }
+	    }
+	})
+	.directive('lepError', function() {
+	    return {
+	        restrict: 'E',
+	        replace: true,
+	        transclude: true,
+	        scope: { },
+	        
+	   
+
+	        template:
+	            
+	    	    '<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">' +
+	    			'<p ng:transclude><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span></p>'+ 	    		
+	    		'</div>',
+	        	
+	        		
+	        link: function(ascope, element, attrs) {	        		
+	        }
+	    }
+	})
+	
+//		.directive('autocomplete', function() {
+//	    return {
+//	        restrict: 'E',
+//	        replace: true,
+//	        transclude: true,
+//	        template: '<input name="autocomplete" type="text"/>',
+//	        link: function(scope, element, attrs) {
+//	            scope.$watch(attrs.list, function(value) {
+//	                element.autocomplete({
+//	                    source: value,
+//	                    select: function(event, ui) {
+//	                        scope[attrs.selection] = ui.item.value;
+//	                        scope.$apply();
+//	                    }
+//	                });
+//	            });
+//	        }
+//	    }
+//	});
+
+   .directive('lepBoxheader', function(){
+    
+    return{
+    	
+    	restrict : 'E',
+    	
+    	link: function(scope, element, attrs, controller){    	
+    		var header = angular.element('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" style="overflow: auto;  padding-top: 8.6px; padding-bottom: 8.6px; padding-left: 20.6px; padding-right: 15 px;"></h3>');
+            var headerSpan = angular.element('<span></span>');
+            headerSpan.text(attrs.headertext);
+            header.append(headerSpan);
+            element.append(header);	
+    	}
         
-       
-        return ['$element', function(element) {
-                  var scope = this;
-                  element.addClass('ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom contentBox');                             
-        }]
-    })
 
-//  myApp.directive('autocomplete', function() {
-//    return {
-//        restrict: 'E',
-//        replace: true,
-//        transclude: true,
-//        template: '<input name="autocomplete" type="text"/>',
-//        link: function(scope, element, attrs) {
-//            scope.$watch(attrs.list, function(value) {
-//                element.autocomplete({
-//                    source: value,
-//                    select: function(event, ui) {
-//                        scope[attrs.selection] = ui.item.value;
-//                        scope.$apply();
-//                    }
-//                });
-//            });
-//        }
-//    }
-//});
-
-//angular.widget('ib:boxHeader', function(compileElement){
-//    var compiler = this;
-//    //compileElement.css('display', 'block');
-//    compiler.descend(true);
-//    var headerTextExp = compileElement.attr('headerText');    
-//    
-//    return function(linkElement){
-//        var header = angular.element('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" style="overflow: auto;  padding-top: 8.6px; padding-bottom: 8.6px; padding-left: 10.6px;"></h3>');
-//        var headerSpan = angular.element('<span></span>');
-//        headerSpan.text(headerTextExp);
-//        header.append(headerSpan);
-//        linkElement.append(header);
-//
-//    };
-//});
+    };
+});
 
 
 //angular.directive('lep:dialog',  function(exp) {

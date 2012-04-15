@@ -13,7 +13,7 @@ angular.module('lepModule', ['ngResource','lepModule.services', 'lepModule.widge
 	  $route.when('/logout', {template: '/logout', controller:LogoutCtrl});
 	  $route.when('/logoutsuccess', {template: 'partials/logoutsuccess.html', controller:LogoutCtrl});
 	  $route.when('/loginerror', {template: 'partials/loginerror.html', controller:undefined});
-	  $route.when('/news', {template: 'partials/news.html', controller:undefined});
+	  $route.when('/news', {template: 'partials/news.html', controller:NewsCtrl});
   
   	
 	  $route.otherwise({
