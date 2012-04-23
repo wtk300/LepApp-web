@@ -19,19 +19,6 @@ angular.module('lepModule.widgets', [])
         
     })
     
-    .directive('lepDropdown', function() {
-    	
-        return {
-        	 restrict : 'A',
-        	        	
-        	 link: function(scope, iElement, iAttrs, controller){
-        		 console.log('lep drop downad')
-        		 iElement.dropdown()
-             }
-        }
-    	
-    })
-    
     .directive('lepTabs', function() {
     	
         return {
@@ -39,7 +26,7 @@ angular.module('lepModule.widgets', [])
         	        	
         	 link: function(scope, iElement, iAttrs, controller){
         		 
-        		 iElement.tab('show')
+        		 iElement.tabs();
              }
         }
     	
