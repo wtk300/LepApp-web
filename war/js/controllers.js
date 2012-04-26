@@ -191,6 +191,8 @@ function LepExamCtrl(self,sessionService, securityService, startService, $locati
 	self.langId = 10;
 
 	self.lepTypeId = 10;
+	
+	self.sectionId = 1;
 
 }
 LepExamCtrl.$inject = [ '$scope','lepSessionService', 'securityService',
@@ -266,19 +268,21 @@ function ResolveExamCtrl(self,$startService, $window) {
 	}
 
 	self.check = function(item, type) {
-
+		var value = 'disabled';
+			// po chamsku	
 		if (item.correct_ans == type) {
-			item['style' + type] = "ans_correct";
+			item['style' + type] = "label label-success ";			
 			item.isCorrect = true;
 			self.correctans++;
 		} else {
-			item['style' + type] = "ans_incorrect";
-			item['style' + item.correct_ans] = "ans_correct";
+			item['style' + type] = "label label-important ";
+			item['style' + item.correct_ans] = "label label-success ";
 			item.isCorrect = false;
 			self.incorrectans++;
 
-		}
-		item.disabled = true;
+		}	
+		item.disabled = value;
+		item.dis = true;
 
 	}
 

@@ -3,7 +3,7 @@
 <div style="width: 700px" ng:cloak class="ng-cloak">
 	<div class="MEDIUM_SECTION">
 
-		 <lep:box header='Statystyka'>
+		<lep:box header='Statystyka'>
 			<table>
 				<tr>
 					<td>Data rozpoczęcia ezgaminu:</td>
@@ -19,7 +19,7 @@
 					<td>{{quantity-correctans-incorrectans}}/{{quantity}}</td>
 
 				</tr>
-				
+
 				<tr>
 					<td>Poprawne odp.:</td>
 					<td>{{correctans}}</td>
@@ -33,63 +33,93 @@
 					<td>Skuteczność:</td>
 					<td>{{percentage()}}%</td>
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Choroby wew.</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==10 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==10'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==10 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==10'))*100) | number:2}}%</td>
 
 				</tr>
 				<tr ng:hide="endLep == undefined ">
 					<td>Pediatira</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==20 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==20'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==20 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==20'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Chirurgia</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==30 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==30'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==30 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==30'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Ginekologia i położnictwo</td>
-					<td ng:class="">{{((lepItems.lepItems.$count('disabled==true && subSectionId==40 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==40'))*100)  | number:2}}%</td>
+					<td ng:class="">{{((lepItems.lepItems.$count('disabled==true
+						&& subSectionId==40 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==40'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Medycyna rodzinna</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==50 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==50'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==50 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==50'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Psychiatria</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==60 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==60'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==60 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==60'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Intensywna terapia i medycyna ratunkowa</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==70 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==70'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==70 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==70'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Bioetyka i prawo medyczne</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==80 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==80'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==80 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==80'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Orzecznictwo lekarskie</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==90 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==90'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==90 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==90'))*100) | number:2}}%</td>
 
 				</tr>
-				
+
 				<tr ng:hide="endLep == undefined ">
 					<td>Zdrowie publiczne</td>
-					<td>{{((lepItems.lepItems.$count('disabled==true && subSectionId==100 && isCorrect==true') / lepItems.lepItems.$count('disabled==true && subSectionId==100'))*100)  | number:2}}%</td>
+					<td>{{((lepItems.lepItems.$count('disabled==true &&
+						subSectionId==100 && isCorrect==true') /
+						lepItems.lepItems.$count('disabled==true &&
+						subSectionId==100'))*100) | number:2}}%</td>
 
 				</tr>
 
@@ -104,74 +134,70 @@
 		<div lep:question="item" ng:repeat="item in lepItems.lepItems">
 
 
-			<div class="DROPSHADOW DROPSHADOW1">
-				<div class="DROPSHADOW DROPSHADOW2">
-					<div class="DROPSHADOW DROPSHADOW3">
-						<div class="DROPSHADOW DROPSHADOW4">
-							<div class="SECTION MEDIUM_SECTION">
-								<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-									<div class="main">
 
-										[{{$index+1}}] {{item.question}}<br />
-										<!-- 											<span ng:bind-template="nr {{item.subSectionId}}" -->
-										<!-- 												lep:section=""></span> <br /> -->
+			<div class="main">
+				<br />
+				<blockquote>
+					<span class="badge badge-info">{{$index+1}}</span>
+					{{item.question}}
+				</blockquote>
 
-										<table>
-											<tr>
-											  
-											  
-												<td>
-													<button ng:click="check(item,'A')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
-	   													<span class="ui-button-text">A</span>
-													</button>
-												</td>
-											  												
-												<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
-
-											</tr>
-											<tr>
-												<td>
-													<button ng:click="check(item,'B')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
-	   													<span class="ui-button-text">B</span>
-													</button>
-													</td>
-												<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
-											</tr>
-											<tr>
-												<td>
-													<button ng:click="check(item,'C')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
-	   													<span class="ui-button-text">C</span>
-													</button>												
-												</td>
-												<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
-											</tr>
-											<tr>
-												<td>
-													<button ng:click="check(item,'D')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
-	   													<span class="ui-button-text">D</span>
-													</button>
-												</td>
-												<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
-											</tr>
-											<tr>
-												<td>
-													<button ng:click="check(item,'E')" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" ng:disabled="{{item.disabled}}">
-	   													<span class="ui-button-text">E</span>
-													</button>
-												</td>
-												<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>
-											</tr>
-
-										</table>
+				<table>
+					<tr>
 
 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+						<td>
+							<button ng:class="item.disabled" class="btn"
+								ng:click="check(item,'A')" ng:disabled="{{item.dis}}">
+								<span>A</span>
+							</button>
+						</td>
+
+						<td><span id="spana" ng:class="item.styleA">{{item.answer_a}}</span></td>
+
+					</tr>
+					<tr>
+						<td>
+							<button ng:class="item.disabled" class="btn"
+								ng:click="check(item,'B')" ng:disabled="{{true}}">
+								<span class="ui-button-text">B</span>
+							</button>
+						</td>
+						<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
+					</tr>
+					<tr>
+						<td>
+							<button ng:class="item.disabled" class="btn"
+								ng:click="check(item,'C')">
+								<span class="ui-button-text">C</span>
+							</button>
+						</td>
+						<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
+					</tr>
+					<tr>
+						<td>
+							<button ng:class="item.disabled" class="btn"
+								ng:click="check(item,'D')">
+								<span class="ui-button-text">D</span>
+							</button>
+						</td>
+						<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
+					</tr>
+					<tr>
+						<td>
+							<button ng:class="item.disabled" class="btn"
+								ng:click="check(item,'E')">
+								<span class="ui-button-text">E</span>
+							</button>
+						</td>
+						<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>
+					</tr>
+
+				</table>
+
+
 			</div>
+
 		</div>
 	</div>
 

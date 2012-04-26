@@ -1,4 +1,11 @@
-<!-- Indices written at Mon, 23 Apr 2012 18:47:13 UTC -->
+<!-- Indices written at Thu, 26 Apr 2012 19:51:15 UTC -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 2 times in query history -->
+    <datastore-index kind="LepItem" ancestor="false" source="auto">
+        <property name="sessionId" direction="asc"/>
+        <property name="position" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

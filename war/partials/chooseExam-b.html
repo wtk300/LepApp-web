@@ -1,0 +1,108 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org/">
+<head>
+<meta charset="utf-8">
+<title>Start</title>
+<link rel="stylesheet" href="../css/app.css" />
+</head>
+<body>
+
+
+
+	<div class="main" style="width: 800px">
+		<ng:form>
+			<div id="tabs" lep:tabs>
+				<ul>
+					<li><a href="#tabs-1">Wariant 1</a></li>
+					<li><a href="#tabs-2">Wariant 2</a></li>
+
+				</ul>
+				<div id="tabs-1">
+					<fieldset>
+						<legend>Wybór egzaminu</legend>
+
+						<table>
+							<tr>
+								<td>Wybierz sesję:</td>
+								<td><select name="sessionId" ng:model="sessionId"
+									ng:options="c.id as c.desc for c in sessions.lepSession"
+									class="nullable">
+								</select></td>
+							</tr>
+							<tr>
+								<td>Wybierz język:</td>
+								<td><select ng:model="langId" name="langId"
+									ng:disabled="{{true}}">
+										<option value="10">Polski</option>
+										<option value="20">Angielski</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>Wybierz typ egzaminu:</td>
+								<td><select name="lepTypeId" ng:model="lepTypeId"
+									ng:disabled="{{true}}">
+										<option value="10">LEP</option>
+										<option value="20">LDEP</option>
+								</select></td>
+							</tr>
+							<tr ng:show="lepTypeId == 10">
+								<td>Wybierz poddział:</td>
+								<td><select ng:model="sectionId" ng:disabled="{{true}}">
+										<option value="1">Wszystkie</option>
+										<option value="10">Choroby wew</option>
+										<option value="20">Pediatria</option>
+										<option value="30">Chirurgia</option>
+										<option value="40">Ginekologia i położnictwo</option>
+										<option value="50">Medycyna rodzinna</option>
+										<option value="60">Psychiatria</option>
+										<option value="70">Chirurgia</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<button lep:button ng:click="startExam()"
+										ng:disabled="{{!isUserAuth}}">Uruchom</button>
+								</td>
+							</tr>
+
+
+						</table>
+					</fieldset>
+				</div>
+				<div id="tabs-2">
+					<span>In da progress ...</span>
+
+					<lep:box header="Opcje">
+					
+						<input type="checkbox" id="shuffle" ng:model="schuffle" />
+						<label for="shuffle">losowa kolejność pytań ?</label>
+					</lep:box>
+
+					<lep:box header="Wybierz egzamin">
+
+						<div ng:repeat="item in sessions.lepSession">
+							<input type="checkbox" id="idCheck{{$index}}" checked="checked" /><label
+								for="idCheck{{$index}}">Egzamin {{item.desc}}</label>
+						</div>
+
+					</lep:box>
+
+					<lep:box header="Wybierz poddziały">
+					
+						<div ng:repeat="(id, desc) in lepSections">
+							<input type="checkbox" id="idSection{{id}}" /><label
+								for="idSection{{id}}">{{desc}}</label>
+						</div>
+					</lep:box>
+				</div>
+			</div>
+	</div>
+
+
+	</ng:form>
+
+	<br />
+
+</body>
+</html>
