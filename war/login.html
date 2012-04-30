@@ -4,59 +4,33 @@
 <title>Strona logowania</title>
 </head>
 <body>
+	<div class="well" style="width: 250px">
+
+		<form name="loginForm">
+
+			<b>Login</b> <input type="text" name="j_username" ng:model="username"
+				required autofocus /> <b>Hasło</b> <input type="password"
+				ng:model="password" name="j_password" required />
+
+			<button class="btn btn-primary" ng-click="send()">Zaloguj</button>
+
+		</form>
 
 
-	<div class="DROPSHADOW DROPSHADOW1">
-		<div class="DROPSHADOW DROPSHADOW2">
-			<div class="DROPSHADOW DROPSHADOW3">
-				<div class="DROPSHADOW DROPSHADOW4">
-					<div class="SECTION LOGIN_SECTION">
-						<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-							<div class="main ng-cloak div_padding" ng:cloak >
-
-								<form name="loginForm">
-									<table>
-										<tr>
-											<td>Login</td>
-											<td>
-												<input type="text"  name="j_username" ng:model="username" required autofocus /> 												
-											</td>
-										</tr>
-										<tr>
-											<td>Hasło</td>
-											<td><input type="password" ng:model="password" name="j_password" required /></td>
-										</tr>
-										<tr>
-											<td colspan="2" align="right">
-												<button lepbutton=""  ng-click="send()">Zaloguj</button>
-												
-												
-											</td>
-										</tr>
-									</table>
-
-								</form>
-								
-							
-								<div ng:show="params.code=='401'">
-									<lep:error>								
-								 		Niepoprawne hasło lub login.
-									</lep:error>					
-								</div>				
-								
-
-<!-- 								<div ng:show="params.error==2" >									 -->
-<!-- 									<lep:error errorText="Przekroczona ilość użytkowników dla jednego loginu."></lep:error> -->
-<!-- 								</div> -->
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
+		<div ng:show="params.code=='401'">
+			<div class="alert alert-error">								
+				Niepoprawne hasło lub login.
+			<div>
 		</div>
+
 	</div>
-	
+
+
+	<!-- 								<div ng:show="params.error==2" >									 -->
+	<!-- 									<lep:error errorText="Przekroczona ilość użytkowników dla jednego loginu."></lep:error> -->
+	<!-- 								</div> -->
+
+
 
 </body>
 </html>

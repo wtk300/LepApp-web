@@ -1,77 +1,66 @@
-<div class="DROPSHADOW DROPSHADOW1">
-	<div class="DROPSHADOW DROPSHADOW2">
-		<div class="DROPSHADOW DROPSHADOW3">
-			<div class="DROPSHADOW DROPSHADOW4">
-				<div class="SECTION MEDIUM_SECTION">
-					<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-						<div class="main">
+
+<div class="main">
 
 
-							<fieldset>
-								<legend>Dane kontaktowe</legend>
-								
-									<table ng:cloak class="ng-cloak">
+	<fieldset>
+		<legend>Dane kontaktowe</legend>
 
-										<tr>
-											<td>Imie</td>
-											<td><input type="text" name="firstName"
-												ng:model="contact.firstName" required
-												ng:disabled="{{contact.authUser}}" /></td>
-										</tr>
-										<tr>
-											<td>Nazwisko</td>
-											<td><input type="text" name="lastName"
-												ng:model="contact.lastName" required
-												ng:disabled="{{contact.authUser}}" /></td>
-										</tr>
-										<tr ng:show="!contact.authUser">
-										
-											<td>E-mail</td>
-											<td><input type="email" name="email"
-												ng:model="contact.email" required
-												ng:disabled="{{contact.authUser}}" /></td>
-										</tr>
+		<table ng:cloak class="ng-cloak">
 
-										<tr>
-											<td>Treść</td>
-											<td><textarea rows="6" cols="70" name="content"
-													ng:model="contact.content" required></textarea></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td>
-												<button lep:button ng:click="send()"
-													ng:disabled="{{contactForm.$invalid}}">Wyślij</button>
-												<button lep:button ng:click="clear()">Wyczyść</button>
+			<tr>
+				<td>Imie</td>
+				<td><input type="text" name="firstName"
+					ng:model="contact.firstName" required
+					ng:disabled="{{contact.authUser}}" /></td>
+			</tr>
+			<tr>
+				<td>Nazwisko</td>
+				<td><input type="text" name="lastName"
+					ng:model="contact.lastName" required
+					ng:disabled="{{contact.authUser}}" /></td>
+			</tr>
+			<tr ng:show="!contact.authUser">
 
-											</td>
-										</tr>
-										<tr ng:show="contact.id != undefined && contact.id > 0">
-											<td></td>
-											<td>
-												<div class="success">
-													<p class="success">Kontakt został wysłany poprawnie.</p>
-												</div>
-											</td>
-										</tr>
+				<td>E-mail</td>
+				<td><input type="email" name="email" ng:model="contact.email"
+					required ng:disabled="{{contact.authUser}}" /></td>
+			</tr>
 
-										<tr ng:show="contact.id != undefined && contact.id < 0 ">
-											<td></td>
-											<td>
-												<div class="error" >
-													<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
-												</div>
-											</td>
-										</tr>
+			<tr>
+				<td>Treść</td>
+				<td><textarea rows="6" cols="70" name="content"
+						ng:model="contact.content" required></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button class="btn btn-primary" lep:button ng:click="send()"
+						ng:disabled="{{contactForm.$invalid}}">Wyślij</button>
+					<button class="btn" lep:button ng:click="clear()">Wyczyść</button>
 
-									</table>									
-
-							</fieldset>
-					
-						</div>
+				</td>
+			</tr>
+			<tr ng:show="contact.id != undefined && contact.id > 0">
+				<td></td>
+				<td>
+					<div class="success">
+						<p class="success">Kontakt został wysłany poprawnie.</p>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+				</td>
+			</tr>
+
+			<tr ng:show="contact.id != undefined && contact.id < 0 ">
+				<td></td>
+				<td>
+					<div class="error">
+						<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+
+	</fieldset>
+
 </div>
+

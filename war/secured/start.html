@@ -1,9 +1,10 @@
 
 
 <div style="width: 700px" ng:cloak class="ng-cloak">
-	<div class="MEDIUM_SECTION">
+	<div class="well">
 
-		<lep:box header='Statystyka'>
+		<fieldset>
+			<legend>Statystyka</legend>
 			<table>
 				<tr>
 					<td>Data rozpoczęcia ezgaminu:</td>
@@ -124,7 +125,7 @@
 				</tr>
 
 			</table>
-		</lep:box>
+		</fieldset>
 	</div>
 
 	<br />
@@ -203,7 +204,7 @@
 
 	<br />
 
-	<button lep:button ng:click="finishLepTest()">Zakończ egzamin</button>
+	<button class="btn btn-primary" ng:click="finishLepTest()">Zakończ egzamin</button>
 
 	<div ng:show="error==true" class="error">
 		<p class="error">{{errorMsg}}</p>
