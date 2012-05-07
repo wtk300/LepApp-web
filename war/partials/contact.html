@@ -1,8 +1,5 @@
-
-<div class="main">
-
-
-	<fieldset>
+<form name="contactForm">
+	<fieldset style="padding-top: 20px">
 		<legend>Dane kontaktowe</legend>
 
 		<table ng:cloak class="ng-cloak">
@@ -11,19 +8,19 @@
 				<td>Imie</td>
 				<td><input type="text" name="firstName"
 					ng:model="contact.firstName" required
-					ng:disabled="{{contact.authUser}}" /></td>
+					ng:disabled="contact.authUser" /></td>
 			</tr>
 			<tr>
 				<td>Nazwisko</td>
 				<td><input type="text" name="lastName"
-					ng:model="contact.lastName" required
-					ng:disabled="{{contact.authUser}}" /></td>
+					ng:model="contact.lastName" required ng:disabled="contact.authUser" />
+				</td>
 			</tr>
 			<tr ng:show="!contact.authUser">
 
 				<td>E-mail</td>
 				<td><input type="email" name="email" ng:model="contact.email"
-					required ng:disabled="{{contact.authUser}}" /></td>
+					required ng:disabled="contact.authUser" /></td>
 			</tr>
 
 			<tr>
@@ -35,8 +32,8 @@
 				<td></td>
 				<td>
 					<button class="btn btn-primary" lep:button ng:click="send()"
-						ng:disabled="{{contactForm.$invalid}}">Wyślij</button>
-					<button class="btn" lep:button ng:click="clear()">Wyczyść</button>
+						ng:disabled="contactForm.$invalid">Wyślij</button>
+					<button class="btn" ng:click="clear()">Wyczyść</button>
 
 				</td>
 			</tr>
@@ -59,8 +56,8 @@
 			</tr>
 
 		</table>
+		
 
 	</fieldset>
-
-</div>
+</form>
 

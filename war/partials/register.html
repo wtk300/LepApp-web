@@ -1,152 +1,134 @@
-<div class="DROPSHADOW DROPSHADOW2">
-	<div class="DROPSHADOW DROPSHADOW3">
-		<div class="DROPSHADOW DROPSHADOW4">
-			<div class="SECTION MEDIUM_SECTION">
-				<div class="SECTION_CONTENT_IMAGE_START SECTION_BODY">
-					<div class="main">
 
-						<form name="registerForm">
-						
-						
-							<fieldset>
-								<legend>Dane użytkownika</legend>
-
-								<table>
-									<tr>
-										<td>Login</td>
-										<td>
-											<input type="text" name="login" ng:model="newUser.login" required ng:pattern="loginPattern" /> 											
-											
-										</td>
-										<td>
-											<span class="error" ng:show="registerForm.login.$error.REQUIRED && showError">{{requiredField}}</span>
-											<span class="error_hint" ng:show="registerForm.login.$error.PATTERN">Nazwa musi mieć nie mniej niż 3 znaki i nie więcej niż 25. Musi zaczynać się od litery. Może składać się z małych liter, cyfr oraz znaku "_"</span>
-										</td>
-									</tr>
-									<tr>
-										<td>Hasło</td>
-										<td>
-											<input type="password" name="password" ng:model="newUser.password" ng:pattern="passwordPattern" required /> 
-											
-										</td>
-										<td>
-											<span class="error" ng:show="registerForm.password.$error.REQUIRED && showError">{{requiredField}}</span>
-											<span class="error_hint" ng:show="registerForm.password.$error.PATTERN">
-												Hasło musi zawierać co najmniej 5 małych i wielkich liter bez polskich znaków
-											</span> 
-											
-										</td>
-									</tr>
-									<tr>
-										<td>Powtórz hasło</td>
-										<td><input type="password" name="repeatpassword" ng:model="newUser.repeatpassword" required /> 
-																						
-										</td>
-										<td>
-											<span class="error" ng:show="registerForm.repeatpassword.$error.REQUIRED && showError">{{requiredField}}</span>
-											<span class="error_hint" ng:show="registerForm.repeatpassword.$valid && registerForm.password.$valid && newUser.password != newUser.repeatpassword">
-												Hasła muszą być identyczne.</span>
-										</td>
-									</tr>
-
-									<tr>
-										<td>Imię</td>
-										<td><input type="text" name="firstName" ng:model="newUser.firstName" required /></td>
-										<td><span class="error" ng:show="registerForm.firstName.$error.REQUIRED && showError">{{requiredField}}</span></td>
-									</tr>
-									<tr>
-										<td>Nazwisko</td>
-										<td>
-											<input type="text" name="lastName" ng:model="newUser.lastName" required /> 										
-										</td>
-										<td>
-											<span class="error" ng:show="registerForm.lastName.$error.REQUIRED && showError">{{requiredField}}</span>
-										</td>
-
-									</tr>
+<form name="registerForm">
 
 
-									<tr>
-										<td>E-mail</td>
-										<td>
-											<input type="email" name="email" ng:model="newUser.email" required/> 
-											
-										</td>
-										<td>
-											<span class="error" ng:show="registerForm.email.$error.REQUIRED && showError">{{requiredField}}</span>
-											<span class="error_hint"  ng:show="registerForm.email.$error.EMAIL">Nieproprawny format e-mail.</span>
-											
-										</td>
-									</tr>
+	<fieldset style="padding-top: 20px">
+		<legend>Dane użytkownika</legend>
 
-									<tr>
-										<td>Akceptuję regulamin</td>
-										<td><input type="checkbox" name="acceptTerms" ng:model="newUser.acceptTerms" /></td>
-										<td></td>
-											
-									</tr>
+		<table>
+			<tr>
+				<td>Login</td>
+				<td><input type="text" name="login" ng:model="newUser.login"
+					required ng:pattern="loginPattern" /></td>
+				<td><span class="error"
+					ng:show="registerForm.login.$error.REQUIRED && showError">{{requiredField}}</span>
+					<span class="error_hint" ng:show="registerForm.login.$error.PATTERN">Nazwa musi mieć
+						nie mniej niż 3 znaki i nie więcej niż 25. Musi zaczynać się od
+						litery. Może składać się z małych liter, cyfr oraz znaku "_"</span></td>
+			</tr>
+			<tr>
+				<td>Hasło</td>
+				<td><input type="password" name="password"
+					ng:model="newUser.password" ng:pattern="passwordPattern" required />
 
-									<tr>
-										<td></td>
-										<td>
-											<button class="btn btn-primary" lep:button ng:click="register()">Zapisz</button>
-											<button class="btn" lep:button ng:click="cancel()">Anuluj</button>
-										</td>
-										<td></td>
-										
-									</tr>
+				</td>
+				<td><span class="error"
+					ng:show="registerForm.password.$error.REQUIRED && showError">{{requiredField}}</span>
+					<span class="error_hint"
+					ng:show="registerForm.password.$error.PATTERN"> Hasło musi
+						zawierać co najmniej 5 małych i wielkich liter bez polskich znaków
+				</span></td>
+			</tr>
+			<tr>
+				<td>Powtórz hasło</td>
+				<td><input type="password" name="repeatpassword"
+					ng:model="newUser.repeatpassword" required /></td>
+				<td><span class="error"
+					ng:show="registerForm.repeatpassword.$error.REQUIRED && showError">{{requiredField}}</span>
+					<span class="error_hint"
+					ng:show="registerForm.repeatpassword.$valid && registerForm.password.$valid && newUser.password != newUser.repeatpassword">
+						Hasła muszą być identyczne.</span></td>
+			</tr>
+
+			<tr>
+				<td>Imię</td>
+				<td><input type="text" name="firstName"
+					ng:model="newUser.firstName" required /></td>
+				<td><span class="error"
+					ng:show="registerForm.firstName.$error.REQUIRED && showError">{{requiredField}}</span></td>
+			</tr>
+			<tr>
+				<td>Nazwisko</td>
+				<td><input type="text" name="lastName"
+					ng:model="newUser.lastName" required /></td>
+				<td><span class="error"
+					ng:show="registerForm.lastName.$error.REQUIRED && showError">{{requiredField}}</span>
+				</td>
+
+			</tr>
+
+
+			<tr>
+				<td>E-mail</td>
+				<td><input type="email" name="email" ng:model="newUser.email"
+					required /></td>
+				<td><span class="error"
+					ng:show="registerForm.email.$error.REQUIRED && showError">{{requiredField}}</span>
+					<span class="error_hint" ng:show="registerForm.email.$error.EMAIL">Nieproprawny
+						format e-mail.</span></td>
+			</tr>
+
+			<tr>
+				<td>Akceptuję regulamin</td>
+				<td><input type="checkbox" name="acceptTerms"
+					ng:model="newUser.acceptTerms" /></td>
+				<td></td>
+
+			</tr>
+
+			<tr>
+				<td></td>
+				<td>
+					<button class="btn btn-primary" lep:button ng:click="register()">Zapisz</button>
+					<button class="btn" lep:button ng:click="cancel()">Anuluj</button>
+				</td>
+				<td></td>
+
+			</tr>
 
 
 
-									<tr ng:show="showSuccessRegistration">
-										<td></td>
-										<td>
-											<div class="success" style="width: 270px">
-												<span class="success">Konto zostało założone.</span>
-											</div>
-										</td>
-										<td>
-										</td>
-										
-									</tr>
-
-									<tr ng:show="showBusyLogin">
-										<td></td>
-										<td>
-											<div class="error" style="width: 270px">
-												<span class="error">Login jest już zajęty.</span>
-											</div>
-										</td>
-										<td>
-										</td>
-										
-									</tr>
-
-									<tr ng:show="!newUser.acceptTerms && showError">
-										<td></td>
-										<td>
-											<div class="info" style="width: 270px">
-												<span>Musisz zaakceptować regulamin.</span>
-											</div>
-										</td>
-										<td>
-										</td>
-										
-									</tr>
-
-
-								</table>
-
-
-
-
-							</fieldset>
-
-						</form>
-
+			<tr ng:show="showSuccessRegistration">
+				<td></td>
+				<td>
+					<div class="alert alert-success" style="width: 270px">
+						<span class="success">Konto zostało założone.</span>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+				</td>
+				<td></td>
+
+			</tr>
+
+			<tr ng:show="showBusyLogin">
+				<td></td>
+				<td>
+					<div class="alert alert-error" style="width: 270px">
+						<span class="error">Login jest już zajęty.</span>
+					</div>
+				</td>
+				<td></td>
+
+			</tr>
+
+			<tr ng:show="!newUser.acceptTerms && showError">
+				<td></td>
+				<td>
+				
+					<div  class="alert alert-info" style="width: 270px;">
+						<span>Musisz zaakceptować regulamin.</span>
+					</div>
+				</td>
+				<td></td>
+
+			</tr>
+
+
+		</table>
+
+
+
+
+	</fieldset>
+
+</form>
+

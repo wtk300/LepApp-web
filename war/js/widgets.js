@@ -42,7 +42,32 @@ angular.module('lepModule.widgets', [])
         		 iElement.tab('show')
              }
         }
+               
+    })
+    
+    .directive('lepPopover', function() {
     	
+        return {
+        	 restrict : 'A',
+        	        	
+        	 link: function(scope, iElement, iAttrs, controller){
+        		 
+        		 iElement.popover();
+             }
+        }             
+    })
+    
+      .directive('lepTooltip', function() {
+    	
+        return {
+        	 restrict : 'A',
+        	        	
+        	 link: function(scope, iElement, iAttrs, controller){
+        		 
+        		 iElement.tooltip();
+             }
+        }
+               
     })
     
 	.directive('lepBox', function() {

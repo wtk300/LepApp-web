@@ -25,7 +25,7 @@
 				<tr>
 					<td>Wybierz język:</td>
 					<td><select ng:model="langId" name="langId"
-						ng:disabled="{{true}}">
+						ng:disabled="true">
 							<option value="10">Polski</option>
 							<option value="20">Angielski</option>
 					</select></td>
@@ -33,7 +33,7 @@
 				<tr>
 					<td>Wybierz typ egzaminu:</td>
 					<td><select name="lepTypeId" ng:model="lepTypeId"
-						ng:disabled="{{true}}">
+						ng:disabled="true">
 							<option value="10">LEP</option>
 							<option value="20">LDEP</option>
 					</select></td>
@@ -57,7 +57,7 @@
 
 
 						<button class="btn btn-primary" ng:click="startExam()"
-							ng:disabled="{{!isUserAuth}}">Uruchom</button>
+							ng-disabled="!isUserAuth">Uruchom</button>
 					</td>
 				</tr>
 
@@ -68,66 +68,63 @@
 			<span>In da progress ...</span>
 
 			<div style="width: 400 px">
-			
-		 <div class="accordion" id="accordion2">
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                 Opcje
-                </a>
-              </div>
-              <div id="collapseOne" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                 <label class="checkbox" for="shuffle">
-					<input type="checkbox" id="shuffle" ng:model="schuffle" /> losowa kolejność pytań ?
-				</label>
 
-                </div>
-              </div>
-            </div>
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                  Wybierz egzaminy
-                </a>
-              </div>
-              <div id="collapseTwo" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                <div ng:repeat="item in sessions.lepSession">
-					
-					 <label class="checkbox">
-    						<input type="checkbox" checked="checked" >Egzamin {{item.desc}}
-  					 </label>
-				
+				<div class="accordion" id="accordion2">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#collapseOne"> Opcje </a>
+						</div>
+						<div id="collapseOne" class="accordion-body collapse in">
+							<div class="accordion-inner">
+								<label class="checkbox" for="shuffle"> <input
+									type="checkbox" id="shuffle" ng:model="schuffle" /> losowa
+									kolejność pytań ?
+								</label>
+
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#collapseTwo"> Wybierz
+								egzaminy </a>
+						</div>
+						<div id="collapseTwo" class="accordion-body collapse in">
+							<div class="accordion-inner">
+								<div ng:repeat="item in sessions.lepSession">
+
+									<label class="checkbox"> <input type="checkbox"
+										checked="checked">Egzamin {{item.desc}}
+									</label>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#collapseThree"> 
+								Wybierz poddziały </a>
+						</div>
+						<div id="collapseThree" class="accordion-body collapse in">
+							<div class="accordion-inner">
+								<div ng:repeat="(id, desc) in lepSections">
+
+									<label class="checkbox"> 
+										<input type="checkbox" checked="checked">{{desc}}
+									</label>
+								</div>
+
+							</div>
+						</div>
+					</div>
 				</div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                  Wybierz poddziały
-                </a>
-              </div>
-              <div id="collapseThree" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                	<div ng:repeat="(id, desc) in lepSections">
-					
-						 <label class="checkbox">
-    						<input type="checkbox" checked="checked" >{{desc}}
-  					 	</label>
-				</div>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-				 
+					<button class="btn btn-primary" ng:click="startExam()"
+							ng-disabled="!isUserAuth">Uruchom</button>
 				
-				
-
-				
-
 			</div>
 
 		</div>

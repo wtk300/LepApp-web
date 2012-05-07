@@ -282,7 +282,7 @@ function ResolveExamCtrl(self,$startService, $window) {
 
 		}	
 		item.disabled = value;
-		item.dis = true;
+		item.isdisabled = true;
 
 	}
 

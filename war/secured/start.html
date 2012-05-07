@@ -148,8 +148,7 @@
 
 
 						<td>
-							<button ng:class="item.disabled" class="btn"
-								ng:click="check(item,'A')" ng:disabled="{{item.dis}}">
+							<button ng:class="item.disabled" class="btn" ng:click="check(item,'A')" ng:disabled="item.isdisabled">
 								<span>A</span>
 							</button>
 						</td>
@@ -159,36 +158,32 @@
 					</tr>
 					<tr>
 						<td>
-							<button ng:class="item.disabled" class="btn"
-								ng:click="check(item,'B')" ng:disabled="{{true}}">
-								<span class="ui-button-text">B</span>
+							<button ng:class="item.disabled" class="btn" ng:click="check(item,'B')" ng:disabled="item.isdisabled">
+								<span>B</span>
 							</button>
 						</td>
 						<td><span id="spanb" ng:class="item.styleB">{{item.answer_b}}</span></td>
 					</tr>
 					<tr>
 						<td>
-							<button ng:class="item.disabled" class="btn"
-								ng:click="check(item,'C')">
-								<span class="ui-button-text">C</span>
+							<button ng:class="item.disabled" class="btn" ng:click="check(item,'C')" ng:disabled="item.isdisabled">
+								<span>C</span>
 							</button>
 						</td>
 						<td><span id="spanc" ng:class="item.styleC">{{item.answer_c}}</span></td>
 					</tr>
 					<tr>
 						<td>
-							<button ng:class="item.disabled" class="btn"
-								ng:click="check(item,'D')">
-								<span class="ui-button-text">D</span>
+							<button ng:class="item.disabled" class="btn" ng:click="check(item,'D')" ng:disabled="item.isdisabled">
+								<span>D</span>
 							</button>
 						</td>
 						<td><span id="spand" ng:class="item.styleD">{{item.answer_d}}</span></td>
 					</tr>
 					<tr>
 						<td>
-							<button ng:class="item.disabled" class="btn"
-								ng:click="check(item,'E')">
-								<span class="ui-button-text">E</span>
+							<button ng:class="item.disabled" class="btn" ng:click="check(item,'E')" ng:disabled="item.isdisabled">
+								<span>E</span>
 							</button>
 						</td>
 						<td><span id="spane" ng:class="item.styleE">{{item.answer_e}}</span></td>

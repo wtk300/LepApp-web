@@ -2,7 +2,7 @@
 <html xmlns:ng="http://angularjs.org" ng:app="lepModule" lang="pl">
   <head>
     <meta charset="utf-8">
-    <title>Lep App</title>
+    <title>MyLep</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">LEP App</a>
+          <a class="brand" href="#">MyLep</a>
           <div class="nav-collapse">
             <ul class="nav">
               
@@ -46,9 +46,10 @@
               <li><a href="#/news">Aktualności</a></li>
               <li><a href="#/contact">Kontakt</a></li>
               <li><a href="#/login">Twoje konto</a></li>
-              <li><a href="#/chooseExam">Ezgamin</a></li>
+              <li><a href="#/chooseExam">Egzamin</a></li>
               <li><a href="#/register">Rejestracja</a></li>
               <li><a href="#/aboutExam">O egzaminie</a></li>
+              <li ng:show="isAuth"><a href="#/logout">Wyloguj {{loggedUser.user.login}}</a></li>
               
             </ul>
           </div><!--/.nav-collapse -->
@@ -76,8 +77,16 @@
 <!-- 		  </li> -->
 
 <!-- </ul> -->
-
-	 <ng:view></ng:view>	
+	<div ng-view></div>
+	 	
+	 
+<!-- 	 <div class="span9 columns"> -->
+<!--           <h2>Example use of Tooltips</h2> -->
+<!--           <p>Hover over the links below to see tooltips:</p> -->
+<!--           <div class="tooltip-demo well"> -->
+<!--             <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <a href="#" title="first tooltip" lep-tooltip>you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a href="#" rel="tooltip" title="Another tooltip">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <a href="#" rel="tooltip" title="Another one here too">whatever keytar</a>, scenester farm-to-table banksy Austin <a href="#" rel="tooltip" title="The last tip!">twitter handle</a> freegan cred raw denim single-origin coffee viral. -->
+<!--             </p> -->
+<!--           </div> -->
 	 
 <!-- 	    <ul class="nav nav-pills">            -->
 <!--             <li class="dropdown"> -->
