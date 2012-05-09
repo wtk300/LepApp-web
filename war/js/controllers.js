@@ -186,7 +186,7 @@ function LepExamCtrl(self,sessionService, securityService, startService, $locati
 		});
 	}
 
-	self.sessionId = "10";
+	self.sessionId = 10;
 
 	self.langId = 10;
 

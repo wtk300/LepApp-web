@@ -27,15 +27,26 @@ angular.module('lepModule.services', [], function($provide) {
 		  
 		  return {
 		        getSessionsInfo: function(){
-		            var res = resource('resources/lep/sessions',{},
-		            {
-		                retrive : {
-		                    method: 'GET',
-		                    verifyCache: false
-		                    
-		                }
-		            });            
-		            return res.retrive();
+//		            var res = resource('resources/lep/sessions',{},
+//		            {
+//		                retrive : {
+//		                    method: 'GET',
+//		                    verifyCache: false
+//		                    
+//		                }
+//		            });            
+//		            return res.retrive();
+		        	var sessions = [
+		        			{id : 10, desc:'2008-09'},
+		        			{id : 20, desc:'2009-02'},
+		        			{id : 30, desc:'2009-09'},
+		        			{id : 40, desc:'2010-02'},
+		        			{id : 50, desc:'2010-09'},
+		        			{id : 60, desc:'2011-02'},
+		        			{id : 70, desc:'2011-09'},
+		        			{id : 80, desc:'2012-02'}		        		
+		        	];
+		        	return sessions;
 		        },
 		        getLepTypes: function(){
 		        	var types = {

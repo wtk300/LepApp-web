@@ -18,8 +18,7 @@
 				<tr>
 					<td>Wybierz sesję:</td>
 					<td><select name="sessionId" ng:model="sessionId"
-						ng:options="c.id as c.desc for c in sessions.lepSession"
-						class="nullable">
+						ng:options="c.id as c.desc for c in sessions">
 					</select></td>
 				</tr>
 				<tr>
@@ -93,7 +92,7 @@
 						</div>
 						<div id="collapseTwo" class="accordion-body collapse in">
 							<div class="accordion-inner">
-								<div ng:repeat="item in sessions.lepSession">
+								<div ng:repeat="item in sessions">
 
 									<label class="checkbox"> <input type="checkbox"
 										checked="checked">Egzamin {{item.desc}}

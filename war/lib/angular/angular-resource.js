@@ -1,9 +1,9 @@
 /**
- * @license AngularJS v1.0.0rc6
+ * @license AngularJS v1.0.0rc8
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(angular) {
+(function(window, angular, undefined) {
 'use strict';
 
 /**
@@ -48,12 +48,12 @@
  *
  *   Where:
  *
- *   - `action` – {string} – The name of action. This name becomes the name of the method on your
+ *   - `action` â€“ {string} â€“ The name of action. This name becomes the name of the method on your
  *     resource object.
- *   - `method` – {string} – HTTP request method. Valid methods are: `GET`, `POST`, `PUT`, `DELETE`,
+ *   - `method` â€“ {string} â€“ HTTP request method. Valid methods are: `GET`, `POST`, `PUT`, `DELETE`,
  *     and `JSONP`
- *   - `params` – {object=} – Optional set of pre-bound parameters for this action.
- *   - isArray – {boolean=} – If true then the returned object for this action is an array, see
+ *   - `params` â€“ {object=} â€“ Optional set of pre-bound parameters for this action.
+ *   - isArray â€“ {boolean=} â€“ If true then the returned object for this action is an array, see
  *     `returns` section.
  *
  * @returns {Object} A resource "class" object with methods for the default set of resource actions
@@ -425,4 +425,4 @@ angular.module('ngResource', ['ng']).
     return ResourceFactory;
   }]);
 
-})(window.angular);
+})(window, window.angular);
