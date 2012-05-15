@@ -116,8 +116,8 @@ function ContactCtrl($scope,contactService, securityService) {
 
 	});
 
-	$scope.send = function() {
-		$scope.response = contactService.registerContact($scope.contact);
+	$scope.send = function() {		
+		$scope.response = contactService.registerContact($scope.contact);		
 
 	}
 
@@ -246,9 +246,11 @@ function ResolveExamCtrl(self,$startService, $window) {
 		return self.quantity;
 	}
 
-	self.finishLepTest = function() {
+	self.finishExam = function() {
 		self.endLep = new Date();
 		if (angular.isArray(self.lepItems.lepItems)) {
+			
+			//Array count nie dziala
 			var count = angular.Array.count(self.lepItems.lepItems, function(
 					lepItem) {
 				return !lepItem.disabled;

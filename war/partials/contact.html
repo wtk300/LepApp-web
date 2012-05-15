@@ -1,63 +1,126 @@
-<form name="contactForm">
-	<fieldset style="padding-top: 20px">
-		<legend>Dane kontaktowe</legend>
-
-		<table ng:cloak class="ng-cloak">
-
-			<tr>
-				<td>Imie</td>
-				<td><input type="text" name="firstName"
+ <div class="span8">
+      <form class="form-horizontal" name="contactForm">
+        <fieldset>
+        <legend>Dane kontaktowe</legend>
+          <div class="control-group">
+            <label class="control-label" for="firstName">Imie</label>
+            <div class="controls">
+              <input class="input-xlarge" 
+              		id="firstName" type="text" name="firstName"
 					ng:model="contact.firstName" required
-					ng:disabled="contact.authUser" /></td>
-			</tr>
-			<tr>
-				<td>Nazwisko</td>
-				<td><input type="text" name="lastName"
-					ng:model="contact.lastName" required ng:disabled="contact.authUser" />
-				</td>
-			</tr>
-			<tr ng:show="!contact.authUser">
-
-				<td>E-mail</td>
-				<td><input type="email" name="email" ng:model="contact.email"
-					required ng:disabled="contact.authUser" /></td>
-			</tr>
-
-			<tr>
-				<td>Treść</td>
-				<td><textarea rows="6" cols="70" name="content"
-						ng:model="contact.content" required></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<button class="btn btn-primary" lep:button ng:click="send()"
+					ng:disabled="contact.authUser">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="lastName">Nazwisko</label>
+            <div class="controls">
+              <input class="input-xlarge" id="lastName" type="text" name="lastName"
+					ng:model="contact.lastName" required 
+					ng:disabled="contact.authUser" >
+            </div>
+          </div>
+          
+          <div class="control-group error">
+            <label class="control-label" for="emailid">E-mail</label>
+            <div class="controls">
+              <input class="input-xlarge" id="emailid" type="email" name="email" 
+              		ng-model="contact.email" required 
+              		ng-disabled="contact.authUser">
+              		
+              		<span class="help-inline" ng-show="contactForm.email.$error.email">Not valid email!</span>
+            </div>
+          </div>
+          
+         <div class="control-group">
+            <label class="control-label" for="content">Treść</label>
+            <div class="controls">
+              
+              		<textarea class="input-xlarge" rows="6" cols="70" name="content" ng:model="contact.content" required></textarea>
+            </div>
+            
+          </div>
+          
+          
+           <div class="form-actions">
+           		<button class="btn btn-primary" 
+           				ng-click="send()"
 						ng:disabled="contactForm.$invalid">Wyślij</button>
-					<button class="btn" ng:click="clear()">Wyczyść</button>
+				<button class="btn" ng:click="clear()">Wyczyść</button> 
+            
+           
+          </div>
+          </fieldset>
+       
+          
+      </form>
+      
+        
 
-				</td>
-			</tr>
-			<tr ng:show="contact.id != undefined && contact.id > 0">
-				<td></td>
-				<td>
-					<div class="success">
-						<p class="success">Kontakt został wysłany poprawnie.</p>
-					</div>
-				</td>
-			</tr>
+</div>
 
-			<tr ng:show="contact.id != undefined && contact.id < 0 ">
-				<td></td>
-				<td>
-					<div class="error">
-						<p class="error">Wystąpił błąd: {{errorMsg | json}}</p>
-					</div>
-				</td>
-			</tr>
+<!-- <form name="contactForm"> -->
+<!-- 	<fieldset style="padding-top: 20px"> -->
+<!-- 		<legend>Dane kontaktowe</legend> -->
 
-		</table>
+<!-- 		<table ng:cloak class="ng-cloak"> -->
+
+<!-- 			<tr> -->
+<!-- 				<td>Imie</td> -->
+<!-- 				<td><input type="text" name="firstName" -->
+<!-- 					ng:model="contact.firstName" required -->
+<!-- 					ng:disabled="contact.authUser"></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>Nazwisko</td> -->
+<!-- 				<td><input type="text" name="lastName" -->
+<!-- 					ng:model="contact.lastName" required  -->
+<!-- 					ng:disabled="contact.authUser" > -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+
+<!-- 				<td>E-mail</td> -->
+<!-- 				<td><input type="email" name="email"  -->
+<!-- 					ng:model="contact.email" -->
+<!-- 					required ng:disabled="contact.authUser"></td> -->
+<!-- 			</tr> -->
+
+<!-- 			<tr class="control-group error">			 -->
+<!-- 				<td>Treść</td> -->
+<!-- 				<td><textarea rows="6" cols="70" name="content" -->
+<!-- 						ng:model="contact.content" required></textarea></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td></td> -->
+<!-- 				<td> -->
+<!-- 					<button class="btn btn-primary" ng-click="send()" -->
+<!-- 						ng:disabled="contactForm.$invalid">Wyślij</button> -->
+<!-- 					<button class="btn" ng:click="clear()">Wyczyść</button> -->
+
+<!-- 				</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr ng:show="contact.id != undefined && contact.id > 0"> -->
+<!-- 				<td></td> -->
+<!-- 				<td> -->
+<!-- 					<div class="success"> -->
+<!-- 						<p class="success">Kontakt został wysłany poprawnie.</p> -->
+<!-- 					</div> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+
+<!-- 			<tr ng:show="contact.id != undefined && contact.id < 0 "> -->
+<!-- 				<td></td> -->
+<!-- 				<td> -->
+<!-- 					<div class="error"> -->
+<!-- 						<p class="error">Wystąpił błąd: {{errorMsg | json}}</p> -->
+<!-- 					</div> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+
+<!-- 		</table> -->
 		
 
-	</fieldset>
-</form>
+<!-- 	</fieldset> -->
+<!-- </form> -->
 

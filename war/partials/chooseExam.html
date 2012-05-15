@@ -5,7 +5,8 @@
 <title>Start</title>
 </head>
 <body>
-
+	<div class="span8">		
+	<form class="form-horizontal">		
 
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#v1" data-toggle="tab">Wariant#1</a></li>
@@ -14,32 +15,42 @@
 
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade in active" id="v1">
-			<table>
-				<tr>
-					<td>Wybierz sesję:</td>
-					<td><select name="sessionId" ng:model="sessionId"
-						ng:options="c.id as c.desc for c in sessions">
-					</select></td>
-				</tr>
-				<tr>
-					<td>Wybierz język:</td>
-					<td><select ng:model="langId" name="langId"
-						ng:disabled="true">
+		
+				<div class="control-group">
+					<label class="control-label" for="sessionId">Wybierz sesję:</label>
+					<div class="controls">
+						<select id="sessionId" name="sessionId" ng:model="sessionId"
+							ng:options="c.id as c.desc for c in sessions">
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="langId">Imie</label>
+					<div class="controls">
+						<select id="landId" ng:model="langId" name="langId"
+							ng:disabled="true">
 							<option value="10">Polski</option>
 							<option value="20">Angielski</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Wybierz typ egzaminu:</td>
-					<td><select name="lepTypeId" ng:model="lepTypeId"
-						ng:disabled="true">
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="lepTypeId">Wybierz typ egzaminu:</label>
+					<div class="controls">
+						<select id="lepTypeId" name="lepTypeId" ng:model="lepTypeId"
+							ng:disabled="true">
 							<option value="10">LEP</option>
 							<option value="20">LDEP</option>
-					</select></td>
-				</tr>
-				<tr ng:show="lepTypeId == 10">
-					<td>Wybierz poddział:</td>
-					<td><select ng:model="sectionId" name="sectionId">
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="sectionId">Wybierz poddział:</label>
+					<div class="controls">
+						<select id="sectionId" ng:model="sectionId" name="sectionId">
 							<option value="1">Wszystkie</option>
 							<option value="10">Choroby wew</option>
 							<option value="20">Pediatria</option>
@@ -48,93 +59,127 @@
 							<option value="50">Medycyna rodzinna</option>
 							<option value="60">Psychiatria</option>
 							<option value="70">Chirurgia</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-
-
-						<button class="btn btn-primary" ng:click="startExam()"
-							ng-disabled="!isUserAuth">Uruchom</button>
-					</td>
-				</tr>
-
-
-			</table>
-		</div>
-		<div class="tab-pane fade" id="v2">
-			<span>In da progress ...</span>
-
-			<div style="width: 400 px">
-
-				<div class="accordion" id="accordion2">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion2" href="#collapseOne"> Opcje </a>
-						</div>
-						<div id="collapseOne" class="accordion-body collapse in">
-							<div class="accordion-inner">
-								<label class="checkbox" for="shuffle"> <input
-									type="checkbox" id="shuffle" ng:model="schuffle" /> losowa
-									kolejność pytań ?
-								</label>
-
-							</div>
-						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion2" href="#collapseTwo"> Wybierz
-								egzaminy </a>
-						</div>
-						<div id="collapseTwo" class="accordion-body collapse in">
-							<div class="accordion-inner">
-								<div ng:repeat="item in sessions">
-
-									<label class="checkbox"> <input type="checkbox"
-										checked="checked">Egzamin {{item.desc}}
-									</label>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion2" href="#collapseThree"> 
-								Wybierz poddziały </a>
-						</div>
-						<div id="collapseThree" class="accordion-body collapse in">
-							<div class="accordion-inner">
-								<div ng:repeat="(id, desc) in lepSections">
-
-									<label class="checkbox"> 
-										<input type="checkbox" checked="checked">{{desc}}
-									</label>
-								</div>
-
-							</div>
-						</div>
+						</select>
 					</div>
 				</div>
-					<button class="btn btn-primary" ng:click="startExam()"
-							ng-disabled="!isUserAuth">Uruchom</button>
+
+				  <div class="form-actions">
+				  
+						<button class="btn btn-primary" ng:click="startExam()" ng-disabled="!isUserAuth">Uruchom</button>
+				  </div>
+
+		</div>
+		<div class="tab-pane fade" id="v2">
+<!-- 			<span>In da progress ...</span> -->
+			
+<!-- 			  <fieldset> -->
+<!--         		<legend>Opcje</legend> -->
+        		
+<!--         			<div class="control-group"> -->
+<!-- 						<label class="control-label" for="shuffle">losowa kolejność pytań</label> -->
+<!-- 						<div class="controls"> -->
+<!-- 							<input type="checkbox" id="shuffle" ng:model="schuffle" > -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+        		
+<!--         	</fieldset> -->
+        	
+        	
+			  <fieldset>
+        		<legend>Wybierz egzaminy</legend>
+        			        			
+        			<div class="control-group" ng:repeat="item in sessions">
+						<label class="control-label" for="egz{{$index}}">Egzamin {{item.desc}}</label>
+						<div class="controls">
+							<input type="checkbox" checked="checked" id="egz{{$index}}" >
+						</div>
+					</div>
+        		
+        	 </fieldset>
+        	 
+        	   <fieldset>
+        		<legend>Wybierz poddziały</legend>
+        		
+        		<div class="control-group"  ng:repeat="(id, desc) in lepSections">
+						<label class="control-label" for="subsec{{$index}}">{{desc}}</label>
+						<div class="controls">
+							<input type="checkbox" checked="checked" id="subsec{{$index}}" >
+						</div>
+					</div>
+        		
+        		</fieldset>
+        		
+        		 <div class="form-actions">
+        		
+        		<button class="btn btn-primary" ng:click="startExam()"
+					ng-disabled="!isUserAuth">Uruchom</button>
+        	 
+        	 </div>
+        	  
+
+<!-- 			<div style="width: 400 px"> -->
+<!-- 			<div> -->
+
+<!-- 				<div class="accordion" id="accordion2"> -->
+<!-- 					<div class="accordion-group"> -->
+<!-- 						<div class="accordion-heading"> -->
+<!-- 							<a class="accordion-toggle" data-toggle="collapse" -->
+<!-- 								data-parent="#accordion2" href="#collapseOne"> Opcje </a> -->
+<!-- 						</div> -->
+<!-- 						<div id="collapseOne" class="accordion-body collapse in"> -->
+<!-- 							<div class="accordion-inner"> -->
+<!-- 								<label class="checkbox" for="shuffle">  -->
+<!-- 								<input type="checkbox" id="shuffle" ng:model="schuffle" /> losowa kolejność pytań ? -->
+<!-- 								</label> -->
+
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="accordion-group"> -->
+<!-- 						<div class="accordion-heading"> -->
+<!-- 							<a class="accordion-toggle" data-toggle="collapse" -->
+<!-- 								data-parent="#accordion2" href="#collapseTwo"> Wybierz -->
+<!-- 								egzaminy </a> -->
+<!-- 						</div> -->
+<!-- 						<div id="collapseTwo" class="accordion-body collapse in"> -->
+<!-- 							<div class="accordion-inner"> -->
+<!-- 								<div ng:repeat="item in sessions"> -->
+
+<!-- 									<label class="checkbox"> <input type="checkbox" -->
+<!-- 										checked="checked">Egzamin {{item.desc}} -->
+<!-- 									</label> -->
+
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="accordion-group"> -->
+<!-- 						<div class="accordion-heading"> -->
+<!-- 							<a class="accordion-toggle" data-toggle="collapse" -->
+<!-- 								data-parent="#accordion2" href="#collapseThree"> Wybierz -->
+<!-- 								poddziały </a> -->
+<!-- 						</div> -->
+<!-- 						<div id="collapseThree" class="accordion-body collapse in"> -->
+<!-- 							<div class="accordion-inner"> -->
+<!-- 								<div ng:repeat="(id, desc) in lepSections"> -->
+
+<!-- 									<label class="checkbox"> <input type="checkbox" -->
+<!-- 										checked="checked">{{desc}} -->
+<!-- 									</label> -->
+<!-- 								</div> -->
+
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				
+
 			</div>
 
 		</div>
-
+	</form>
 	</div>
 
-	<hr>
-
-	</ng:form>
-
-	<br />
-
+	
 </body>
 </html>
