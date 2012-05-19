@@ -111,6 +111,7 @@ public class LepResource {
 			 user.setLogin(auth.getName());
 			 user.setFirstName(authUser.getFirstName());
 			 user.setLastName(authUser.getLastName());
+			 user.setEmail(authUser.getEmail());
 			 user.setIsAuth(true);
 
 		

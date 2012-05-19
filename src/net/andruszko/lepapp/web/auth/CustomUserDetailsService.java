@@ -25,7 +25,7 @@ public class CustomUserDetailsService  implements UserDetailsService {
 			throw new UsernameNotFoundException("User not found "+userName);
 		}
 		
-		CustomAuthUser user = new CustomAuthUser(dbUser.getLogin(),dbUser.getPassword(),dbUser.getFirstName(),dbUser.getLastName(), true,true,true,true,Arrays.asList(new GrantedAuthorityImpl("ROLE_PROXY")));
+		CustomAuthUser user = new CustomAuthUser(dbUser.getLogin(),dbUser.getPassword(),dbUser.getFirstName(),dbUser.getLastName(),dbUser.getEmail(), true,true,true,true,Arrays.asList(new GrantedAuthorityImpl("ROLE_PROXY")));
 			
 		return user;
 	}

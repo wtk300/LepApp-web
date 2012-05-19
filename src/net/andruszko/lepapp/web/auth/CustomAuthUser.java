@@ -14,6 +14,7 @@ public class CustomAuthUser extends User {
 	
 	private String firstName;
 	private String lastName;
+	private String email;
 	
 
 	public CustomAuthUser(String username, String password, boolean enabled,
@@ -24,7 +25,7 @@ public class CustomAuthUser extends User {
 		
 	}
 	
-	public CustomAuthUser(String username, String password,String firstName,String lastName, boolean enabled,
+	public CustomAuthUser(String username, String password,String firstName,String lastName,String email, boolean enabled,
 			boolean accountNonExpired, boolean credentialsNonExpired,
 			boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
@@ -34,9 +35,18 @@ public class CustomAuthUser extends User {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.email = email;
 		
 	}
 
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getFirstName() {
 		return firstName;

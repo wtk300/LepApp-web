@@ -94,6 +94,7 @@ function ContactCtrl($scope,contactService, securityService) {
 				scope.contact.login = newValue.login;
 				scope.contact.firstName = newValue.firstName;
 				scope.contact.lastName = newValue.lastName;
+				scope.contact.email = newValue.email;
 				scope.contact.authUser = true;
 			} else {
 				scope.contact.authUser = false;

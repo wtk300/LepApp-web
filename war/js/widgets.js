@@ -156,3 +156,24 @@ angular.module('lepModule.widgets', [])
             }
         }        
     })
+	.directive('lepAdderror', function() {        
+        return {
+            restrict : 'A',  
+            
+            link: function(scope, element,attr, controller){       
+            	
+                var exp = attr.lepAdderror; 
+               
+                scope.$watch(exp,function(newValue,oldValue,scope){
+                	
+                	if (newValue){
+                		element.addClass('error');                		
+                	}else{
+                		element.removeClass('error');              
+                	}
+                    
+            
+                });
+            }
+        }        
+    })
